@@ -29,17 +29,6 @@
 #include "pokerCompare.h"
 
 using namespace std;
-
-/*
-* HAND RANKS FROM ALGORITHM
-* High Card - 5
-* One Pair - 6
-* Two Pairs - 7
-* Three of a kind - 9
-* Full House - 10
-* Four of a Kind - 1
-*/
-
 pokerCompare::pokerCompare(vector <string> inputHands) {
     setAllHands(inputHands);
     faces = {"A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"};
@@ -202,8 +191,9 @@ string pokerCompare::getRankFromModulo(unsigned long long &moduloScore) {
         return "onePair";
     } else if (moduloScore == MODULO_HIGH_CARD){
         return "highCard";
+    } else {
+        return "ERROR";
     }
-    return "INVALID";
 }
 void pokerCompare::compareAll() {
     int currentRound = START;
