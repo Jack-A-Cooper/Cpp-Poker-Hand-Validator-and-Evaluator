@@ -26,18 +26,14 @@
 * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE 
 * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
-
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include "readFile.h"
-
 using namespace std;
-
 #define FILE_INPUT 1
 #define ONLY_ONE_FILE 2
-
 vector <string> readFile(int &argCount, char* &inputFileName) {
     ifstream inputFile;
     if(argCount != ONLY_ONE_FILE){

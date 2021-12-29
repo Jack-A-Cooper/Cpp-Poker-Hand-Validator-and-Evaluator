@@ -36,16 +36,13 @@
  * Contact: Jack_cooper01@yahoo.com
  *
  */
-
 #ifndef READFILE_H
 #define READFILE_H
 #include <iostream>
 #include <string>
 #include <vector>
-
 // reads a file (.txt) and returns a string vector containing all lines.
 // Also handles errors resulting from invalid files.
 // input is the command line argument count, and a char pointer to a filename.
 std::vector <std::string> readFile(int &argCount, char* &inputFileName);
-
 #endif

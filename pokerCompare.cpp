@@ -212,7 +212,9 @@ void pokerCompare::compareAll() {
         cout << "Round " << currentRound << ":" << endl;
         this->setCurrentRound(this->getNextPair());
         vector <vector<string>> currentPair = this->getCurrentRound();
+        cout << "Hand One: ";
         printVector(currentPair.at(VECTOR_POS_ONE));
+        cout << "Hand Two: ";
         printVector(currentPair.at(VECTOR_POS_TWO));
         result = compareHands(currentPair.at(VECTOR_POS_ONE),
                               currentPair.at(VECTOR_POS_TWO));
