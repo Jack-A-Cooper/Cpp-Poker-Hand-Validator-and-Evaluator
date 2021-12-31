@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(my_project)
+project(pokerHandsTests)
 
 # GoogleTest requires at least C++11
 set(CMAKE_CXX_STANDARD 11)
@@ -24,7 +24,7 @@ add_executable(
   pokerCompare.cpp
   util.cpp
   readFile.cpp
- "printTests.cpp")
+)
 
 target_link_libraries(
   pokerHandsTests

@@ -1,4 +1,4 @@
-/* Copyright 2021 Jack Alexander Cooper
+﻿/* Copyright 2021 Jack Alexander Cooper
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following
@@ -43,6 +43,8 @@
 #include "../Poker-Hands/pokerCompare.h"
 #include "../Poker-Hands/readFile.h"
 
+using namespace std;
+
 // Note: printing unit tests will be performed in another file.
 // Please see 'printTests.cpp'.
 //
@@ -51,15 +53,22 @@
 // Test readFile.h tests
 //
 
+char* validFile = "testBasicOriginal.txt";
 char* noFile = "";
 char* invalidSizeFile = "testBasicWrongSize.txt";
 char* nonExistantFile = "FOO.txt";
-int empty = 1;
+int emptyFile = 1;
 int nonEmpty = 2;
+
+// successful file read.
+//
+TEST(readFile, readFileInvalidFileNone) {
+SUCCEED(readFile(nonEmpty, validFile));
+}
 // unsuccessful file read - no file
 //
 TEST(readFile, readFileInvalidFileNone) {
-	ASSERT_DEATH(readFile(empty, noFile), "");
+	ASSERT_DEATH(readFile(emptyFile, noFile), "");
 }
 // unsuccessful file read - wrong file size
 //

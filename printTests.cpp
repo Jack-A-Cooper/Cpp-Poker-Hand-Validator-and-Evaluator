@@ -44,7 +44,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    // pokerCompare.h tests
+    // util.h tests
     //
     std::vector <std::string> pokerHands = { "JH 7D 9S 3H 3C",
                                          "QH AD TS JH KC" };
@@ -104,6 +104,8 @@ int main(int argc, char* argv[]) {
     cout << "GOT: ";
     printCardVector(vectorCardThree);
     cout << endl << endl;
+    // pokerCompare.h tests
+    //
     cout << "pokerCompare.h" << endl << endl;
     cout << "TESTING (print2DBoolVector) [pokerCompare.h]" << endl;
     cout << "EXPECTING: 110000000000000" << endl;
