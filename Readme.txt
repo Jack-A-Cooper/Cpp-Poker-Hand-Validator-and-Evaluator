@@ -59,14 +59,14 @@ compile and run your code and tests (including how to obtain any required depend
 
 ========================================================================
 
-Acknowledgements:
+Acknowledgements and Thanks:
 
 I wanted to thank you for the second opportunity in rectifying the implementation of 
-my previous build. I understand that the core of the previous implementation was not my own,
-and receiving feedback helped a lot in clearing up confusion on my end. I agreed with this feedback,
-and channeled my motivation for improvement into this new version.
-This new and improved version was fun to update/refactor/develop, and I relied
-on my own naive solution in order to complete it from scratch. Although somethings were 
+my previous build. I understand that a major issue with the previous
+solution was not having enough implemented soley by myself. I agreed with this feedback,
+and I've channeled my motivation for improvement into this new version.
+This new and improved version was fun to update/refactor/develop, and I have kept
+the implementation only based on how I would do so, and no other code. Although somethings were 
 utilized again (util.cpp, test files, and readFile.cpp), I have tried hard to fix any of the issues presented
 through the feedback. This has overall led to a much more standardized program.
 I hope looking under-the-hood of this new solution is more up to standard, and that it better
@@ -74,6 +74,8 @@ reflects my full abilities as a developer. The core of my implementation can be 
 pokerCompare.h and pokerCompare.cpp files. I believe my implementation should
 now showcase how I wanted to structure, abstract, design, and, in general, work
 towards solving the given problem. Of course, I leave it to the evaluator to evaluate it!
+
+Happy New Years!
 
 ========================================================================
 
@@ -93,7 +95,7 @@ example: '.\pokerHands.exe testBasicOriginal.txt'
 Note: Highly recommend running with 'testUltimate.txt' has 1000 pairs to evaluate a winner!
 use when compiled: '.\pokerHands.exe testUltimate.txt'
 
-Compiling/Running Test Program:
+Compiling/Running Test Program [Google Test C++] (Main Testing Suite):
 
 To compile test program:
 1. Compiled/built using cmake - https://cmake.org/download/
@@ -102,14 +104,14 @@ Also a tutorial for how to build Google Tests outside of an IDE for use:
 https://google.github.io/googletest/quickstart-cmake.html.
 3. Navigate to the same directory as the source code and test files.
 4. To build the build folder, use: 'cmake -S . -B build'. Note this
-will download the dependant 'Google Test' framework.
+will download the dependant 'Google Test' framework for use.
 5 Then use: 'cmake --build build' to build the project. Do note
 the makefile is CMakeLists.txt.
 6. Now that the tests are built and dependencies (Google Test) is set up,
 simply navigate to the build folder using: 'cd build'.
 7. Lastly, use: 'ctest' to run the tests. These should output to the console.
 
-Compiling/Running the Print Tests:
+Compiling/Running the Print Tests (Secondary Testing):
 1. Compiled using g++ (https://gcc.gnu.org/) (see compiling/running the program section)
 2. Navigate to the same directory as the source code and 
 test files, type: 'g++ -o printTests.exe printTests.cpp readFile.cpp pokerCompare.cpp util.cpp' to compile code.
@@ -118,8 +120,7 @@ into a console window (utilize command prompt)
 '.\printTests.exe'
 4. Program will run the printing tests.
 
-
-
+Note: printing tests were separated for ease of use.
 
 ========================================================================
 
@@ -327,6 +328,8 @@ hands incorrectly.
 - The hands are sorted differently for the ties as they must be sorted first by occurence (number of times they appear),
 and then by face value. This will be handled in a helper function.
 
+Please refer to the source code in pokerCompare.cpp for the complete implementation I did.
+
 ========================================================================
 
 Assumptions:
@@ -354,22 +357,39 @@ Testing is done extensively in tests.cpp to this end.
 
 7. If an error is found, the program will crash/kill itself ending the program.
 
+8. Using an algorithm is okay as long as I handle the full core of its implementation.
+
+9. I have tried my best to following the commenting style guide, and keep my code well documented.
+As such, documentation is as deep as possible, and used in-line sparingly only to high light the 
+high-level logic for ease of understanding.
+
+10. I have tried to crash course Google Tests for C++ (to some great success in my opinion). This
+is my first time using this framework. I hope as time progresses I will become more comfortable, and
+knowledgeable regarding it.
+
+11. Reusing, but refactoring my old solution's code is okay as long as it was not part of the hand
+evaluator and validator.
+
 ========================================================================
 
 Source Code Overview:
 
 Readme.txt - this file
-main.cpp - driver file - creates a pokerCompare instances and runs
+main.cpp - driver file - creates a pokerCompare instances and runs the pokerHands application
 readFile.h - header file for readFile.cpp
 readFile.cpp - handles reading file Input
 pokerCompare.h - header file for pokerCompare.cpp
-pokerCompare.cpp - my class implementation of a poker hand evaluator
+pokerCompare.cpp - my class implementation of a poker hand evaluator and validator
 util.h - header file for util.cpp
-util.cpp - helper functions for main.cpp
-tests.cpp - unit tests for all files combined. Tests every single function
+util.cpp - helper functions and global variables for pokerCompare.cpp/main.cpp
+pokerHandsTests.cpp - main testing suite for program. Tests all functions (aside 
+from ones that print). Uses the Google Test C++ Framework.
+printTests.cpp - printing tests not covered in main testing framework
 *.txt - provided test files for manual testing (may be modified)
+CMakeLists.txt - cmake makefile (created by me so Google Test may be
+used outside of the IDE for sake of ease).
 pokerHands.exe - main executable for poker hands; ran using './pokerHands.exe <textFile>.txt' once compiled.
-test.exe - main executable for unit tests; ran using './test.exe' once compiled.
+printTests.exe - main executable for unit tests; ran using './printTests.exe' once compiled.
 
 ========================================================================
 
@@ -380,6 +400,7 @@ Programs Required:
 Windows Command prompt (console)
 Some form of C++ compiler (used minGW-w64): https://www.mingw-w64.org/
 cmake: https://cmake.org/download/
-Google Test: https://github.com/google/googletest
+Google Test C++: https://github.com/google/googletest
+Git for repository needs: https://github.com/
 
 ========================================================================
