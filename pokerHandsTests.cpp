@@ -62,7 +62,7 @@ int nonEmpty = 2;
 
 // successful file read.
 //
-TEST(readFile, readFileInvalidFileNone) {
+TEST(readFile, readFileValid) {
 SUCCEED(readFile(nonEmpty, validFile));
 }
 // unsuccessful file read - no file
