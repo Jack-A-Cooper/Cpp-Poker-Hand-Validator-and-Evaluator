@@ -2,4 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Poker-Hands/v17
+/.vs
+pokerHands.exe
+printTests.exe
+/build
+/out
+project.pdf
+/pokerHandsTests
