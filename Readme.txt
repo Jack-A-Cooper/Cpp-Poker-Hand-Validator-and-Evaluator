@@ -96,12 +96,30 @@ use when compiled: '.\pokerHands.exe testUltimate.txt'
 Compiling/Running Test Program:
 
 To compile test program:
-1. Compiled using g++ (see above for more info)
-2. Navigate to the same directory as the source code and test files, type:
-'g++ -o test main.cpp readFile.cpp pokerCompare.cpp util.cpp test.cpp' to compile code.
+1. Compiled/built using cmake - https://cmake.org/download/
+2. Easy tutorial for installing cmake - https://www.youtube.com/watch?v=8_X5Iq9niDE
+Also a tutorial for how to build Google Tests outside of an IDE for use:
+https://google.github.io/googletest/quickstart-cmake.html.
+3. Navigate to the same directory as the source code and test files.
+4. To build the build folder, use: 'cmake -S . -B build'. Note this
+will download the dependant 'Google Test' framework.
+5 Then use: 'cmake --build build' to build the project. Do note
+the makefile is CMakeLists.txt.
+6. Now that the tests are built and dependencies (Google Test) is set up,
+simply navigate to the build folder using: 'cd build'.
+7. Lastly, use: 'ctest' to run the tests. These should output to the console.
+
+Compiling/Running the Print Tests:
+1. Compiled using g++ (https://gcc.gnu.org/) (see compiling/running the program section)
+2. Navigate to the same directory as the source code and 
+test files, type: 'g++ -o printTests.exe printTests.cpp readFile.cpp pokerCompare.cpp util.cpp' to compile code.
 into a console window (utilize command prompt)
-3. To run, use the following: '.\test.exe'
-4. Tests will now run displaying passes/fails, and what is being tested
+3. To run, use the following:
+'.\printTests.exe'
+4. Program will run the printing tests.
+
+
+
 
 ========================================================================
 
@@ -356,9 +374,12 @@ test.exe - main executable for unit tests; ran using './test.exe' once compiled.
 ========================================================================
 
 IDE Used:
-Microsoft Visual Studio Code (https://code.visualstudio.com/)
+Microsoft Visual Studio Community (https://visualstudio.microsoft.com/vs/community/)
 
-Program Required:
+Programs Required:
 Windows Command prompt (console)
+Some form of C++ compiler (used minGW-w64): https://www.mingw-w64.org/
+cmake: https://cmake.org/download/
+Google Test: https://github.com/google/googletest
 
 ========================================================================

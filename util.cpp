@@ -26,6 +26,18 @@
 * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE 
 * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
+
+/**
+ * @file util.cpp
+ *
+ * @brief Provides the core of the implementation for definitions.
+ * Supports main core of the program (pokerCompare.cpp).
+ *
+ * @author Jack Cooper
+ * Contact: Jack_cooper01@yahoo.com
+ *
+ */
+
 #include "util.h"
 
 using namespace std;
@@ -49,17 +61,17 @@ void convertUpper(vector <string> &handStringVector) {
         for (auto &c : s) c = toupper(c);
     }
 }
-static inline void leftTrim(string &s) {
+inline void leftTrim(string &s) {
     s.erase(s.begin(), find_if(s.begin(), s.end(), [](unsigned char ch) {
         return !isspace(ch);
     }));
 }
-static inline void rightTrim(string &s) {
+inline void rightTrim(string &s) {
     s.erase(find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
         return !isspace(ch);
     }).base(), s.end());
 }
-static inline void trim(string &s) {
+ inline void trim(string &s) {
     leftTrim(s);
     rightTrim(s);
 }
@@ -81,10 +93,14 @@ bool compareCardValue(const card &cardOne, const card &cardTwo) {
     return (cardOne.value < cardTwo.value);
 }
 void sortByOccurencesAndValue(vector<int> &vector) {
+    // Count frequency
+    //
     unordered_map<int, int> frequency;
     for (int i : vector) {
         frequency[i]++;
     }
+    // Sort based on frequencey then value
+    //
     sort(
     vector.begin(), 
     vector.end(),
@@ -104,7 +120,11 @@ void sortByOccurencesAndValue(vector<int> &vector) {
     });
 }
 void sortHand(vector <card> &vector) {
+    // sort hand
+    //
     sort(vector.begin(), vector.end(), compareCardValue);
+    // reverse for proper usage
+    //
     reverse(vector.begin(), vector.end());
 }
 string vectorToString(vector<string> &vector) {

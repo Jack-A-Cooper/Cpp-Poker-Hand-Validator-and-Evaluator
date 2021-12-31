@@ -27,6 +27,16 @@
 * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
+/**
+ * @file main.cpp
+ *
+ * @brief Driver File.
+ *
+ * @author Jack Cooper
+ * Contact: Jack_cooper01@yahoo.com
+ *
+ */
+
 #include "readFile.h"
 #include "pokerCompare.h"
 
