@@ -39,10 +39,15 @@
 #ifndef READFILE_H
 #define READFILE_H
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
+const int FILE_INPUT = 1;
+const int ONLY_ONE_FILE = 2;
+
 // reads a file (.txt) and returns a string vector containing all lines.
 // Also handles errors resulting from invalid files.
 // input is the command line argument count, and a char pointer to a filename.
+//
 std::vector <std::string> readFile(int &argCount, char* &inputFileName);
 #endif

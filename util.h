@@ -30,7 +30,7 @@
 /**
  * @file util.cpp
  *
- * @brief Provides several utility functions/definitions
+ * @brief Provides several utility functions/constants
  * to be used within the main program.
  *
  * @author Jack Cooper
@@ -40,56 +40,6 @@
 
 #ifndef UTIL_H
 #define UTIL_H
-
-#define CORRECT_HAND_SIZE 5
-#define NUMBER_OF_CARDS 13
-#define FACE_CARDS "23456789TJQKA"
-#define SUITS "SDCH"
-#define FACE 0
-#define SUIT 1
-#define CARD_SIZE 2
-#define BEGINNING 0
-#define FIVEOFKINDCHECK 5
-#define START 1
-#define VECTOR_POS_ONE 0
-#define VECTOR_POS_TWO 1
-#define HAND_ONE 1
-#define HAND_TWO 2
-#define TIE 3
-#define NIBBLE 3
-#define FIRST_BITSET_SIZE 15
-#define SECOND_BITSET_SIZE 60
-#define MODULO_FOR_ALGORITHM 15
-#define FACE_EXISTS_BITSET 0
-#define FACE_OCCURENCES_BITSET 1
-#define STRAIGHT_FOUND 31
-#define LOW_ACE_STRAIGHT_POS_ONE 0
-#define LOW_ACE_STRAIGHT_POS_TWO 9
-#define LOW_ACE_STRAIGHT_POS_THREE 10
-#define LOW_ACE_STRAIGHT_POS_FOUR 11
-#define LOW_ACE_STRAIGHT_POS_FIVE 12
-#define ACE 14
-#define KING 13
-#define QUEEN 12
-#define JACK 11
-#define TEN 10
-#define ROYAL_HOUSE 10
-#define STRAIGHT_FLUSH 9
-#define FOUR_OF_A_KIND 8
-#define FULL_HOUSE 7
-#define FLUSH 6
-#define STRAIGHT 5
-#define THREE_OF_A_KIND 4
-#define TWO_PAIR 3
-#define ONE_PAIR 2
-#define HIGH_CARD 1
-#define MODULO_FOUR_KIND 1
-#define MODULO_FULL_HOUSE 10
-#define MODULO_THREE_KIND 9
-#define MODULO_TWO_PAIR 7
-#define MODULO_ONE_PAIR 6
-#define MODULO_HIGH_CARD 5
-#define SIZE_OF_BIT_REPRESENTATION 5
 
 #include <iostream>
 #include <string>
@@ -103,14 +53,57 @@
 #include <array>
 #include <unordered_map>
 
+const int COMMAND_LINE_SELECT = 1;
+const int CORRECT_HAND_SIZE = 5;
+const int NUMBER_OF_CARDS = 13;
+const int CARD_SIZE = 2;
+const int FACE = 0;
+const int SUIT = 1;
+const int ACE = 14;
+const int KING = 13;
+const int QUEEN = 12;
+const int JACK = 11;
+const int TEN = 10;
+const int FIRST_INDEX = 0;
+const int START = 1;
+const int FIVEOFKINDCHECK = 5;
+const int VECTOR_POS_ONE = 0;
+const int VECTOR_POS_TWO = 1;
+const int HAND_ONE = 1;
+const int HAND_TWO = 2;
+const int TIE = 3;
+const int NIBBLE = 3;
+const int FIRST_BITSET_SIZE = 15;
+const int SECOND_BITSET_SIZE = 60;
+const int MODULO_FOR_ALGORITHM = 15;
+const int FACE_EXISTS_BITSET = 0;
+const int FACE_OCCURENCES_BITSET = 1;
+const int STRAIGHT_FOUND = 31;
+const int LOW_ACE_STRAIGHT_POS_ONE = 0;
+const int LOW_ACE_STRAIGHT_POS_TWO = 9;
+const int LOW_ACE_STRAIGHT_POS_THREE = 10;
+const int LOW_ACE_STRAIGHT_POS_FOUR = 11;
+const int LOW_ACE_STRAIGHT_POS_FIVE = 12;
+const int MODULO_FOUR_KIND = 1;
+const int MODULO_FULL_HOUSE = 10;
+const int MODULO_THREE_KIND = 9;
+const int MODULO_TWO_PAIR = 7;
+const int MODULO_ONE_PAIR = 6;
+const int MODULO_HIGH_CARD = 5;
+const int SIZE_OF_BIT_REPRESENTATION = 5;
+const int SLL_ALGO_FIRST_NUMBER = 16;
+const int SLL_ALGO_SECOND_NUMBER = 12;
+const int SLL_ALGO_THIRD_NUMBER = 8;
+const int SLL_ALGO_FORTH_NUMBER = 4;
+const int SLL_ALGO_FIFTH_NUMBER = 0;
+const int BINARY_BASE = 2;
+const char FACES_POSSIBLE[] =  {'A', 'K', 'Q', 'J', 'T', '9',
+                                '8', '7', '6', '5', '4', '3', '2'};
 struct card {
     char face;
     char suit;
     int value;
 };
-
-const char facesPossible[] =  {'A', 'K', 'Q', 'J', 'T', '9',
-                       '8', '7', '6', '5', '4', '3', '2'};
 // Source: https://slaystudy.com/c-split-string-by-space-into-vector/
 // Answer by: none specified
 // Parses string into a string vector. Removes leading/trailing spaces.

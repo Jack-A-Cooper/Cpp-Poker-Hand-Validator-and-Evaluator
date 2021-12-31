@@ -27,13 +27,8 @@
 * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-#include <iostream>
-#include <string>
 #include "readFile.h"
 #include "pokerCompare.h"
-#include "util.h"
-
-#define COMMAND_LINE_SELECT 1
 
 using namespace std;
 

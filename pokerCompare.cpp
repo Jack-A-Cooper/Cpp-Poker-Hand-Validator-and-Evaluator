@@ -51,21 +51,6 @@ void pokerCompare::setCurrentRound(vector <vector<string>> pair) {
 void pokerCompare::setNumPairs(int &setPairNum) {
     numOfPairs = setPairNum;
 }
-void pokerCompare::setFaces(vector<string> &newFaces) {
-    faces = newFaces;
-}
-void pokerCompare::setSuits(vector<string> &newSuits){
-    suits = newSuits;
-}
-void pokerCompare::setRanks(map<string, int> &newRanks) {
-    ranks = newRanks;
-}
-vector<string> pokerCompare::getFaces() {
-    return faces;
-}
-vector<string> pokerCompare::getSuits() {
-    return suits;
-}
 map<string, int> pokerCompare::getRanks() {
     return ranks;
 }
@@ -103,12 +88,12 @@ void pokerCompare::validateHand(vector <string> &hand)
         }
     }
     string fiveFaceCheck = vectorToString(hand);
-    char faceToCheck = fiveFaceCheck[BEGINNING];
+    char faceToCheck = fiveFaceCheck[FIRST_INDEX];
     int countFiveCheck = count(fiveFaceCheck.begin(),
                                fiveFaceCheck.end(), faceToCheck);
     if(countFiveCheck == FIVEOFKINDCHECK){
         cout << "ERROR: Invalid hand - cannot have five of the same face value!"
-          << endl;
+             << endl;
         exit(EXIT_FAILURE);
     }
 }
@@ -221,9 +206,9 @@ bool pokerCompare::empty() {
 }
 void pokerCompare::printWinner(int &result) {
     if(result == HAND_ONE){
-        cout << "Player 1/Hand 1 Wins!" << endl;
+        cout << "Hand 1 Wins!" << endl;
     } else if(result == HAND_TWO){
-        cout << "Player 2/Hand 2 Wins!" << endl;
+        cout << "Hand 2 Wins!" << endl;
     } else {
         cout << "Tie!" << endl;
     }
@@ -336,17 +321,17 @@ vector<vector<vector<bool>>> pokerCompare::maskHandBinary(vector <card> &input) 
     for (int faceValue = 0; faceValue < NUMBER_OF_CARDS; 
          faceValue++)
     {
-        faceToCheck = facesPossible[faceCheckPosition];
+        faceToCheck = FACES_POSSIBLE[faceCheckPosition];
         exists = occurs(stringCardVector, faceToCheck);
         if (exists == true) {
-            handFaceValuesOfHand[faceValue].at(BEGINNING) = true;
+            handFaceValuesOfHand[faceValue].at(FIRST_INDEX) = true;
         }
         faceCheckPosition++;
     }
     faceCheckPosition = 0;
     for (int nibble = 0; nibble < NUMBER_OF_CARDS; nibble++)
     {
-        faceToCheck = facesPossible[faceCheckPosition];
+        faceToCheck = FACES_POSSIBLE[faceCheckPosition];
         occurences = countOccurences(stringCardVector, faceToCheck);
         for (int bits = NIBBLE; bits >= 0; bits--)
         {
@@ -372,6 +357,7 @@ bool pokerCompare::checkStraight(vector<vector<vector<bool>>> &input) {
     string aceLowStringCheck = firstBitset.to_string();
     // Check for ace-low straight (Special Case).
     // Check first bitset string for '100000000111100' as this is that hand.
+    //
     if(aceLowStringCheck[LOW_ACE_STRAIGHT_POS_ONE] == '1'){
         if(aceLowStringCheck[LOW_ACE_STRAIGHT_POS_TWO] == '1'){
             if(aceLowStringCheck[LOW_ACE_STRAIGHT_POS_THREE] == '1'){
@@ -384,6 +370,7 @@ bool pokerCompare::checkStraight(vector<vector<vector<bool>>> &input) {
         }
     }
     // Check for straight.
+    //
     long divisor = (secondBitset.to_ulong() & -secondBitset.to_ulong());
     long result = secondBitset.to_ulong() / divisor;
     if (result != STRAIGHT_FOUND){
@@ -392,7 +379,7 @@ bool pokerCompare::checkStraight(vector<vector<vector<bool>>> &input) {
     return true;
 }
 bool pokerCompare::checkFlush(vector <card> &input) {
-    char suitToCheck = input[BEGINNING].suit;
+    char suitToCheck = input[FIRST_INDEX].suit;
     for(auto& i : input) {
         if(i.suit != suitToCheck){
             return false;
@@ -401,10 +388,10 @@ bool pokerCompare::checkFlush(vector <card> &input) {
     return true;
 }
 bool pokerCompare::checkRoyalFlush(vector <card> &input) {
-    int faceCheck = 0;
+    int faceCheck = FIRST_INDEX;
     char faceToCheck;
     for(auto& i : input) {
-        faceToCheck = facesPossible[faceCheck];
+        faceToCheck = FACES_POSSIBLE[faceCheck];
         if(i.face != faceToCheck){
             return false;
         }
@@ -433,16 +420,17 @@ int pokerCompare::getTieBreakScore(vector <card> &input) {
     int thirdShift;
     int forthShift;
     int fifthShift;
-    firstShift = first << 16;
-    secondShift = second << 12;
-    thirdShift = third << 8;
-    forthShift = forth << 4;
-    fifthShift = fifth << 0;
-    int firstBinaryNumber =  stoi(toBinary(firstShift), 0, 2);
-    int secondBinaryNumber =  stoi(toBinary(secondShift), 0, 2);
-    int thirdBinaryNumber =  stoi(toBinary(thirdShift), 0, 2);
-    int forthBinaryNumber =  stoi(toBinary(forthShift), 0, 2);
-    int fifthBinaryNumber =  stoi(toBinary(fifthShift), 0, 2);
+    firstShift = first << SLL_ALGO_FIRST_NUMBER;
+    secondShift = second << SLL_ALGO_SECOND_NUMBER;
+    thirdShift = third << SLL_ALGO_THIRD_NUMBER;
+    forthShift = forth << SLL_ALGO_FORTH_NUMBER;
+    fifthShift = fifth << SLL_ALGO_FIFTH_NUMBER;
+    size_t* index = 0;
+    int firstBinaryNumber =  stoi(toBinary(firstShift), index, BINARY_BASE);
+    int secondBinaryNumber =  stoi(toBinary(secondShift), index, BINARY_BASE);
+    int thirdBinaryNumber =  stoi(toBinary(thirdShift), index, BINARY_BASE);
+    int forthBinaryNumber =  stoi(toBinary(forthShift), index, BINARY_BASE);
+    int fifthBinaryNumber =  stoi(toBinary(fifthShift), index, BINARY_BASE);
     score = firstBinaryNumber + secondBinaryNumber + thirdBinaryNumber +
             forthBinaryNumber + fifthBinaryNumber;
     return score;
