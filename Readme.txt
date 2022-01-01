@@ -106,6 +106,8 @@ To compile test program:
 Also a tutorial for how to build Google Tests outside of an IDE for use:
 https://google.github.io/googletest/quickstart-cmake.html.
 3. Navigate to the same directory as the source code and test files.
+A special note: Please ensure the directory with all source code is
+called: 'Poker-Hands' or the proper files cannot be linked.
 4. To build the build folder, use: 'cmake -S . -B build'. Note this
 will download the dependant 'Google Test' framework for use.
 5 Then use: 'cmake --build build' to build the project. Do note
@@ -113,6 +115,7 @@ the makefile is CMakeLists.txt.
 6. Now that the tests are built and dependencies (Google Test) is set up,
 simply navigate to the build folder using: 'cd build'.
 7. Lastly, use: 'ctest' to run the tests. These should output to the console.
+8. Use 'cd ..' to go back to the main directory.
 
 Compiling/Running the Print Tests (Secondary Testing):
 1. Compiled using g++ (https://gcc.gnu.org/) (see compiling/running the program section)
@@ -122,6 +125,7 @@ into a console window (utilize command prompt)
 3. To run, use the following:
 '.\printTests.exe'
 4. Program will run the printing tests.
+5. Observe the 'EXPECTING' and 'GOT' results. Matching means a success.
 
 Note: printing tests were separated for ease of use.
 
