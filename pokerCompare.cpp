@@ -46,23 +46,23 @@ pokerCompare::pokerCompare(vector <string> inputHands) {
     setAllHands(inputHands);
     faces = {"A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"};
     suits = {"S", "D", "C", "H"};
-    ranks = { {"highCard", 1}, {"onePair", 2}, {"twoPair", 3},
-              {"threeKind", 4}, {"straight", 5}, {"flush", 6},
-              {"fullHouse", 7}, {"fourKind", 8}, 
+    ranks = { {"highCard", 0}, {"onePair", 1}, {"twoPair", 2},
+              {"threeKind", 3},  {"aceLowStraight", 4}, {"straight", 5}, {"flush", 6},
+              {"fullHouse", 7}, {"fourKind", 8},
               {"straightFlush", 9}, {"royalFlush", 10}
             };
 }
 void pokerCompare::setAllHands(vector <string> &fileInputHands) {
     allHands = fileInputHands;
-    // Reverse to start at the beginning of the inputted file
+    // Reverse to start at the beginning of the inputted file.
     //
     reverse(allHands.begin(), allHands.end());
 }
 void pokerCompare::setCurrentRound(vector <vector<string>> pair) {
-    // Flush out previous round
+    // Flush out previous round.
     //
     currentRound.clear();
-    // Populate next round
+    // Populate next round.
     //
     currentRound.push_back(pair.at(VECTOR_POS_ONE));
     currentRound.push_back(pair.at(VECTOR_POS_TWO));
@@ -80,28 +80,28 @@ void pokerCompare::validateHand(vector <string> &hand)
 {
     convertUpper(hand);
     string key;
-    // Check hand size
+    // Check hand size.
     //
     if(hand.size() != CORRECT_HAND_SIZE){
         cout << "ERROR: Invalid hand - Incorrect hand size!" << endl;
         exit(EXIT_FAILURE);
     }
     for (auto& element : hand) {
-        // Check card size
+        // Check card size.
         //
         if(element.size() != CARD_SIZE) {
             cout << "ERROR: Invalid hand - Found invalid card size!" << endl;
             exit(EXIT_FAILURE);
         }
         key = element[FACE];
-        // Check for invalid faces
+        // Check for invalid faces.
         //
         if(find(faces.begin(), faces.end(), key) == faces.end()){
             cout << "ERROR: Invalid hand - Found invalid face value!" << endl;
             exit(EXIT_FAILURE);
         }
         key = element[SUIT];
-        // Check for invalid suits
+        // Check for invalid suits.
         //
         if(find(suits.begin(), suits.end(), key) == suits.end()){
             cout << "ERROR: Invalid hand - Found invalid suit value!" << endl;
@@ -110,9 +110,9 @@ void pokerCompare::validateHand(vector <string> &hand)
     }
     string fiveFaceCheck = vectorToString(hand);
     char faceToCheck = fiveFaceCheck[FIRST_INDEX];
-    int countFiveCheck = count(fiveFaceCheck.begin(),
+    int countFiveCheck = (int) count(fiveFaceCheck.begin(),
                                fiveFaceCheck.end(), faceToCheck);
-    // Check for five of the same face
+    // Check for five of the same face.
     //
     if(countFiveCheck == FIVEOFKINDCHECK){
         cout << "ERROR: Invalid hand - cannot have five of the same face value!"
@@ -124,13 +124,13 @@ vector <vector<string>> pokerCompare::getNextPair() {
     vector <vector<string>> nextPairVector;
     vector <string> firstHandVector;
     vector <string> secondHandVector;
-    // Grab next two hands from allHands
+    // Grab next two hands from allHands.
     //
     splitString(allHands.back(), firstHandVector);
     allHands.pop_back();
     splitString(allHands.back(), secondHandVector);
     allHands.pop_back();
-    // Perform validation on both hands
+    // Perform validation on both hands.
     //
     validateHand(firstHandVector);
     validateHand(secondHandVector);
@@ -147,11 +147,11 @@ int pokerCompare::compareHands(vector <string> &handOne,
     int firstHandScore = getHandRank(handOne);
     int secondHandScore = getHandRank(handTwo);
     if(firstHandScore > secondHandScore){
-        // Hand One is winner - no tie found
+        // Hand One is winner - no tie found.
         //
         return HAND_ONE;
     } else if(firstHandScore < secondHandScore){
-        // Hand Two is winner - no tie found
+        // Hand Two is winner - no tie found.
         //
         return HAND_TWO;
     } else {
@@ -164,11 +164,11 @@ int pokerCompare::compareHands(vector <string> &handOne,
         int tieBreakFirstScore = getTieBreakScore(cardsVectorOne);
         int tieBreakSecondScore = getTieBreakScore(cardsVectorTwo);
         if(tieBreakFirstScore > tieBreakSecondScore){
-            // Hand One is winner of the tie
+            // Hand One is winner of the tie.
             //
             return HAND_ONE;
         } else if(tieBreakFirstScore < tieBreakSecondScore){
-            // Hand Two is winner of the tie
+            // Hand Two is winner of the tie.
             //
             return HAND_TWO;
         } else {
@@ -208,9 +208,15 @@ int pokerCompare::getHandRank(vector <string> &hand) {
         // Straight Found.
         //
         rank = "straight";
-        return getRankScore(rank);;
+        return getRankScore(rank);
+    } else if (checkAceLowStraight(handMask)) {
+        // Ace-low Straight Found.
+        // Special check.
+        //
+        rank = "aceLowStraight";
+        return getRankScore(rank);
     } else {
-        // Use modulo division method to determine hand.
+        // Use modulo division method to determine hand rank.
         //
         moduloScore = (moduloResult(handMask[FACE_OCCURENCES_BITSET]));
         string rankScored = getRankFromModulo(moduloScore);
@@ -363,7 +369,7 @@ string pokerCompare::vectorToString(vector<string> &vector) {
 }
 int pokerCompare::countOccurences(vector <string> &vector, char &key) {
     string hand = vectorToString(vector);
-    int occurs = std::count(hand.begin(), hand.end(), key);
+    int occurs = (int) std::count(hand.begin(), hand.end(), key);
     return occurs;
 }
 bool pokerCompare::occurs(vector <string> &vector, char &key) {
@@ -380,7 +386,7 @@ bool pokerCompare::occurs(vector <string> &vector, char &key) {
     return false;
 }
 unsigned long long pokerCompare::moduloResult(vector <vector<bool>> &input) {
-    // Mod by 15 following the algorithm, and then return.
+    // Modulo mask conversion by 15 following the algorithm, and then return.
     //
     return getLongFromMask(input) % MODULO_FOR_ALGORITHM;
 }
@@ -444,21 +450,6 @@ bool pokerCompare::checkStraight(vector<vector<vector<bool>>> &input) {
         getBinaryFromMaskFirstBitset(input[FACE_EXISTS_BITSET]);
     bitset<SECOND_BITSET_SIZE> secondBitset = 
         getBinaryFromMaskSecondBitset(input[FACE_EXISTS_BITSET]);
-    string aceLowStringCheck = firstBitset.to_string();
-    // Check for ace-low straight (Special Case).
-    // Check first bitset string for '100000000111100' as this is that hand.
-    //
-    if(aceLowStringCheck[LOW_ACE_STRAIGHT_POS_ONE] == '1'){
-        if(aceLowStringCheck[LOW_ACE_STRAIGHT_POS_TWO] == '1'){
-            if(aceLowStringCheck[LOW_ACE_STRAIGHT_POS_THREE] == '1'){
-                if(aceLowStringCheck[LOW_ACE_STRAIGHT_POS_FOUR] == '1'){
-                    if(aceLowStringCheck[LOW_ACE_STRAIGHT_POS_FIVE] == '1'){
-                        return true;
-                    }  
-                }   
-            }
-        }
-    }
     // Check for straight.
     // if '11111' or '31' is the quotient, a straight is found.
     //
@@ -468,6 +459,28 @@ bool pokerCompare::checkStraight(vector<vector<vector<bool>>> &input) {
         return false;
     }
     return true;
+}
+bool pokerCompare::checkAceLowStraight(vector<vector<vector<bool>>> & input) {
+    bitset<FIRST_BITSET_SIZE> firstBitset =
+        getBinaryFromMaskFirstBitset(input[FACE_EXISTS_BITSET]);
+    bitset<SECOND_BITSET_SIZE> secondBitset =
+        getBinaryFromMaskSecondBitset(input[FACE_EXISTS_BITSET]);
+    string aceLowStringCheck = firstBitset.to_string();
+    // Check for ace-low straight (Special Case).
+    // Check first bitset string for '100000000111100' as this is that hand.
+    //
+    if (aceLowStringCheck[LOW_ACE_STRAIGHT_POS_ONE] == '1') {
+        if (aceLowStringCheck[LOW_ACE_STRAIGHT_POS_TWO] == '1') {
+            if (aceLowStringCheck[LOW_ACE_STRAIGHT_POS_THREE] == '1') {
+                if (aceLowStringCheck[LOW_ACE_STRAIGHT_POS_FOUR] == '1') {
+                    if (aceLowStringCheck[LOW_ACE_STRAIGHT_POS_FIVE] == '1') {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
 }
 bool pokerCompare::checkFlush(vector <card> &input) {
     char suitToCheck = input[FIRST_INDEX].suit;

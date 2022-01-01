@@ -69,7 +69,11 @@
  * implementation so that is may correctly validate, and use the file.
  * Lastly, popping back and getting back operations are used. Please
  * note that the vector containing all hands (all pairs) will be reversed
- * for this reason.
+ * for this reason. Please note that the bitmasking algorithm was
+ * implemented for the hand evaluation. Please refer to the 'Readme.txt'
+ * for an in-depth explination of how this algorithm works. Some notes
+ * are commented regarding aspects of the program that are following
+ * the algorithm.
  * 
  * Example (given a text file called 'test.txt'): 
  *  pokerCampare myPokerObj(readFile("test.txt"));
@@ -80,6 +84,7 @@
 class pokerCompare {
     private:
      // Stores the number of pairs to be evaluated.
+     // Used to determine when rounds can stop.
      //
      int numOfPairs;
      // Stores all string lines from a file input.
@@ -100,6 +105,8 @@ class pokerCompare {
      //
      std::vector <std::string> suits;
      // Stores the possible hand ranks that a hand could be.
+     // Used to determine what a returned string is converted
+     // into a rank with a score.
      //
      std::map <std::string, int> ranks;
     public:
@@ -113,7 +120,7 @@ class pokerCompare {
      pokerCompare(std::vector <std::string> inputHands);
      // Sets the object's allHands vector. Also reverses this
      // vector so that the back of the vector becomes the front.
-     // This is for pop back and back operations to work.
+     // This is for pop_back() and back() operations to work.
      // 
      // Input is taken from an input text file from specified on the command line.
      //
@@ -271,7 +278,7 @@ class pokerCompare {
      //
      std::vector<std::vector<std::vector<bool>>> maskHandBinary(std::vector <card> &vector);
      // Returns true or false depending on if a straight is found using the algorithm.
-     // Also has a special check for an 'Ace-Low Straight'. Used in combination with
+     //  Used in combination with
      // checkFlush to determine if a stright-flush exists.
      //
      // Input is a vector of vector of vectors containing booleans (the mask
@@ -280,6 +287,18 @@ class pokerCompare {
      // grouped 'trues' or '1' [11111] to determine if a straight exists.
      //
      bool checkStraight(std::vector<std::vector<std::vector<bool>>> &input);
+     // Returns true or false depending on if a ace-low straight exists. 
+     // Acts as special check for an 'Ace-Low Straight' which is the lowest straight.
+     // This is required as it is lowest valued straight, but high enough to be
+     // ranked as a kind of straight. Given a score lower than a regular straight,
+     // but a score higher than the next lower rank, a three-of-a-kind.
+     //
+     // Input is a vector of vector of vectors containing booleans (the mask
+     // obtained from masking a card vector). Searches for special case for the
+     // Check for ace-low straight (Special Case) which is when
+     // the first bitset string is '100000000111100' for the hand.
+     //
+     bool checkAceLowStraight(std::vector<std::vector<std::vector<bool>>> &input);
      // Returns true or false depending on if a flush exists. It sets the suit
      // to the first card in the hand, and scans all remaining cards to see if 
      // they have the same suit. If so, then a flush exists, else no flush exists.

@@ -65,7 +65,7 @@ int nonEmpty = 2;
 // successful file read.
 //
 TEST(readFile, readFileValid) {
-SUCCEED(readFile(nonEmpty, validFile));
+    readFile(nonEmpty, validFile);
 }
 // unsuccessful file read - no file
 //
@@ -271,8 +271,9 @@ pokerCompare objTest(pokerHands);
 TEST(pokerCompare, setAllHands) {
     objTest.setAllHands(pokerHands);
     int correct = 1;
-    int pairsUpdate = pokerHands.size() / 2;
-    objTest.setNumPairs(pairsUpdate);
+    size_t pairsUpdate = pokerHands.size() / 2;
+    int size = (int) pairsUpdate;
+    objTest.setNumPairs(size);
     ASSERT_EQ(objTest.getNumPairs(), correct);
 }
 // setCurrentRound function
@@ -318,8 +319,8 @@ TEST(pokerCompare, getNumPairs) {
 // validateHand function - correct
 //
 TEST(pokerCompare, validateHand) {
-    std::vector <std::string> hand = { "JH" "7D" "9S" "3H" "3C" };
-    SUCCEED(poker.validateHand(hand));
+    std::vector <std::string> hand = { "JH", "7D", "9S", "3H", "3C" };
+    poker.validateHand(hand);
 }
 // validateHand function - incorrect hand size
 //
@@ -419,7 +420,7 @@ TEST(pokerCompare, getRankFromModulo) {
 // compareAll function
 //
 TEST(pokerCompare, compareAll) {
-    SUCCEED(objTest.compareAll());
+    objTest.compareAll();
 }
 // empty function - true
 //
@@ -539,17 +540,6 @@ TEST(pokerCompare, checkStraight) {
     bool correct = true;
     ASSERT_EQ(correct, result);
 }
-// checkStraight function - true for ace-low straight
-//
-TEST(pokerCompare, checkStraightAceLow) {
-    std::vector <std::string> hand = { "AS", "3C", "2D", "4H", "5S" };
-    std::vector <card> cards = objTest.stringsToCards(hand);
-    std::vector<std::vector<std::vector<bool>>> mask = 
-        objTest.getHandMask(cards);
-    bool result = objTest.checkStraight(mask);
-    bool correct = true;
-    ASSERT_EQ(correct, result);
-}
 // checkStraight function - false
 //
 TEST(pokerCompare, checkStraightFalse) {
@@ -558,6 +548,28 @@ TEST(pokerCompare, checkStraightFalse) {
     std::vector<std::vector<std::vector<bool>>> mask = 
         objTest.getHandMask(cards);
     bool result = objTest.checkStraight(mask);
+    bool correct = false;
+    ASSERT_EQ(correct, result);
+}
+// checkAceLowStraight function - true
+//
+TEST(pokerCompare, checkAceLowStraightTrue) {
+    std::vector <std::string> hand = { "AS", "3C", "2D", "4H", "5S" };
+    std::vector <card> cards = objTest.stringsToCards(hand);
+    std::vector<std::vector<std::vector<bool>>> mask =
+        objTest.getHandMask(cards);
+    bool result = objTest.checkAceLowStraight(mask);
+    bool correct = true;
+    ASSERT_EQ(correct, result);
+}
+// checkAceLowStraight function - false
+//
+TEST(pokerCompare, checkAceLowStraightFalse) {
+    std::vector <std::string> hand = { "AS", "KC", "QD", "JH", "TS" };
+    std::vector <card> cards = objTest.stringsToCards(hand);
+    std::vector<std::vector<std::vector<bool>>> mask =
+        objTest.getHandMask(cards);
+    bool result = objTest.checkAceLowStraight(mask);
     bool correct = false;
     ASSERT_EQ(correct, result);
 }

@@ -149,6 +149,10 @@ Hand ranks ordered weakest to strongest:
 9. Straight Flush
 10. Royal Flush
 
+Note: an Ace-low straight is still considered a straight, but the lowest valued one.
+In the program it is given a rank score between that of a three-of-a-kind, but lower
+than a regular straight.
+
 ****Ties****
 
 If a tie occurs, the stronger valued hand will win.

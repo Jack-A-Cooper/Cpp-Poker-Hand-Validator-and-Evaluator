@@ -84,7 +84,7 @@ const int KING = 13;
 const int QUEEN = 12;
 const int JACK = 11;
 const int TEN = 10;
-// first Index of container.
+// First Index of container.
 // Used to get the first element.
 //
 const int FIRST_INDEX = 0;
@@ -96,7 +96,7 @@ const int START = 1;
 // same face appear, the validator rejects the hand.
 //
 const int FIVEOFKINDCHECK = 5;
-// first index of vector and second
+// First index of vector and second
 // index of vector respectively.
 //
 const int VECTOR_POS_ONE = 0;
@@ -109,7 +109,7 @@ const int HAND_TWO = 2;
 const int TIE = 3;
 // Nibble is 4 bits. This is used when masking the second bitset
 // for face value occurences so that only 4 bits are modified corresponding
-// to each face value.
+// to each face value. Loop is 3 >= 0 so must be set to 3 for 4 iterations.
 //
 const int NIBBLE = 3;
 // Sizes for each bit set as stated by the algorithm
@@ -190,42 +190,61 @@ struct card {
 // Source: https://slaystudy.com/c-split-string-by-space-into-vector/
 // Answer by: none specified
 // Parses string into a string vector. Removes leading/trailing spaces.
+// 
+// The first input is a string to use to populate the vector, and the second
+// input is the specified vector to populate.
 //
 void splitString(std::string &inputString, 
-                 std::vector <std::string> &StringVector);
+                 std::vector <std::string> &stringVector);
 // Source: http://www.cplusplus.com/forum/beginner/89508/
 // Answer by: vlad from moscow
 // Makes all characters uppercase in a string vector.
+// 
+// Input is a string vector that will be modified to be all caps.
 //
 void convertUpper(std::vector <std::string> &handStringVector);
 // Source: https://stackoverflow.com/questions/216823/how-to-trim-a-stdstring
 // Answer by: Evan Teran
-// Trim from start (in place).
+// Trim from start (in place). Whitespace to left is removed.
+// 
+// Input is a string to trim left whitespace.
 //
 inline void leftTrim(std::string &s);
 // Source: https://stackoverflow.com/questions/216823/how-to-trim-a-stdstring
 // Answer by: Evan Teran
-// Trim from end (in place).
+// Trim from end (in place). Whitespace to right is removed.
+// 
+// Input is a string to trim right whitespace.
 //
 inline void rightTrim(std::string &s);
 // Source: https://stackoverflow.com/questions/216823/how-to-trim-a-stdstring
 // Answer by: Evan Teran
-// Trim from both ends (in place).
+// Trim from both ends (in place). Whitespace left and right is removed.
+// 
+// Input is a string to trim both left and right whitespace.
 //
 inline void trim(std::string &s);
 // Prints entire string vector.
+// 
+// Input is a string vector.
 //
 void printVector(std::vector <std::string> &vector);
 // Prints entire card vector.
+// 
+// Input is a vector of cards.
 //
 void printCardVector(std::vector <card> &vector);
 // Compares card values based on their face value.
 // Returns true if cardOne is more valuable than card two.
 // False otherwise.
+// 
+// First input is the first card, and the second input is the second card.
 //
 bool compareCardValue(const card &cardOne, const card &cardTwo);
 // Sorts vector by face value. High to low order.
 // Example: ("5H KH 2D QH AC") becomes: ("AC KH QH 5H 2D").
+// 
+// Input is a card vector.
 //
 void sortHand(std::vector <card> &vector);
 // Source: https://codereview.stackexchange.com/questions/173382/sorting-elements-according-to-frequency-of-occurence-in-c
@@ -234,33 +253,48 @@ void sortHand(std::vector <card> &vector);
 // Used in tie breaking scenarios. Int vector used since by the time a tie is
 // needing to be broken, only the face values are needed.
 // 
+// Input is an integer vector.
+// 
 void sortByOccurencesAndValue(std::vector<int> &vector);
 // Converts a vector string into a string. Returns the converted string.
+// 
+// Input is a string vector.
 //
 std::string vectorToString(std::vector<std::string> &vector);
 // Returns a char of '0' or '1' representing false/true respectively.
+// 
 // Input is simply a boolean. Used in getting true/false from bitmasks.
 //
 char getBit(bool input);
 // Returns the value from the mask specified (face existing in a hand or face 
 // occurences in a hand). Used for a comparison value for the algorithm.
+// 
+// Input is a vector of vectors containing booleans.
 //
 unsigned long long getLongFromMask(std::vector <std::vector<bool>> &vector);
 // Returns the first bitset mask (what faces occur in the hand).
 // Used in algorithm to determine hands.
+// 
+// Input is a vector of vectors containing booleans.
 //
 std::bitset<FIRST_BITSET_SIZE> getBinaryFromMaskFirstBitset(std::vector <std::vector<bool>> &vector);
 // Returns the second bitset mask (how many of each face value occurs in the hand).
 // Used in algorithm to determine hands.
+// 
+// Input is a vector of vectors containing booleans.
 //
 std::bitset<SECOND_BITSET_SIZE> getBinaryFromMaskSecondBitset(std::vector <std::vector<bool>> &vector);
 // Returns an integer vector from a card vector. Strips aways suits for use in bitwise
 // operations. Used to help break ties if they occur.
+// 
+// Input is a vector of cards.
 //
 std::vector <int> getIntegerVector(std::vector <card> &vector);
 // Source: https://www.delftstack.com/howto/cpp/how-to-convert-decimal-number-to-binary-in-cpp/
 // Answer by: none specified
 // Converts decimal number to a binary string.
+// 
+// Input is a decimal number.
 //
 std::string toBinary(int &n);
 #endif

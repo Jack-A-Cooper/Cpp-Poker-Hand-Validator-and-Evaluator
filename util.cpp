@@ -42,18 +42,18 @@
 
 using namespace std;
 
-void splitString(string &inputString, vector <string> &StringVector) {
+void splitString(string &inputString, vector <string> &stringVector) {
     string temp = "";
     trim(inputString);
     for(int i = 0; i < inputString.length(); ++i) {	
         if(inputString[i] == ' '){
-            StringVector.push_back(temp);
+            stringVector.push_back(temp);
             temp = "";
         } else {
             temp.push_back(inputString[i]);
         }
     }
-    StringVector.push_back(temp);
+    stringVector.push_back(temp);
 }
 void convertUpper(vector <string> &handStringVector) {
     for (auto &s : handStringVector)
@@ -93,13 +93,13 @@ bool compareCardValue(const card &cardOne, const card &cardTwo) {
     return (cardOne.value < cardTwo.value);
 }
 void sortByOccurencesAndValue(vector<int> &vector) {
-    // Count frequency
+    // Count frequency.
     //
     unordered_map<int, int> frequency;
     for (int i : vector) {
         frequency[i]++;
     }
-    // Sort based on frequencey then value
+    // Sort based on frequencey then value.
     //
     sort(
     vector.begin(), 
@@ -120,10 +120,10 @@ void sortByOccurencesAndValue(vector<int> &vector) {
     });
 }
 void sortHand(vector <card> &vector) {
-    // sort hand
+    // Sort hand.
     //
     sort(vector.begin(), vector.end(), compareCardValue);
-    // reverse for proper usage
+    // Reverse for proper usage.
     //
     reverse(vector.begin(), vector.end());
 }
