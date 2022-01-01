@@ -264,12 +264,12 @@ Poker Hand Evaluator Algorithm:
 
 Sources:
 
-Where I found out about the of algorithm (Second-hand Source):
+Where I found out about the of algorithm (secondary source):
 https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math
 - Excellent explanation of algorithm by Jonathan Hsiao.
 I followed how he described it for use of porting it into my project.
 
-Original Source of algorithm (primary source - where Jonathan found it out):
+Original Source of algorithm (secondary source - where Jonathan found it out):
 http://jsfiddle.net/subskybox/r4mSF/
 - Implemented in JavaScript by Pat Wilson.
 
