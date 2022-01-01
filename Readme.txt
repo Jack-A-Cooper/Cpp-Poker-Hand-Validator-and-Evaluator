@@ -53,9 +53,12 @@ maintainability and designing for scale.
 ● Consider using design patterns that demonstrate your level of experience.
 ● Any questions you have, make an assumption and document in the code.
 
-Keep unit tests, patterns, abstraction, and extensibility in mind. Use any freely available supporting
-libraries you like. Clearly identify any code that you did not write yourself. Please provide instructions to
-compile and run your code and tests (including how to obtain any required dependencies or IDEs).
+Keep unit tests, patterns, abstraction, and extensibility in mind. Use any 
+freely available supporting libraries you like. 
+Clearly identify any code that you did not write yourself. 
+Please provide instructions to
+compile and run your code and tests (including how to obtain 
+any required dependencies or IDEs).
 
 ========================================================================
 
