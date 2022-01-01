@@ -43,17 +43,17 @@
 using namespace std;
 
 void splitString(string &inputString, vector <string> &StringVector) {
-	string temp = "";
-	trim(inputString);
-	for(int i = 0; i < inputString.length(); ++i) {	
-		if(inputString[i] == ' '){
-			StringVector.push_back(temp);
-			temp = "";
-		} else {
-			temp.push_back(inputString[i]);
-		}
-	}
-	StringVector.push_back(temp);
+    string temp = "";
+    trim(inputString);
+    for(int i = 0; i < inputString.length(); ++i) {	
+        if(inputString[i] == ' '){
+            StringVector.push_back(temp);
+            temp = "";
+        } else {
+            temp.push_back(inputString[i]);
+        }
+    }
+    StringVector.push_back(temp);
 }
 void convertUpper(vector <string> &handStringVector) {
     for (auto &s : handStringVector)
@@ -76,11 +76,11 @@ inline void rightTrim(string &s) {
     rightTrim(s);
 }
 void printVector(vector <string> &vector) {
-	for (auto i : vector)
+    for (auto i : vector)
     {
         cout << i << " ";
     }
-	cout << endl;
+    cout << endl;
 }
 void printCardVector(std::vector <card> &vector) {
     for (auto i : vector)

@@ -382,7 +382,7 @@ pokerCompare.h - header file for pokerCompare.cpp
 pokerCompare.cpp - my class implementation of a poker hand evaluator and validator
 util.h - header file for util.cpp
 util.cpp - helper functions and global variables for pokerCompare.cpp/main.cpp
-pokerHandsTests.cpp - main testing suite for program. Tests all functions (aside 
+pokerHandsTests.cpp - main testing suite for program. Tests all functions (aside
 from ones that print). Uses the Google Test C++ Framework.
 printTests.cpp - printing tests not covered in main testing framework
 *.txt - provided test files for manual testing (may be modified)

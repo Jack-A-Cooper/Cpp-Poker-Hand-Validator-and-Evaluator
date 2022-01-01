@@ -157,7 +157,7 @@ int pokerCompare::compareHands(vector <string> &handOne,
     } else {
         // Tie found as ranks are the same. 
         // Determine actual value of hands
-        // using algorithm's method.
+        // using algorithm's method. Then compare.
         //
         vector<card> cardsVectorOne = stringsToCards(handOne);
         vector<card> cardsVectorTwo = stringsToCards(handTwo);
@@ -172,7 +172,7 @@ int pokerCompare::compareHands(vector <string> &handOne,
             //
             return HAND_TWO;
         } else {
-            // Tie. Both hands were exactly the same.
+            // Tie. Both hands are exactly the same.
             //
             return TIE;
         }
@@ -355,7 +355,7 @@ vector<card> pokerCompare::stringsToCards(vector <string> &vector) {
 }
 string pokerCompare::vectorToString(vector<string> &vector) {
     string result;
-    for (std::vector<std::string>::const_iterator iter = vector.begin(); 
+    for (std::vector<std::string>::const_iterator iter = vector.begin();
          iter != vector.end(); ++iter) {
         result += *iter;
     }
@@ -368,7 +368,7 @@ int pokerCompare::countOccurences(vector <string> &vector, char &key) {
 }
 bool pokerCompare::occurs(vector <string> &vector, char &key) {
     for(int element = 0; element < vector.size(); element++) {
-        for(int stringCheck = 0; stringCheck < vector[element].size(); 
+        for(int stringCheck = 0; stringCheck < vector[element].size();
             stringCheck++) {
             if(vector[element][FACE] == key) {
                 // Key Occurs.
@@ -391,7 +391,7 @@ vector<vector<vector<bool>>> pokerCompare::maskHandBinary(vector <card> &input) 
     char faceToCheck;
     vector<std::string> stringCardVector = cardsToStrings(input);
     std::vector <std::vector<bool>> handFaceValuesOfHand {
-        {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, 
+        {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0},
         {0}, {0},
     };
     std::vector <std::vector<bool>> handCountOfFaceValues {
