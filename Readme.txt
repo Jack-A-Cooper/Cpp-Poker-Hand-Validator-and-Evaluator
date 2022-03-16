@@ -1,5 +1,5 @@
 ========================================================================
-                        EA Poker Hands Assessment Readme V2.0
+                           Poker Hands Readme V2.0
                             Author: Jack Cooper
                         Contact: Jack_cooper01@yahoo.com
 ========================================================================
@@ -33,52 +33,6 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE 
 USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-========================================================================
-
-Project Description (from EA provided Poker Hands PDF):
-
-A console application in C++ that compares two 5-card poker hands.
-The console application shall:
-● Takes in text file with one hand per line (See example text file below).
-● Ranks two different Poker hands according to standard poker hand rank
-(https://en.wikipedia.org/wiki/List_of_poker_hands)
-● Output the winner to the console
-● Example Text File (Please make any changes, or create your own)
-
-Additional Guidelines:
-● Providing unit tests is highly desired.
-● Your code submission should be written with a reasonable balance of readability,
-maintainability and designing for scale.
-● Consider using design patterns that demonstrate your level of experience.
-● Any questions you have, make an assumption and document in the code.
-
-Keep unit tests, patterns, abstraction, and extensibility in mind. Use any 
-freely available supporting libraries you like. 
-Clearly identify any code that you did not write yourself. 
-Please provide instructions to
-compile and run your code and tests (including how to obtain 
-any required dependencies or IDEs).
-
-========================================================================
-
-Acknowledgements and Thanks:
-
-I wanted to thank you for the second opportunity in rectifying the implementation of 
-my previous build. I understand that a major issue with the previous
-solution was not having enough implemented soley by myself. I agreed with this feedback,
-and I've channeled my motivation for improvement into this new version.
-This new and improved version was fun to update/refactor/develop, and I have kept
-the implementation only based on how I would do so, and no other code. Although somethings were 
-utilized again (util.cpp, test files, and readFile.cpp), I have tried hard to fix any of the issues presented
-through the feedback. This has overall led to a much more standardized program.
-I hope looking under-the-hood of this new solution is more up to standard, and that it better
-reflects my full abilities as a developer. The core of my implementation can be found in
-pokerCompare.h and pokerCompare.cpp files. I believe my implementation should
-now showcase how I wanted to structure, abstract, design, and, in general, work
-towards solving the given problem. Of course, I leave it to the evaluator to evaluate it!
-
-Happy New Years!
 
 ========================================================================
 
@@ -340,46 +294,6 @@ hands incorrectly.
 and then by face value. This will be handled in a helper function.
 
 Please refer to the source code in pokerCompare.cpp for the complete implementation I did.
-
-========================================================================
-
-Assumptions:
-
-This section will cover assumptions made within the program's 
-guidelines/requirements.
-
-1. Input files may have more than 2 hands to compare (scale). I designed the
-driver portion of the program to fully scan an input file. These are broken
-up into 'rounds'. To keep track, a round number is displayed (starting
-from the beginning of the file), and each pair is evaluated each round.
-
-2. Invalid inputs such as more than 5 cards, invalid face value/suit, or too
-long of a card string will stop the program, and produce an error.
-
-3. Only one input file will be handled on each program run.
-
-4. Implementation separation was prioritized. Helps with modularity.
-
-5. Input files may have uppercase/lowercase or some combination
-of stylized face/suits (i.e, 'Td jd QD KD aD' is valid).
-
-6. Every function should have a unit test to test correct output, and that they work.
-Testing is done extensively in tests.cpp to this end.
-
-7. If an error is found, the program will crash/kill itself ending the program.
-
-8. Using an algorithm is okay as long as I handle the full core of its implementation.
-
-9. I have tried my best to following the commenting style guide, and keep my code well documented.
-As such, documentation is as deep as possible, and used in-line sparingly only to high light the 
-high-level logic for ease of understanding.
-
-10. I have tried to crash course Google Tests for C++ (to some great success in my opinion). This
-is my first time using this framework. I hope as time progresses I will become more comfortable, and
-knowledgeable regarding it.
-
-11. Reusing, but refactoring my old solution's code is okay as long as it was not part of the hand
-evaluator and validator.
 
 ========================================================================
 
