@@ -1,40 +1,35 @@
-========================================================================
-                           Poker Hands Readme V2.0
-                            Author: Jack Cooper
-                        Contact: Jack_cooper01@yahoo.com
-========================================================================
+=======================================================================================================================================================================
+                                                           Open Source C++ Poker Hand Validator and Evaluator
+                                                                       Author: Jack A. Cooper
+                                                                   Contact: Jack_cooper01@yahoo.com
+=======================================================================================================================================================================
 
-License:
+Motivation:
 
-Copyright 2021 Jack Alexander Cooper
+Provide a C++ implementation of a 5-hand poker hand validator and evaluator
+based on a bitwise algorithm.
+A major inspiration for this project was reading Jonathan Hsiao's blog post about
+a bitwise algorithm to evaluate 5-hand poker hands I found very interesting.
+Please check out his blog: https://jonathanhsiao.com/blog/ and the particular post
+that inspired the project: https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math.
+The original algorithm's was implemented by Pat Wilson with his implementation in JavaScript (2012) here:
+http://jsfiddle.net/subskybox/r4mSF/.
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following
-conditions are met:
+I wished to design it in such a way that modifications were possible, and followed an OOP design.
 
-1. Redistributions of source code must retain the above copyright notice,
-this list of conditions and the following disclaimer.
+=======================================================================================================================================================================
 
-2. Redistributions in binary form must reproduce the above copyright notice,
-this list of conditions and the following disclaimer in the documentation
-and/or other materials provided with the distribution.
+Quick Summary:
 
-3. Neither the name of the copyright holder nor the names of its contributors
-may be used to endorse or promote products derived from this software without
-specific prior written permission.
+The program correctly validates hands, and then determines
+a "winner". It handles Ace-low and Ace-high straights as well as providing a definitive "value"
+or "strength" in a numerical format. This numerical format allows for resolving tie-breaks if the both hands
+have the same kind of rank. The only way to get a tie result if, disregarding suit, are exactly the same.
+Likewise, I wished to provide a basic packaged module that would allow for reading hands from txt files.
+This program does assume a particular format for how these files should be generated/written to work. Otherwise,
+the validator will reject processing of the file if an invalid hand if found (from invalid formatting, for instance).
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE 
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL 
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE 
-USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-========================================================================
+=======================================================================================================================================================================
 
 Compiling/Running Main Program:
 
@@ -81,9 +76,7 @@ into a console window (utilize command prompt)
 4. Program will run the printing tests.
 5. Observe the 'EXPECTING' and 'GOT' results. Matching means a success.
 
-Note: printing tests were separated for ease of use.
-
-========================================================================
+=======================================================================================================================================================================
 
 Usages Notes:
 
@@ -165,7 +158,7 @@ Several test files are provided to be ran manually (See "Compiling/Running Main 
 Automated testing is done via test.cpp for each function. It is encouraged to create your own test file
 akin to the ones provided. The 'testUltimate.txt' has 1000 pairs able to be evaluated.
 
-========================================================================
+=======================================================================================================================================================================
 
 Borrowed Code:
 
@@ -212,7 +205,7 @@ toBinary (util.cpp)
 - by user: none specified
 - Converts decimal number to a binary string.
 
-========================================================================
+=======================================================================================================================================================================
 
 Poker Hand Evaluator Algorithm:
 
@@ -295,7 +288,7 @@ and then by face value. This will be handled in a helper function.
 
 Please refer to the source code in pokerCompare.cpp for the complete implementation I did.
 
-========================================================================
+=======================================================================================================================================================================
 
 Source Code Overview:
 
@@ -316,7 +309,7 @@ used outside of the IDE for sake of ease).
 pokerHands.exe - main executable for poker hands; ran using './pokerHands.exe <textFile>.txt' once compiled.
 printTests.exe - main executable for unit tests; ran using './printTests.exe' once compiled.
 
-========================================================================
+=======================================================================================================================================================================
 
 IDE Used:
 Microsoft Visual Studio Community (https://visualstudio.microsoft.com/vs/community/)
@@ -328,4 +321,4 @@ cmake: https://cmake.org/download/
 Google Test C++: https://github.com/google/googletest
 Git for repository needs: https://github.com/
 
-========================================================================
+=======================================================================================================================================================================
