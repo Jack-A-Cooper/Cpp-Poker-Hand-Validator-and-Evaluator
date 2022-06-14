@@ -27,7 +27,7 @@ or "strength" in a numerical format. This numerical format allows for resolving 
 have the same kind of rank. The only way to get a tie result if, disregarding suit, are exactly the same.
 Likewise, I wished to provide a basic packaged module that would allow for reading hands from txt files.
 This program does assume a particular format for how these files should be generated/written to work. Otherwise,
-the validator will reject processing of the file if an invalid hand if found (from invalid formatting, for instance).
+the validator will reject processing of the file if an invalid hand if found (from invalid formatting, for instance). 
 
 =======================================================================================================================================================================
 
