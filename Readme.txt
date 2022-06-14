@@ -160,7 +160,7 @@ akin to the ones provided. The 'testUltimate.txt' has 1000 pairs able to be eval
 
 =======================================================================================================================================================================
 
-Borrowed Code:
+Credits and Borrowed Code:
 
 While noted in the program's code itself, I will note the pieces of code
 that is not my own here as well.
@@ -293,7 +293,7 @@ Please refer to the source code in pokerCompare.cpp for the complete implementat
 Source Code Overview:
 
 Readme.txt - this file
-main.cpp - driver file - creates a pokerCompare instances and runs the pokerHands application
+main.cpp - driver file - creates a pokerCompare object instance and runs the pokerHands application
 readFile.h - header file for readFile.cpp
 readFile.cpp - handles reading file Input
 pokerCompare.h - header file for pokerCompare.cpp
