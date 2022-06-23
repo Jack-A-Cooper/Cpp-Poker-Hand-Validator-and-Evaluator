@@ -1,17 +1,6 @@
 // util.cpp
 //
 
-/**
- * @file util.cpp
- *
- * @brief Provides the core of the implementation for definitions.
- * Supports main core of the program (pokerCompare.cpp).
- *
- * @author Jack Cooper
- * Contact: Jack_cooper01@yahoo.com
- *
- */
-
 #include "util.h"
 
 using namespace std;
