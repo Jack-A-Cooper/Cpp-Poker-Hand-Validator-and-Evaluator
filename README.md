@@ -144,6 +144,22 @@ likewise with wild cards.
 As scale was considered, a file may have multiple 'rounds' to evaluate
 given a file has more than two hands to compare. The program will automatically
 evaluate the entire file if this is the case.
+ 
+ ****Readfile.cpp and File Input Implementation Notes****
+ 
+Implementation, currently, requires reading a single filename (.txt) from the command-line in order to process.
+If this particular design is undesirable, very quick changes to main.cpp, pokerCompare.cpp,
+and pokerCompare.h will be required. Notably, for main.cpp changing what is passed into the main function
+will require changes according to how you wish to redesign reading in a pair of hands. For pokerCompare.cpp and
+pokerCompare.h, changes to several functions (e.g., "currentRound") will require redesigns for your desired needs.
+I could not account for all possible ways one would wish to integrate this module, so
+the most I can provide is the three particular files that would need some quick redesigns in order to integrate
+with a particular way of hand input, result output, and/or usage of the pokerCompare class as a whole.
+
+
+Current implementation will only detect valid ".txt" files that exist within the same
+directory as the executable. Since file input was an add-on feature, it was designed to be
+basic with regards to how to handles this process.
 
 ****Missing files****
 
