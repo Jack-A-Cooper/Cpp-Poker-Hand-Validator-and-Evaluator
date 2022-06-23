@@ -1,18 +1,6 @@
 // util.h
 //
 
-/**
- * @file util.h
- *
- * @brief Provides several utility functions/constants
- * to be used within the main program. Provides documentation for functions
- * and their usage.
- *
- * @author Jack Cooper
- * Contact: Jack_cooper01@yahoo.com
- *
- */
-
 #ifndef UTIL_H
 #define UTIL_H
 
