@@ -321,7 +321,7 @@ Particular concerns to be aware of, while not all-encompassing, are:
      the removal of the last round/cycle of hands is handled by its logic. Numerous advantages are observed from this
      approach such as requiring only one pokerCompare object or easily observing an upcoming evaluation's pair.
  
- - A Definitive Evaluator:
+ - A Definitive Evaluator:  
      The comparison aspect of the module is an added feature. If one just wished to be able to determine a hand's definitive strength
      (or "quality" with regards to its composition for ranks), one would just require forcing deep evaluation with every hand passed in,
      adding a function to simply pop the next hand in the pokerCompare object's allHands member and convert it into a vector of cards, and
