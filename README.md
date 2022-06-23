@@ -1,9 +1,7 @@
-=================================================================================
-
-Open Source C++ Poker Hand Validator and Evaluator
+**Open Source C++ Poker Hand Validator and Evaluator**
 Author: Jack A. Cooper <Jack_cooper01@yahoo.com>
 
-=================================================================================
+========================================================================
 
 Motivation:
 
@@ -18,7 +16,7 @@ http://jsfiddle.net/subskybox/r4mSF/.
 
 I wished to design it in such a way that modifications were possible, and followed an OOP design.
 
-=================================================================================
+========================================================================
 
 Quick Summary:
 
@@ -30,7 +28,7 @@ Likewise, I wished to provide a basic packaged module that would allow for readi
 This program does assume a particular format for how these files should be generated/written to work. Otherwise,
 the validator will reject processing of the file if an invalid hand if found (from invalid formatting, for instance).
 
-=================================================================================
+========================================================================
 
 Compiling/Running Main Program:
 
@@ -77,7 +75,7 @@ into a console window (utilize command prompt)
 4. Program will run the printing tests.
 5. Observe the 'EXPECTING' and 'GOT' results. Matching means a success.
 
-=================================================================================
+========================================================================
 
 Usages Notes:
 
@@ -159,7 +157,7 @@ Several test files are provided to be ran manually (See "Compiling/Running Main 
 Automated testing is done via test.cpp for each function. It is encouraged to create your own test file
 akin to the ones provided. The 'testUltimate.txt' has 1000 pairs able to be evaluated.
 
-=================================================================================
+========================================================================
 
 Credits and Borrowed Code:
 
@@ -206,7 +204,7 @@ toBinary (util.cpp)
 - by user: none specified
 - Converts decimal number to a binary string.
 
-=================================================================================
+========================================================================
 
 Poker Hand Evaluator Algorithm:
 
@@ -289,7 +287,7 @@ and then by face value. This will be handled in a helper function.
 
 Please refer to the source code in pokerCompare.cpp for the complete implementation I did.
 
-=================================================================================
+========================================================================
 
 Source Code Overview:
 
@@ -310,7 +308,7 @@ used outside of the IDE for sake of ease).
 pokerHands.exe - main executable for poker hands; ran using './pokerHands.exe <textFile>.txt' once compiled.
 printTests.exe - main executable for unit tests; ran using './printTests.exe' once compiled.
 
-=================================================================================
+========================================================================
 
 IDE Used:
 Microsoft Visual Studio Community (https://visualstudio.microsoft.com/vs/community/)
@@ -322,4 +320,4 @@ cmake: https://cmake.org/download/
 Google Test C++: https://github.com/google/googletest
 Git for repository needs: https://github.com/
 
-=================================================================================
+========================================================================
