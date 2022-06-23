@@ -3,6 +3,16 @@ Author: Jack A. Cooper <Jack_cooper01@yahoo.com>
 
 ========================================================================
 
+Release Notes:  
+
+- Release Version: (Open Source Public Release)  
+  - Released: 6/17/2022  
+- Feature complete, and no longer being developed    
+  - Program originally developed: February 2022  
+  - Program cleaned-up with updated README file with more detail, sections, and integration notes  
+
+========================================================================
+
 Motivation:
 
 Provide a C++ implementation of a 5-hand poker hand validator and evaluator
