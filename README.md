@@ -469,22 +469,22 @@ Please refer to the source code in pokerCompare.cpp for the complete implementat
 
 Source Code Overview:
 
-Readme.txt - this file
-main.cpp - driver file - creates a pokerCompare object instance and runs the pokerHands application
-readFile.h - header file for readFile.cpp
-readFile.cpp - handles reading file Input
-pokerCompare.h - header file for pokerCompare.cpp
-pokerCompare.cpp - my class implementation of a poker hand evaluator and validator
-util.h - header file for util.cpp
+README.md - this file.  
+main.cpp - driver file - creates a pokerCompare object instance and runs the pokerHands application.  
+readFile.h - header file for readFile.cpp.  
+readFile.cpp - handles reading file Input.  
+pokerCompare.h - header file for pokerCompare.cpp.  
+pokerCompare.cpp - class implementation of a poker hand evaluator and validator. Bundled with some extra features.    
+util.h - header file for util.cpp.  
 util.cpp - helper functions and global variables for pokerCompare.cpp/main.cpp
 pokerHandsTests.cpp - main testing suite for program. Tests all functions (aside
-from ones that print). Uses the Google Test C++ Framework.
+from ones that print). Uses the Google Test C++ Framework.  
 printTests.cpp - printing tests not covered in main testing framework
-*.txt - provided test files for manual testing (may be modified)
+*.txt - provided test files for manual testing (may be modified).  
 CMakeLists.txt - cmake makefile (created by me so Google Test may be
-used outside of the IDE for sake of ease).
-pokerHands.exe - main executable for poker hands; run using './pokerHands.exe <textFile>.txt' once compiled.
-printTests.exe - main executable for unit tests; ran using './printTests.exe' once compiled.
+used outside of the IDE for sake of ease).  
+pokerHands.exe - main executable for poker hands; run using './pokerHands.exe <textFile>.txt' once compiled.  
+printTests.exe - main executable for unit tests; ran using './printTests.exe' once compiled.  
 
 ========================================================================
 
