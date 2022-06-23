@@ -488,6 +488,8 @@ printTests.exe - main executable for unit tests; ran using './printTests.exe' on
 
 ========================================================================
 
+ Software/Tools Used and Requirements for Full Project:  
+
 IDE Used:  
 Microsoft Visual Studio Community (https://visualstudio.microsoft.com/vs/community/)  
 
