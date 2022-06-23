@@ -488,14 +488,14 @@ printTests.exe - main executable for unit tests; ran using './printTests.exe' on
 
 ========================================================================
 
-IDE Used:
-Microsoft Visual Studio Community (https://visualstudio.microsoft.com/vs/community/)
+IDE Used:  
+Microsoft Visual Studio Community (https://visualstudio.microsoft.com/vs/community/)  
 
-Programs Required:
-Windows Command prompt (console)
-Some form of C++ compiler (used minGW-w64): https://www.mingw-w64.org/
-cmake: https://cmake.org/download/
-Google Test C++: https://github.com/google/googletest
-Git for repository needs: https://github.com/
+Programs Required:  
+Windows Command prompt (console)  
+Some form of C++ compiler (used minGW-w64): https://www.mingw-w64.org/  
+cmake: https://cmake.org/download/  
+Google Test C++: https://github.com/google/googletest  
+Git for repository needs: https://github.com/  
 
 ========================================================================
