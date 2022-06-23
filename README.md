@@ -11,7 +11,7 @@ A major inspiration for this project was reading Jonathan Hsiao's blog post abou
 a bitwise algorithm to evaluate 5-hand poker hands I found very interesting.
 Please check out his blog: https://jonathanhsiao.com/blog/ and the particular post
 that inspired the project: https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math.
-The original algorithm's was implemented by Pat Wilson with his implementation in JavaScript (2012) here:
+The original algorithm was implemented by Pat Wilson with his implementation in JavaScript (2012) here:
 http://jsfiddle.net/subskybox/r4mSF/.
 
 I wished to design it in such a way that modifications were possible, and followed an OOP design.
@@ -26,7 +26,7 @@ or "strength" in a numerical format. This numerical format allows for resolving 
 have the same kind of rank. The only way to get a tie result if, disregarding suit, are exactly the same.
 Likewise, I wished to provide a basic packaged module that would allow for reading hands from txt files.
 This program does assume a particular format for how these files should be generated/written to work. Otherwise,
-the validator will reject processing of the file if an invalid hand if found (from invalid formatting, for instance).
+the validator will reject processing of the file if an invalid hand is found (from invalid formatting, for instance).
 
 ========================================================================
 
@@ -57,7 +57,7 @@ https://google.github.io/googletest/quickstart-cmake.html.
 A special note: Please ensure the directory with all source code is
 called: 'Poker-Hands' or the proper files cannot be linked.
 4. To build the build folder, use: 'cmake -S . -B build'. Note this
-will download the dependant 'Google Test' framework for use.
+will download the dependent 'Google Test' framework for use.
 5 Then use: 'cmake --build build' to build the project. Do note
 the makefile is CMakeLists.txt.
 6. Now that the tests are built and dependencies (Google Test) is set up,
@@ -73,7 +73,7 @@ into a console window (utilize command prompt)
 3. To run, use the following:
 '.\printTests.exe'
 4. Program will run the printing tests.
-5. Observe the 'EXPECTING' and 'GOT' results. Matching means a success.
+5. Observe the 'EXPECTING' and 'GOT' results. Matching means success.
 
 ========================================================================
 
@@ -84,7 +84,7 @@ A card is defined as a 'FS' (face-suit). Example: jack of spades: 'JS'.
 If you wish to use a '10' value card, it must be written as 'T' for the
 face value. Example: ten of hearts: 'TH'.
 
-Aces are scored high in the program. However, they maybe used to obtain an 
+Aces are scored high in the program. However, they may be used to obtain an 
 an Ace-Low Straight hand.
 
 Hand ranks ordered weakest to strongest:
@@ -112,13 +112,13 @@ is a 4 (i.e., JS JC JH 6H 8C versus 4H 4C 4S KS AH) - hand one wins.
 Example Two : both hands are pair, both are Jacks and have only one different card
  (i.e., JS JC 3H 6H 8C versus JD JH 3D 6S TD) - hand two wins.
 
-In essence, if no one has any type of hand, highest card wins.
-If it is a one-pair, highest card wins again. For two-pair, highest pair wins.
-For three-of-a-kind highest trips wins. For straights and flushes, highest card wins.
-For full-houses, highest trips wins again. For four-of-a-kind, highest four-of-a-kind wins. For
-straight flushes, top cards or overall highest card will determine winner. For royal flushes, they will
+In essence, if no one has any type of hand, the highest card wins.
+If it is a one-pair, the highest card wins again. For two-pair, the highest pair wins.
+For three-of-a-kind highest trips wins. For straights and flushes, the highest card wins.
+For full-houses, the highest trips wins. For four-of-a-kind, the highest four-of-a-kind wins. For
+straight flushes, top cards or overall highest card will determine the winner. For royal flushes, they will
 always tie. For pairs/kinds that result in matching high pairs/kinds (i.e., both have a three-of-a-kind of Jack's),
-then the tie falls back to the highest card winner.
+then the tie-winner defaults to the highest card holding pair.
 
 If both hands are exactly the same or same value, a tie will result.
 
@@ -129,7 +129,7 @@ The used algorithm handles ties by the weighted metrics above.
 If improper hands are fed into the program, it will print out an error,
 and exit with a failure.
 
-Futhermore, files used must follow the following pattern:
+Furthermore, files used must follow the following pattern:
 
 1. Each hand is separated by a new line.
 2. Each hand has exactly 5 cards (each separated by a single space).
@@ -139,7 +139,7 @@ Futhermore, files used must follow the following pattern:
 compare something to nothing)
 6. Each hand contains a valid number of face cards (cannot have five of the same face
 for valid poker hands). Five-of-a-Kind does not exist in legal poker, 
-likewise with wild cards.
+likewise with wildcards.
 
 As scale was considered, a file may have multiple 'rounds' to evaluate
 given a file has more than two hands to compare. The program will automatically
@@ -159,7 +159,7 @@ with a particular way of hand input, result output, and/or usage of the pokerCom
 
 Current implementation will only detect valid ".txt" files that exist within the same
 directory as the executable. Since file input was an add-on feature, it was designed to be
-basic with regards to how to handles this process.
+basic with regards to how to handle this process.
 
 ****Missing files****
 
@@ -169,7 +169,7 @@ and the program will exit with a failure.
 
 ****Provided Test Files****
 
-Several test files are provided to be ran manually (See "Compiling/Running Main Program" above).
+Several test files are provided to be run manually (See "Compiling/Running Main Program" above).
 Automated testing is done via test.cpp for each function. It is encouraged to create your own test file
 akin to the ones provided. The 'testUltimate.txt' has 1000 pairs able to be evaluated.
 
@@ -185,7 +185,7 @@ splitString function (util.cpp)
 - Written by: none specified
 - Elegant algorithm to parse spaces given an input string. Handy for getting
 the input converted to a string vector to use in evaluations. Little modifications
-for readibility.
+for readability.
 
 convertUpper function (util.cpp)
 - Souce: http://www.cplusplus.com/forum/beginner/89508/
@@ -210,7 +210,7 @@ trim function (util.cpp)
 sortByOccurences (util.cpp)
 - Source: https://codereview.stackexchange.com/questions/173382/sorting-elements-according-to-frequency-of-occurence-in-c
 - by user: 'coderodde'
-- function to sort an int vector by order of occurences.
+- function to sort an int vector by order of occurrences.
 Used after already sorting by face value in tie breaking scenarios. 
 Requires an int vector since by the time a tie needs to be broken only
 the face values are required.
@@ -218,7 +218,7 @@ the face values are required.
 toBinary (util.cpp)
 - Source: https://www.delftstack.com/howto/cpp/how-to-convert-decimal-number-to-binary-in-cpp/
 - by user: none specified
-- Converts decimal number to a binary string.
+- Converts decimal numbers to a binary string.
 
 ========================================================================
 
@@ -228,8 +228,8 @@ Sources:
 
 Where I found out about the of algorithm (secondary source):
 https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math
-- Excellent explanation of algorithm by Jonathan Hsiao.
-I followed how he described it for use of porting it into my project.
+- Excellent explanation of the algorithm by Jonathan Hsiao.
+I followed how he described it for use in porting it into my project.
 
 Original Source of algorithm (secondary source - where Jonathan found it out):
 http://jsfiddle.net/subskybox/r4mSF/
@@ -243,11 +243,11 @@ specified. The core of the program's design/implementation was developed as inde
 as possible. It should be noted that a few changes were made to the algorithm's flow to work
 with my implementation.
 
-The Algorthim:
+The Algorithm:
 
 To summarize how the algorithm works, it relies upon bitsets and bitwise operations.
 Each hand is masked with two bitsets. I called the first 'face exists bitset',
-and the second 'face occurences bitset'. The first fifteen-sized bitset determines what 
+and the second 'face occurrences bitset'. The first fifteen-sized bitset determines what 
 faces occur in the hand (A->2 'high ace to low order'). If a face appears the 
 bit is updated to '1', else it is left alone '0'. Once the first bitset is finished, 
 the second sixty-sized bitset then determines the count of each facecard respectively. 
@@ -256,7 +256,7 @@ track of the number of ace cards in the hand while the lower four bits are keepi
 track of the number of two cards in the hand).
 
 Once the masking is complete, a rank can be found by simply taking mod fifteen of the
-second bitmask ('face occurences bitset'). Do note, this only works for a four-of-a-kind,
+second bitmask ('face occurrences bitset'). Do note, this only works for a four-of-a-kind,
 full-house, three-of-a-kind, two-pairs, one-pair, and high-card hand ranks. 
 The other four legal hand ranks require special checking.
 
@@ -269,20 +269,20 @@ requires checking that the first bitset equals '100000000111100'.
 
 For Flushes, bitwise operations are not needed. Simply scan over the hand's suits, and if they
 are all the same, then you have a flush. An extra check is required to check for a royal flush,
-simply if the first bitset equals '111110000000000'. In otherwords, if you have a flush, check
+simply if the first bitset equals '111110000000000'. In other words, if you have a flush, check
 for a royal flush by checking the first five bits of the first bitset. If they are all '1', then
 you have a royal flush, else it is just a flush.
 
 The final aspect of the algorithm is handling ties. As the previous cases simply determine what
 the hand is ranked (one of ten), a method is needed to break ties if the same hand results from
-a comparison. Ties are broken by sorting the cards by order of occurence and then by face values.
+a comparison. Ties are broken by sorting the cards by order of occurrence and then by face values.
 Bit shifting is used to then create a comparable score. We shift the first number to the left by 16 bits,
 the second by 12 bits, the third by 8 bits, the forth by 4 bits, and the fifth by 0.
 We then combine all five shifted numbers with bitwise OR. Finally we then compare the results of
 these operations on each hand to determine a winner. If after these operations both results are the same,
 then the hand's value is exactly the same as the other hand. This is a tie result.
 
-Please read Jonathan's post for more imformation. I highly recommend Jonathan's post as it
+Please read Jonathan's post for more information. I highly recommend Jonathan's post as it
 contains numerous examples, and it is very well-written.
 
 Special Aspects:
@@ -321,7 +321,7 @@ printTests.cpp - printing tests not covered in main testing framework
 *.txt - provided test files for manual testing (may be modified)
 CMakeLists.txt - cmake makefile (created by me so Google Test may be
 used outside of the IDE for sake of ease).
-pokerHands.exe - main executable for poker hands; ran using './pokerHands.exe <textFile>.txt' once compiled.
+pokerHands.exe - main executable for poker hands; run using './pokerHands.exe <textFile>.txt' once compiled.
 printTests.exe - main executable for unit tests; ran using './printTests.exe' once compiled.
 
 ========================================================================
