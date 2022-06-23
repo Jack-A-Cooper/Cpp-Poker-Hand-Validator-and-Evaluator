@@ -10,7 +10,7 @@ based on a bitwise algorithm.
 A major inspiration for this project was reading Jonathan Hsiao's blog post about
 a bitwise algorithm to evaluate 5-hand poker hands I found very interesting.
 Please check out his blog: https://jonathanhsiao.com/blog/ and the particular post
-that inspired the project: https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math.
+which inspired the project: https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math.
 The original algorithm was implemented by Pat Wilson with his implementation in JavaScript (2012) here:
 http://jsfiddle.net/subskybox/r4mSF/.
 
@@ -115,7 +115,7 @@ Example Two : both hands are pair, both are Jacks and have only one different ca
 In essence, if no one has any type of hand, the highest card wins.
 If it is a one-pair, the highest card wins again. For two-pair, the highest pair wins.
 For three-of-a-kind highest trips wins. For straights and flushes, the highest card wins.
-For full-houses, the highest trips wins. For four-of-a-kind, the highest four-of-a-kind wins. For
+For full-houses, the highest trips win. For four-of-a-kind, the highest four-of-a-kind wins. For
 straight flushes, top cards or overall highest card will determine the winner. For royal flushes, they will
 always tie. For pairs/kinds that result in matching high pairs/kinds (i.e., both have a three-of-a-kind of Jack's),
 then the tie-winner defaults to the highest card holding pair.
@@ -156,7 +156,7 @@ As scale was considered, a file may have multiple 'rounds' to evaluate
 given a file has more than two hands to compare. The program will automatically
 evaluate the entire file if this is the case.
  
- ****Readfile.cpp and File Input Implementation Notes****
+ ****Readfile.cpp and File Input Notes****
  
 Implementation, currently, requires reading a single filename (.txt) from the command-line in order to process.
 If this particular design is undesirable, very quick changes to main.cpp, pokerCompare.cpp,
@@ -168,11 +168,9 @@ the most I can provide is the three particular files that would need some quick 
 with a particular way of hand input, result output, and/or usage of the pokerCompare class as a whole.
 
 
-Current implementation will only detect valid ".txt" files that exist within the same
+Also, the current implementation will only detect valid ".txt" files that exist within the same
 directory as the executable. Since file input was an add-on feature, it was designed to be
 basic with regards to how to handle this process.
- 
-****Readfile.cpp and File Input Implementation Notes****
 
 ****Missing files****
 
@@ -185,7 +183,145 @@ and the program will exit with a failure.
 Several test files are provided to be run manually (See "Compiling/Running Main Program" above).
 Automated testing is done via test.cpp for each function. It is encouraged to create your own test file
 akin to the ones provided. The 'testUltimate.txt' has 1000 pairs able to be evaluated.
+ 
+========================================================================
+ 
+Integration Notes:
+ 
+A section for those who wish to utilize the project as a whole, or, as it was designed for modularity in mind,
+use certain sub-modules of it (such as only the validator/evaluator/comparator) this section will provide
+some considerations, suggestions, and helpful notes for doing so.
 
+****Integrator Remarks****
+ 
+As the main core of the program revolves around evaluating two 5-hand
+poker pairs, integration of the evaluator can become decreasingly or
+increasingly more extensive depending on the integrators's goals and project.
+ 
+This section serves as a note regarding the importance of modularity, and
+some helpful considerations for the one wishing to integrate the evaluator
+into their project for their own use.
+ 
+It goes without saying, the files pokerCompare.h, pokerCompare.cpp, util.h, and 
+util.cpp makes up the "core modules" (the validator/evaluator/comparator). As a consequence, they are the files an integrator
+should familiarize themselves the most with when implementing the useful aspects of this project into their own projects. Do note that
+the implementation of the pokerCompare (the validator/evaluator/comparator) is a class. As such, modifications can be made to fulfill
+any requirements of a larger project granted an underlying understanding for its implementation is understood. In other words, once one is familiar
+with the design, one should be able to create a multitude of modules using the base design for various uses.
+
+Particular concerns to be aware of, while not all-encompassing, are:
+ 1) How this module will interface within your overall project.
+ 2) How this module will process input/outputs.
+ 3) How this module will behave.
+ 
+ Depending on the desired outcome and usage of the core module (the evaluator),
+ one will need to understand the core module's current process. Please refer to the next section.
+ 
+****Core Module's Current Process Breakdown****
+ 
+ 1) A pokerCompare object is the validator and evaluator.
+  1.1) All hands wished to be evaluated are passed as a vector of strings
+       to the object. Each string element represents a poker hand.
+  1.2) The next two elements at the front of the vector are removed, and sent by reference into
+       the next stage: validation.
+  1.3) Validation: Each hand (string) is vetted for correctness (please refer to the
+       "Usage Notes" section above for more). If a hand is found to be invalid,
+       hand is rejected, and the program exits with a failure. Else, each hand
+       is passed by reference to the next stage: Conversion (a string vector into a vector of string vectors).
+  1.4) Conversion: Each hand (string) is parsed into a vector of string vectors (each vector element within is a string
+       that represents a card). After this process, the vector of string vectors (will now be referred to as the hand vector)
+       moves on to the third stage: Evaluation.
+  1.5) Evaluation: Firstly, each hand undergoes a rank evaluation first. This process takes the hand vector and determines its
+       rank by the algorithm. Once the rank is evaluated, a first stage rank evaluation is undergone with both hand vectors.
+       Do note each rank evaluation uses an integer for comparisons (e.g., a royal-flush is a higher value than a two-pair).
+       There are three outcomes that occur. Do note, that for simplicity, comparison is intertwined within this explanation for the evaluation process.
+    1.5.1) Outcome #1: hand vector #1 has a higher rank.
+           The rank of hand #1 is of greater rank value, and hand #1 is used as the winner of the comparison/evaluation (denoted by
+           an integer 1). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.
+    1.5.2) Outcome #2: hand vector #2 has a higher rank.
+           The rank of hand #2 is of greater rank value, and hand #2 is used as the winner of the comparison/evaluation (denoted by
+           an integer 2). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.
+    1.5.3) Outcome #3: hand vector #1 and hand vector #2 have the same rank (same integer value denoting rank).
+           This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is required to either break the tie,
+           or see if both hand vectors are the same exact hand (disregarding order and suits). This outcome moves onto the deep evaluation stage.
+      1.5.3.DE) Deep Evaluation: Both hand vectors undergo a bitwise masking process (refer to the section: "The Algorithm" below for detail).
+                This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is undergone to either break the tie,
+                or see if both hands are the same exact hand (disregarding order and suits). Note that the hand vector (vector of string vectors)
+                is converted into a vector of cards for this process. Any further mention of a hand vector will be of this type. This outcome moves 
+                onto the deep evaluation stage. This stage, of course, has three outcomes.
+         1.5.3.DE.1) Outcome #1: hand vector #1 has a stronger "quality of hand" (e.g., it's two-pair is comprised of a pair of 9's versus
+                     hand vector's two-pair being a pair of 6's). Hand #1 is used as the winner of the comparison/evaluation (denoted by
+                     an integer 1). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.
+         1.5.3.DE.2) Outcome #2: hand vector #2 has a stronger "quality of hand" (e.g., it's two-pair  is comprised of a pair of 9's versus
+                     hand vector #1's two-pair being a pair of 6's). Hand #2 is used as the winner of the comparison/evaluation (denoted by
+                     an integer 2). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.
+         1.5.3.DE.3) Outcome #3: both hand vectors are the same "quality of hand" (e.g., it's straight is comprised of cards 4-8 versus
+                     hand vector's straight being composed of cards 4-8 as well; thus, they are the same "quality"). Do note that no suit is
+                     of higher quality than another suit. A definitive tie is the result of the comparison/evaluation (denoted by an integer 3). 
+                     The Evaluation/comparison process stops and sends along the tie result onto the next main stage: Result Return.
+     1.6) Result Return (End of validator/evaluator): The result of the evaluation stage is determined. In the current implementation, 
+                     the result is not actually returned, but rather it is used to print the winner to the console. 
+     1.7) Loop (End of Core Module Process): Steps #1.3-1.6 are repeated until the vector list containing all hands is depleted. The condition
+          for continuing is determined if the allHands member of a pokerCompare object is empty.
+ 
+ ****Core Module Redesign Considerations****
+ 
+ This section provides a non-exhaustive list of considerations that should be factored when using the core module.
+ Depending on one's intended goals, these are some of the considered behaviors/changes an
+ integrator may want. Of course, the redesign is fully up to the integrator's own discretion.
+
+ - Updating the Evaluator's Hands to Evaluate:
+     The evaluator will run through the populated pairs in its allHands member 
+     (a vector of strings where each string is a hand that will be evaluated).
+     This method may be accessed by the pokerCompare's "setHands" function.
+     The vector of strings passed in will overwrite the previous vector.
+     Please do know that a pokerCompare object's allHands member may be instantiated or dynamically set
+     using the constructor or manipulator functions.
+
+ - Use Without File Input:
+     If not one wishes to not read from a file, the "setAllHands" function 
+     should not reverse the vector upon return. The default implementation
+     assumes file input, and applies this to correctly sequence the order of evaluation.
+     As a pokerCompare object only needs a vector of string to work, the manner in which
+     this vector generated or passed into it does not matter. This is left up to the integrator's
+     design, and intended usage.
+
+ - Only Determining the Winner of a Comparison:
+     The default behavior does involve using the resulting winner (or tie) upon a finished
+     evaluation round/cycle, but currently does not return it. The function "compareAll" in pokerCompare.h/cpp captures
+     the the resulting winner of an evaluation/comparison process as an integer called "result" 
+     (an int with three outcomes: "1" first hand wins,
+     "2" second hand wins, or "3" a resultant tie between both hands). Changing the function
+     behavior to just returning the result at the end, and removing the loop would be a quick
+     method to integrate the evaluator. Likewise, if printing of the result is not desired it may be omitted.
+
+ - Single Pair Evaluation:
+     If one wishes to only evaluate one pair, a few changes would be required.
+     a quick'n'dirty approach (not recommended) could be that the pokerCompare object is only passed a
+     string vector which contains a pair of hands. Likewise, the object is only 
+     instantiated with a pair or updated with a pair. Otherwise, it will go
+     go through all hands until depletion with how "compareAll" is currently implemented in
+     pokerCompare.h/cpp.
+     An alternative and recommended approach would be to duplicate the implementation of "compareAll" into a new function
+     (e.g., "compare" or "singleCompare"), and omit the while loop with preservation of the inside logic.
+     Since the all hands vector will be modified by reference upon a call to "compareAll" or one's single compare function,
+     the removal of the last round/cycle of hands is handled by its logic. Numerous advantages are observed from this
+     approach such as requiring only one pokerCompare object or easily observing an upcoming evaluation's pair.
+ 
+ - A Definitive Evaluator:
+     The comparison aspect of the module is an added feature. If one just wished to be able to determine a hand's definitive strength
+     (or "quality" with regards to its composition for ranks), one would just require forcing deep evaluation with every hand passed in,
+     adding a function to simply pop the next hand in the pokerCompare object's allHands member and convert it into a vector of cards, and
+     then calling the function "getTieBreakScore" (might want to be renamed or cloned with a different name to something like "getHandScore").
+     This function undergoes the deep evaluation only used when both hand's rank is equal and a tie break is required. However, it can just as well
+     serve as a stand-alone hand evaluator that can return a particular hand's definitive strength.
+
+****Final Remarks****
+To conclude, an integration will require some changes to get working within a larger project as a module. 
+Simply put, these changes could be extensive or minimal, but utilizing the core of the project (specifically referring
+to the sub-section: "A Definitive Evaluator" above) can easily be followed to get the power of the algorithm working for your project. Likewise, if
+one wishes to extend, modify, or redesign aspects of the overall project, a foundation is there for you.
+ 
 ========================================================================
 
 Credits and Borrowed Code:
