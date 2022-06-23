@@ -53,8 +53,15 @@ class pokerCompare {
      // Every 'round' pops two strings off of this vector.
      //
      std::vector <std::string> allHands;
-     // Stores the two string vectors that each contain a poker hand.
-     // These two string vectors are then used in evaluations
+     // Stores all the poker hands (as a string)
+     // that have not be evaluated/compared yet.
+     // Each element is a string representing a poker hand.
+     // Will have the first two elements removed from it for use
+     // in the next round of comparison.
+     //
+     // Note: all strings will require validation conforming to
+     // a valid hand. Validation is done when the next round is
+     // processed. Handled by the function pokerCompare::validateHand().
      //
      std::vector <std::vector<std::string>> currentRound;
      // Stores the valid face values that a poker hand may have.
