@@ -1,17 +1,6 @@
 // printTetss.cpp
 //
 
-/**
- * @file printTests.cpp
- *
- * @brief tests printout results for functions not covered in 
- * 'pokerHandsTests.cpp'.
- *
- * @author Jack Cooper
- * Contact: Jack_cooper01@yahoo.com
- *
- */
-
 #include "readFile.h"
 #include "pokerCompare.h"
 
