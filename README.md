@@ -283,7 +283,7 @@ Particular concerns to be aware of, while not all-encompassing, are:
  Depending on one's intended goals, these are some of the considered behaviors/changes an
  integrator may want. Of course, the redesign is fully up to the integrator's own discretion.
 
- - Updating the Evaluator's Hands to Evaluate:
+ - Updating the Evaluator's Hands to Evaluate:  
      The evaluator will run through the populated pairs in its allHands member 
      (a vector of strings where each string is a hand that will be evaluated).
      This method may be accessed by the pokerCompare's "setHands" function.
@@ -291,7 +291,7 @@ Particular concerns to be aware of, while not all-encompassing, are:
      Please do know that a pokerCompare object's allHands member may be instantiated or dynamically set
      using the constructor or manipulator functions.
 
- - Use Without File Input:
+ - Use Without File Input:  
      If not one wishes to not read from a file, the "setAllHands" function 
      should not reverse the vector upon return. The default implementation
      assumes file input, and applies this to correctly sequence the order of evaluation.
@@ -299,7 +299,7 @@ Particular concerns to be aware of, while not all-encompassing, are:
      this vector generated or passed into it does not matter. This is left up to the integrator's
      design, and intended usage.
 
- - Only Determining the Winner of a Comparison:
+ - Only Determining the Winner of a Comparison:  
      The default behavior does involve using the resulting winner (or tie) upon a finished
      evaluation round/cycle, but currently does not return it. The function "compareAll" in pokerCompare.h/cpp captures
      the the resulting winner of an evaluation/comparison process as an integer called "result" 
@@ -308,7 +308,7 @@ Particular concerns to be aware of, while not all-encompassing, are:
      behavior to just returning the result at the end, and removing the loop would be a quick
      method to integrate the evaluator. Likewise, if printing of the result is not desired it may be omitted.
 
- - Single Pair Evaluation:
+ - Single Pair Evaluation:  
      If one wishes to only evaluate one pair, a few changes would be required.
      a quick'n'dirty approach (not recommended) could be that the pokerCompare object is only passed a
      string vector which contains a pair of hands. Likewise, the object is only 
