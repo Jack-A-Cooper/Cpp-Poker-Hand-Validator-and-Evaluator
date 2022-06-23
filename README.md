@@ -329,8 +329,8 @@ Particular concerns to be aware of, while not all-encompassing, are:
      This function undergoes the deep evaluation only used when both hand's rank is equal and a tie break is required. However, it can just as well
      serve as a stand-alone hand evaluator that can return a particular hand's definitive strength.
 
-****Final Remarks****
-To conclude, an integration will require some changes to get working within a larger project as a module. 
+****Final Remarks****  
+To conclude this section, an integration will require some changes to get working within a larger project as a module. 
 Simply put, these changes could be extensive or minimal, but utilizing the core of the project (specifically referring
 to the sub-section: "A Definitive Evaluator" above) can easily be followed to get the power of the algorithm working for your project. Likewise, if
 one wishes to extend, modify, or redesign aspects of the overall project, a foundation is there for you.
