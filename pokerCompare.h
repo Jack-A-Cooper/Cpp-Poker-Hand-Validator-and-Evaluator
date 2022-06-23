@@ -1,3 +1,6 @@
+// pokerCompare.h
+//
+
 #ifndef POKERCOMPARE_H
 #define POKERCOMPARE_H
 
