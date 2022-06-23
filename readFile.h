@@ -1,16 +1,6 @@
 // readFile.h
 //
 
-/**
- * @file readFile.cpp
- *
- * @brief Used to read a whole .txt file and return a string vector
- *
- * @author Jack Cooper
- * Contact: Jack_cooper01@yahoo.com
- *
- */
-
 #ifndef READFILE_H
 #define READFILE_H
 
