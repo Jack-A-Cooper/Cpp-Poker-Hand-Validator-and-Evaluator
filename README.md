@@ -219,50 +219,50 @@ Particular concerns to be aware of, while not all-encompassing, are:
  
 ****Core Module's Current Process Breakdown****
  
- 1) A pokerCompare object is the validator and evaluator.
-  1.1) All hands wished to be evaluated are passed as a vector of strings
-       to the object. Each string element represents a poker hand.
-  1.2) The next two elements at the front of the vector are removed, and sent by reference into
-       the next stage: validation.
-  1.3) Validation: Each hand (string) is vetted for correctness (please refer to the
-       "Usage Notes" section above for more). If a hand is found to be invalid,
-       hand is rejected, and the program exits with a failure. Else, each hand
-       is passed by reference to the next stage: Conversion (a string vector into a vector of string vectors).
-  1.4) Conversion: Each hand (string) is parsed into a vector of string vectors (each vector element within is a string
-       that represents a card). After this process, the vector of string vectors (will now be referred to as the hand vector)
-       moves on to the third stage: Evaluation.
-  1.5) Evaluation: Firstly, each hand undergoes a rank evaluation first. This process takes the hand vector and determines its
-       rank by the algorithm. Once the rank is evaluated, a first stage rank evaluation is undergone with both hand vectors.
-       Do note each rank evaluation uses an integer for comparisons (e.g., a royal-flush is a higher value than a two-pair).
-       There are three outcomes that occur. Do note, that for simplicity, comparison is intertwined within this explanation for the evaluation process.
-    1.5.1) Outcome #1: hand vector #1 has a higher rank.
-           The rank of hand #1 is of greater rank value, and hand #1 is used as the winner of the comparison/evaluation (denoted by
-           an integer 1). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.
-    1.5.2) Outcome #2: hand vector #2 has a higher rank.
-           The rank of hand #2 is of greater rank value, and hand #2 is used as the winner of the comparison/evaluation (denoted by
-           an integer 2). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.
-    1.5.3) Outcome #3: hand vector #1 and hand vector #2 have the same rank (same integer value denoting rank).
-           This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is required to either break the tie,
-           or see if both hand vectors are the same exact hand (disregarding order and suits). This outcome moves onto the deep evaluation stage.
-      1.5.3.DE) Deep Evaluation: Both hand vectors undergo a bitwise masking process (refer to the section: "The Algorithm" below for detail).
-                This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is undergone to either break the tie,
-                or see if both hands are the same exact hand (disregarding order and suits). Note that the hand vector (vector of string vectors)
-                is converted into a vector of cards for this process. Any further mention of a hand vector will be of this type. This outcome moves 
-                onto the deep evaluation stage. This stage, of course, has three outcomes.
-         1.5.3.DE.1) Outcome #1: hand vector #1 has a stronger "quality of hand" (e.g., it's two-pair is comprised of a pair of 9's versus
-                     hand vector's two-pair being a pair of 6's). Hand #1 is used as the winner of the comparison/evaluation (denoted by
-                     an integer 1). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.
-         1.5.3.DE.2) Outcome #2: hand vector #2 has a stronger "quality of hand" (e.g., it's two-pair  is comprised of a pair of 9's versus
-                     hand vector #1's two-pair being a pair of 6's). Hand #2 is used as the winner of the comparison/evaluation (denoted by
-                     an integer 2). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.
-         1.5.3.DE.3) Outcome #3: both hand vectors are the same "quality of hand" (e.g., it's straight is comprised of cards 4-8 versus
-                     hand vector's straight being composed of cards 4-8 as well; thus, they are the same "quality"). Do note that no suit is
-                     of higher quality than another suit. A definitive tie is the result of the comparison/evaluation (denoted by an integer 3). 
-                     The Evaluation/comparison process stops and sends along the tie result onto the next main stage: Result Return.
-     1.6) Result Return (End of validator/evaluator): The result of the evaluation stage is determined. In the current implementation, 
-                     the result is not actually returned, but rather it is used to print the winner to the console. 
-     1.7) Loop (End of Core Module Process): Steps #1.3-1.6 are repeated until the vector list containing all hands is depleted. The condition
-          for continuing is determined if the allHands member of a pokerCompare object is empty.
+ 1) A pokerCompare object is the validator and evaluator.  
+  1.1) All hands wished to be evaluated are passed as a vector of strings  
+       to the object. Each string element represents a poker hand.  
+  1.2) The next two elements at the front of the vector are removed, and sent by reference into  
+       the next stage: validation.  
+  1.3) Validation: Each hand (string) is vetted for correctness (please refer to the  
+       "Usage Notes" section above for more). If a hand is found to be invalid,  
+       hand is rejected, and the program exits with a failure. Else, each hand  
+       is passed by reference to the next stage: Conversion (a string vector into a vector of string vectors).  
+  1.4) Conversion: Each hand (string) is parsed into a vector of string vectors (each vector element within is a string  
+       that represents a card). After this process, the vector of string vectors (will now be referred to as the hand vector)  
+       moves on to the third stage: Evaluation.  
+  1.5) Evaluation: Firstly, each hand undergoes a rank evaluation first. This process takes the hand vector and determines its  
+       rank by the algorithm. Once the rank is evaluated, a first stage rank evaluation is undergone with both hand vectors.  
+       Do note each rank evaluation uses an integer for comparisons (e.g., a royal-flush is a higher value than a two-pair).  
+       There are three outcomes that occur. Do note, that for simplicity, comparison is intertwined within this explanation for the evaluation process.  
+    1.5.1) Outcome #1: hand vector #1 has a higher rank.  
+           The rank of hand #1 is of greater rank value, and hand #1 is used as the winner of the comparison/evaluation (denoted by  
+           an integer 1). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
+    1.5.2) Outcome #2: hand vector #2 has a higher rank.  
+           The rank of hand #2 is of greater rank value, and hand #2 is used as the winner of the comparison/evaluation (denoted by  
+           an integer 2). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
+    1.5.3) Outcome #3: hand vector #1 and hand vector #2 have the same rank (same integer value denoting rank).  
+           This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is required to either break the tie,  
+           or see if both hand vectors are the same exact hand (disregarding order and suits). This outcome moves onto the deep evaluation stage.  
+      1.5.3.DE) Deep Evaluation: Both hand vectors undergo a bitwise masking process (refer to the section: "The Algorithm" below for detail).  
+                This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is undergone to either break the tie,  
+                or see if both hands are the same exact hand (disregarding order and suits). Note that the hand vector (vector of string vectors)  
+                is converted into a vector of cards for this process. Any further mention of a hand vector will be of this type. This outcome moves  
+                onto the deep evaluation stage. This stage, of course, has three outcomes.  
+         1.5.3.DE.1) Outcome #1: hand vector #1 has a stronger "quality of hand" (e.g., it's two-pair is comprised of a pair of 9's versus  
+                     hand vector's two-pair being a pair of 6's). Hand #1 is used as the winner of the comparison/evaluation (denoted by  
+                     an integer 1). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
+         1.5.3.DE.2) Outcome #2: hand vector #2 has a stronger "quality of hand" (e.g., it's two-pair  is comprised of a pair of 9's versus  
+                     hand vector #1's two-pair being a pair of 6's). Hand #2 is used as the winner of the comparison/evaluation (denoted by  
+                     an integer 2). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
+         1.5.3.DE.3) Outcome #3: both hand vectors are the same "quality of hand" (e.g., it's straight is comprised of cards 4-8 versus  
+                     hand vector's straight being composed of cards 4-8 as well; thus, they are the same "quality"). Do note that no suit is  
+                     of higher quality than another suit. A definitive tie is the result of the comparison/evaluation (denoted by an integer 3).  
+                     The Evaluation/comparison process stops and sends along the tie result onto the next main stage: Result Return.  
+     1.6) Result Return (End of validator/evaluator): The result of the evaluation stage is determined. In the current implementation,  
+                     the result is not actually returned, but rather it is used to print the winner to the console.  
+     1.7) Loop (End of Core Module Process): Steps #1.3-1.6 are repeated until the vector list containing all hands is depleted. The condition  
+          for continuing is determined if the allHands member of a pokerCompare object is empty.  
  
  ****Core Module Redesign Considerations****
  
