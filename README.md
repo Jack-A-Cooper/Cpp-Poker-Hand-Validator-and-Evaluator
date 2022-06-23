@@ -126,8 +126,19 @@ The used algorithm handles ties by the weighted metrics above.
 
 ****Invalid hands and invalid files****
 
-If improper hands are fed into the program, it will print out an error,
+If improper hands are fed into the program, it will print out an error to the console,
 and exit with a failure.
+
+As a side note, if one wishes to handle invalid hands or change this behavior,
+one will need to redesign a "project-specific" amount of changes throughout the current program.
+ 
+In other words, if one wishes to not have the program exit when the hand validator detects
+an invalid hand, a few changes to pokerCompare.h and pokerCompare.cpp will be required.
+Such as modifying the function "validateHand" to not exit the program.
+ 
+More complex or particular redesigns, such as handling invalid hands, will require
+changes fitting the larger project's goals. As such, this consideration is left for
+the integrator into their project.
 
 Furthermore, files used must follow the following pattern:
 
@@ -160,6 +171,8 @@ with a particular way of hand input, result output, and/or usage of the pokerCom
 Current implementation will only detect valid ".txt" files that exist within the same
 directory as the executable. Since file input was an add-on feature, it was designed to be
 basic with regards to how to handle this process.
+ 
+****Readfile.cpp and File Input Implementation Notes****
 
 ****Missing files****
 
