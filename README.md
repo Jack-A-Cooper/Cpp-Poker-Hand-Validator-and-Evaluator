@@ -355,8 +355,11 @@ Particular concerns to be aware of, while not all-encompassing, are:
      (or "quality" with regards to its composition for ranks), one would just require forcing deep evaluation with every hand passed in,
      adding a function to simply pop the next hand in the pokerCompare object's allHands member and convert it into a vector of cards, and
      then calling the function "getTieBreakScore" (might want to be renamed or cloned with a different name to something like "getHandScore").
-     This function undergoes the deep evaluation only used when both hand's rank is equal and a tie break is required. However, it can just as well
-     serve as a stand-alone hand evaluator that can return a particular hand's definitive strength.
+     This function undergoes the deep evaluation only used when both hand's rank is equal and a tie break is required. It returns an integer which
+     is the calculated score of the hand passed into it. The function serves as a stand-alone hand evaluator that can return a particular hand's 
+     definitive strength given in a card format (vector of string vectors where each element of the outer vector is a card, and each element within
+     the string vector is a string representing a card; an example would be "5H" for the card "five of hearts", and this would be in the vector of vectors
+     as an elementing like this, "[****["5H"]****, ["AC"], ["KC"], ["3S"], ["2D"]]").
 
 ****Final Remarks****  
 To conclude this section, an integration will require some changes to get working within a larger project as a module. 
