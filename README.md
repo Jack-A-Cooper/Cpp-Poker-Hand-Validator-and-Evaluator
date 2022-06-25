@@ -294,7 +294,8 @@ Particular concerns to be aware of, while not all-encompassing, are:
 
                          v.DE.3) Outcome #3: both hand vectors are the same "quality of hand" (e.g., it's straight is comprised of cards 4-8 versus  
                                  hand vector's straight being composed of cards 4-8 as well; thus, they are the same "quality"). Do note that no suit is  
-                                 of higher quality than another suit. A definitive tie is the result of the comparison/evaluation (denoted by an integer 3 being returned). The Evaluation/comparison process stops and sends along the tie result onto the next main stage: Result Return.  
+                                 of higher quality than another suit. A definitive tie is the result of the comparison/evaluation (denoted by an integer 3 being returned). 
+The Evaluation/comparison process stops and sends along the tie result onto the next main stage: Result Return.  
 
  - 6) Result Return (End of validator/evaluator): The result of the evaluation stage is determined. In the current implementation,  
       the result is not actually returned, but rather it is used to print the winner to the console.  
