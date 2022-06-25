@@ -1,10 +1,10 @@
-// pokerHandsPrintTests.cpp
+// simpleUnitTests.cpp
 //
 
-// For non-GoogleTest testing purposes, specifically printing tests.
+// For non-GoogleTest testing purposes, more-so for printing tests.
 //
 
-// Note: Read file tests omitted.
+// Note: Read file tests are omitted.
 //
 
 #include "readFile.h"
