@@ -278,8 +278,8 @@ Particular concerns to be aware of, while not all-encompassing, are:
               This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is required to either break the tie,  
               or see if both hand vectors are the same exact hand (disregarding order and suits). This outcome moves onto the deep evaluation stage. This process is
               called when a tie is returned to the comparator (denoted by an integer 3 being returned).  
-                  ****Deep Evaluation****  
-                  v.DE) Deep Evaluation: Both hand vectors undergo a separate bitwise masking process (refer to the section: "The Algorithm" below for detail).  
+                    
+                   v.DE) Deep Evaluation: Both hand vectors undergo a separate bitwise masking process (refer to the section: "The Algorithm" below for detail).  
                          This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is undergone to either break the tie,  
                          or see if both hands are the same exact hand (disregarding order and suits). Note that the hand vector (vector of string vectors)  
                          is converted into a vector of cards for this process. Any further mention of a hand vector will be of this type. This outcome moves  
