@@ -268,17 +268,17 @@ Particular concerns to be aware of, while not all-encompassing, are:
  
        - v.1) Outcome #1: hand vector #1 has a higher rank.  
               The rank of hand #1 is of greater rank value, and hand #1 is used as the winner of the comparison/evaluation (denoted by  
-              an integer 1). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
+              an integer 1 being returned). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
  
        - v.2) Outcome #2: hand vector #2 has a higher rank.  
               The rank of hand #2 is of greater rank value, and hand #2 is used as the winner of the comparison/evaluation (denoted by  
-              an integer 2). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
+              an integer 2 being returned). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
  
        - v.3) Outcome #3: hand vector #1 and hand vector #2 have the same rank (same integer value denoting rank).  
               This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is required to either break the tie,  
-              or see if both hand vectors are the same exact hand (disregarding order and suits). This outcome moves onto the deep evaluation stage.  
+              or see if both hand vectors are the same exact hand (disregarding order and suits). This outcome moves onto the deep evaluation stage. This process is                 called when a tie is returned to the comparator (denoted by an integer 3 being returned).
  
-                  v.DE) Deep Evaluation: Both hand vectors undergo a bitwise masking process (refer to the section: "The Algorithm" below for detail).  
+                  v.DE) Deep Evaluation: Both hand vectors undergo a separate bitwise masking process (refer to the section: "The Algorithm" below for detail).  
                          This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is undergone to either break the tie,  
                          or see if both hands are the same exact hand (disregarding order and suits). Note that the hand vector (vector of string vectors)  
                          is converted into a vector of cards for this process. Any further mention of a hand vector will be of this type. This outcome moves  
@@ -286,16 +286,15 @@ Particular concerns to be aware of, while not all-encompassing, are:
  
                          v.DE.1) Outcome #1: hand vector #1 has a stronger "quality of hand" (e.g., it's two-pair is comprised of a pair of 9's versus  
                                  hand vector's two-pair being a pair of 6's). Hand #1 is used as the winner of the comparison/evaluation (denoted by  
-                                 an integer 1). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
+                                 an integer 1 being returned). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result                                      Return.  
 
                          v.DE.2) Outcome #2: hand vector #2 has a stronger "quality of hand" (e.g., it's two-pair  is comprised of a pair of 9's versus  
                                  hand vector #1's two-pair being a pair of 6's). Hand #2 is used as the winner of the comparison/evaluation (denoted by  
-                                 an integer 2). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
+                                 an integer 2 being returned). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result                                      Return.  
 
                          v.DE.3) Outcome #3: both hand vectors are the same "quality of hand" (e.g., it's straight is comprised of cards 4-8 versus  
                                  hand vector's straight being composed of cards 4-8 as well; thus, they are the same "quality"). Do note that no suit is  
-                                 of higher quality than another suit. A definitive tie is the result of the comparison/evaluation (denoted by an integer 3).  
-                                 The Evaluation/comparison process stops and sends along the tie result onto the next main stage: Result Return.  
+                                 of higher quality than another suit. A definitive tie is the result of the comparison/evaluation (denoted by an integer 3 being                                        returned). The Evaluation/comparison process stops and sends along the tie result onto the next main stage: Result Return.  
  
  - 6) Result Return (End of validator/evaluator): The result of the evaluation stage is determined. In the current implementation,  
       the result is not actually returned, but rather it is used to print the winner to the console.  
