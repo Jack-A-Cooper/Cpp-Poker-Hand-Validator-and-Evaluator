@@ -13,7 +13,23 @@ Release Notes:
 
 ========================================================================
 
-Motivation:
+Core Features:
+
+- 5-hand poker validator - core module.
+- 5-hand poker evaluator that can define a unique score for any possible poker hand, and also evaluate ties if need be - core module.
+- 5-hand poker comparator - core module.
+- A modular framework to build off of or modify into other projects.
+- Works out of box with .txt file input, but can be quickly modified for other input methods.
+- Extensive documentation in-code and here for the project, implementation suggestions, algorithm implemented, and other important information.
+- Simple read file module that handles files from the command line, and also provides data output to the core module for processing.
+- Simple unit testing module.
+- GoogleTest unit testing module.
+- Multiple .txt files for testing using file input.
+- Open source!
+
+========================================================================
+
+Motivations:
 
 Provide a C++ implementation of a 5-hand poker hand validator and evaluator
 based on a bitwise algorithm.
