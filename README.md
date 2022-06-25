@@ -277,8 +277,8 @@ Particular concerns to be aware of, while not all-encompassing, are:
        - v.3) Outcome #3: hand vector #1 and hand vector #2 have the same rank (same integer value denoting rank).  
               This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is required to either break the tie,  
               or see if both hand vectors are the same exact hand (disregarding order and suits). This outcome moves onto the deep evaluation stage. This process is
-              called when a tie is returned to the comparator (denoted by an integer 3 being returned).
- 
+              called when a tie is returned to the comparator (denoted by an integer 3 being returned).  
+                  ****Deep Evaluation****  
                   v.DE) Deep Evaluation: Both hand vectors undergo a separate bitwise masking process (refer to the section: "The Algorithm" below for detail).  
                          This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is undergone to either break the tie,  
                          or see if both hands are the same exact hand (disregarding order and suits). Note that the hand vector (vector of string vectors)  
