@@ -1,7 +1,7 @@
-// pokerHandsTests.cpp
+// pokerHandsGoogleTest.cpp
 //
 
-// For non-GoogleTest testing purposes.
+// For GoogleTest testing purposes.
 //
 
 #include <gtest/gtest.h>
