@@ -15,14 +15,9 @@
 
 ## Motivations:
 
-Provide a C++ implementation of a 5-hand poker hand validator and evaluator
-based on a bitwise algorithm.
-A major inspiration for this project was reading Jonathan Hsiao's blog post about
-a bitwise algorithm to evaluate 5-hand poker hands I found very interesting.
-Please check out his blog: https://jonathanhsiao.com/blog/ and the particular post
-which inspired the project: https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math.
-The original algorithm was implemented by Pat Wilson with his implementation in JavaScript (2012) here:
-http://jsfiddle.net/subskybox/r4mSF/.
+Provide a C++ implementation of a 5-hand poker hand validator and evaluator based on a bitwise algorithm.
+A major inspiration for this project was reading Jonathan Hsiao's [blog post](https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math "Jonathan Hsiao' post") about a bitwise algorithm to evaluate 5-hand poker hands I found very interesting.
+The [original algorithm was implemented](https://jsfiddle.net/subskybox/r4mSF "Pat Wilson's JavaScript Implementation") by Pat Wilson in JavaScript (2012).
 
 I wished to design it in such a way that modifications were possible, and followed an OOP design.
 
@@ -39,8 +34,8 @@ the validator will reject processing of the file if an invalid hand is found (fr
 ## Compiling/Running Main Program:
 
 ### To compile program:
-1. Compiled using g++ (https://gcc.gnu.org/) - make sure it is installed.
-a guide provided: https://www.tutorialspoint.com/How-to-Install-Cplusplus-Compiler-on-Windows
+1. Compiled using [g++](https://gcc.gnu.org) - make sure it is installed.
+A guide is [here](https://www.tutorialspoint.com/How-to-Install-Cplusplus-Compiler-on-Windows).
 2. Navigate to the same directory as the source code and 
 test files, to compile type: 
 > g++ -o pokerHands main.cpp readFile.cpp pokerCompare.cpp util.cpp
@@ -52,17 +47,15 @@ An example using the filename 'testBasicOriginal.txt':
 > .\pokerHands.exe testBasicOriginal.txt
 4. Program will run displaying the winner(s).  
 
-Note: Highly recommend running with 'testUltimate.txt' has 1000 pairs to evaluate a winner!  
-use when compiled: 
+Note: Highly recommend running with 'testUltimate.txt' has 1000 pairs to evaluate a winner! Use when compiled to run this test: 
 > .\pokerHands.exe testUltimate.txt 
 
 ### Compiling/Running Test Program [Google Test C++] (Main Testing Suite):
 
 #### To compile test program:
-1. Compiled/built using cmake - https://cmake.org/download/
-2. Easy tutorial for installing cmake - https://www.youtube.com/watch?v=8_X5Iq9niDE
-Also a tutorial for how to build Google Tests outside of an IDE for use:
-https://google.github.io/googletest/quickstart-cmake.html.
+1. Compiled/built using [Cmake](https://cmake.org/download).
+2. Easy [tutorial](https://www.youtube.com/watch?v=8_X5Iq9niDE) for installing Cmake.
+Also [here](https://google.github.io/googletest/quickstart-cmake.html) is a tutorial for how to build Google Tests outside of an IDE for use if interested.
 3. Navigate to the same directory as the source code and test files.
 4. To compile project using Cmake use: 
 > cmake -S . -B build
@@ -76,7 +69,7 @@ simply navigate to the build folder using:
 8. The GoogleTest suite will then run.
 
 #### Compiling/Running the Print Tests (Secondary Testing):
-1. Compiled using g++ (https://gcc.gnu.org/) (see compiling/running the program section)
+1. Compiled using [g++](https://gcc.gnu.org/). Follow steps from the section [here](#to-compile-program) up to the step with regards to compiling. Use the following steps instead however.
 2. Navigate to the same directory as the source code and 
 test files, to compile type:
 > g++ -o printTests.exe printTests.cpp readFile.cpp pokerCompare.cpp util.cpp  
@@ -93,9 +86,12 @@ If you wish to use a '10' value card, it must be written as 'T' for the
 face value. Example: ten of hearts: 'TH'.
 
 Aces are scored high in the program. However, they may be used to obtain an 
-an Ace-Low Straight hand.
-
-Hand ranks ordered weakest to strongest (1 to 10):
+an Ace-Low Straight hand[^acelowexplained].
+ 
+[^acelowexplained]: When an ace face card is used to create a [straight](#poker-ranks-table).    
+_Example:_ AS, 2D, 3C, 4S, 5H
+ 
+ ### Poker Ranks Table[^poker-ranks-table]
  
 | Rank Name          | Rank Strength      | Hand Example       |
 |:------------------:|:------------------:|:------------------:|
@@ -103,16 +99,21 @@ Hand ranks ordered weakest to strongest (1 to 10):
 | One Pair           | 2                  | 4C, 9S, 4H, 3D, 2D |
 | Two Pair           | 3                  | 4C, 4H, JS, JC, 7C |
 | Three of a Kind    | 4                  | 4C, 4H, 4S, QH, 8D |
-| Straight[^Ace-low] | 5                  | 2C, 3H, 4S, 5H, 6D |
+| Straight[^acelow]  | 5                  | 2C, 3H, 4S, 5H, 6D |
 | Flush              | 6                  | JS, AS, TS, 5S, 7S |
 | Full House         | 7                  | 3S, 3H, 3D, JC, JS |
 | Four of a Kind     | 8                  | QS, QH, QD, QC, AC |
 | Straight Flush     | 9                  | AC, 2C, 3C, 4C, 5C |
 | Royal Flush        | 10                 | TH, JH, QH, KH, AH |
+ 
+[^poker-ranks-table]: 1 is regarded as the "weakest" rank score, and 10 is regarded as the "strongest" rank score.    
+*Suit and Face Denotion*    
+Suits: C: "Clubs", S: "Spades",  H: "Hearts", D: "Diamonds".    
+Faces: T: "10 or ten", J: "Jack", Q: "Queen", K: "King", A: "Ace".
 
-[^Ace-low]: An Ace-low straight is still considered a straight, but the lowest valued one.
-In the program it is given a rank score between that of a three-of-a-kind, but lower
-than a regular straight.
+[^acelow]: An Ace-low straight is still considered a straight, but the lowest valued one.
+In the program it is given a rank score between that of a [three-of-a-kind](#poker-ranks-table), but lower
+than a regular [straight](#poker-ranks-table).
 
 ### Ties
 
