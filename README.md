@@ -53,7 +53,7 @@ Also [here](https://google.github.io/googletest/quickstart-cmake.html) is a tuto
 5. To build, use: 
 > cmake --build build
 6. Now that the source code has been compiled and linked,
-and the executable created imply navigate to the build/bin/debug folder using:
+and the executable created imply navigate to the build/bin/debug directory using:
 > cd build/bin/debug
 7. Lastly, drag any .txt test files into this same directory and run using: 
 > ./pokerEval [FILENAME].txt
@@ -90,7 +90,7 @@ Also [here](https://google.github.io/googletest/quickstart-cmake.html) is a tuto
 5. To build, use: 
 > cmake --build build
 6. Now that the tests are built and dependencies (Google Test) is set up,
-simply navigate to the build folder using:
+simply navigate to the build directory using:
 > cd build
 7. Lastly, to run tests use: 
 > ctest
