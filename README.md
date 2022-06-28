@@ -547,8 +547,7 @@ We then combine all five shifted numbers with bitwise OR. Finally we then compar
 these operations on each hand to determine a winner. If after these operations both results are the same,
 then the hand's value is exactly the same as the other hand. This is a tie result.
 
-Please read Jonathan's post for more information. I highly recommend Jonathan's post as it
-contains numerous examples, and it is very well-written.
+Please read [Jonathan's post](https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math) for more information.
 
 ### Special Aspects:
 
