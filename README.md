@@ -1,5 +1,5 @@
 # Open Source C++ Poker Hand Validator and Evaluator 
-######   Created by: Jack A. Cooper <Jack_cooper01@yahoo.com>
+> Created by: Jack A. Cooper <Jack_cooper01@yahoo.com>
 ## Core Features:
 
 - 5-hand poker validator - core module.
