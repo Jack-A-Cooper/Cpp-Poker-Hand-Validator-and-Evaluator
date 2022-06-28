@@ -42,15 +42,19 @@ the validator will reject processing of the file if an invalid hand is found (fr
 1. Compiled using g++ (https://gcc.gnu.org/) - make sure it is installed.
 a guide provided: https://www.tutorialspoint.com/How-to-Install-Cplusplus-Compiler-on-Windows
 2. Navigate to the same directory as the source code and 
-test files, type: 'g++ -o pokerHands main.cpp readFile.cpp pokerCompare.cpp util.cpp' to compile code.
-into a console window (utilize command prompt)
+test files, to compile type: 
+> g++ -o pokerHands main.cpp readFile.cpp pokerCompare.cpp util.cpp
 3. To run, use the following:
-'.\pokerHands.exe <testFileName>.txt'
-example: '.\pokerHands.exe testBasicOriginal.txt'
-4. Program will run displaying the winner  
+> .\pokerHands.exe <testFileName>.txt
+ 
+An example using the filename 'testBasicOriginal.txt':
+ 
+> .\pokerHands.exe testBasicOriginal.txt
+4. Program will run displaying the winner(s).  
 
 Note: Highly recommend running with 'testUltimate.txt' has 1000 pairs to evaluate a winner!  
-use when compiled: '.\pokerHands.exe testUltimate.txt'  
+use when compiled: 
+> .\pokerHands.exe testUltimate.txt 
 
 ### Compiling/Running Test Program [Google Test C++] (Main Testing Suite):
 
@@ -60,26 +64,26 @@ use when compiled: '.\pokerHands.exe testUltimate.txt'
 Also a tutorial for how to build Google Tests outside of an IDE for use:
 https://google.github.io/googletest/quickstart-cmake.html.
 3. Navigate to the same directory as the source code and test files.
-A special note: Please ensure the directory with all source code is
-called: 'Poker-Hands' or the proper files cannot be linked.
-4. To build the build folder, use: 'cmake -S . -B build'. Note this
-will download the dependent 'Google Test' framework for use.
-5 Then use: 'cmake --build build' to build the project. Do note
-the makefile is CMakeLists.txt.
+4. To compile project using Cmake use: 
+> cmake -S . -B build
+5. To build, use: 
+> cmake --build build
 6. Now that the tests are built and dependencies (Google Test) is set up,
-simply navigate to the build folder using: 'cd build'.
-7. Lastly, use: 'ctest' to run the tests. These should output to the console.
-8. Use 'cd ..' to go back to the main directory.
+simply navigate to the build folder using:
+> cd build
+7. Lastly, to run tests use: 
+> ctest
+8. The GoogleTest suite will then run.
 
 #### Compiling/Running the Print Tests (Secondary Testing):
 1. Compiled using g++ (https://gcc.gnu.org/) (see compiling/running the program section)
 2. Navigate to the same directory as the source code and 
-test files, type: 'g++ -o printTests.exe printTests.cpp readFile.cpp pokerCompare.cpp util.cpp' to compile code.
-into a console window (utilize command prompt)
+test files, to compile type:
+> g++ -o printTests.exe printTests.cpp readFile.cpp pokerCompare.cpp util.cpp  
 3. To run, use the following:
-'.\printTests.exe'
+> .\printTests.exe  
 4. Program will run the printing tests.
-5. Observe the 'EXPECTING' and 'GOT' results. Matching means success.
+5. Observe the 'EXPECTING' and 'GOT' results. Matching output will mean a success for that test.
 
 ## Usages Notes:
 
