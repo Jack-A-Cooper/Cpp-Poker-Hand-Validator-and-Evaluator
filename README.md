@@ -146,7 +146,7 @@ card's value. _Example:_ ten of hearts: 'TH', instead of '~~10H~~'.
 The following is how cards are interpretted in the program:
  
 ```
-util.cpp
+Inside util.cpp:
 struct card {
     char value;
     char suit;
@@ -182,7 +182,7 @@ _Example:_ AS, 2D, 3C, 4S, 5H
 _Table[^poker-ranks-table] below displays all the possible poker ranks[^rank], their "strength"[^hand-strength-quality-score], and an example._  
  
 ```
-pokerCore.cpp
+Inside pokerCore.cpp:
 values = { "A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2" };
 suits = { "S", "D", "C", "H" };
 ranks = { {"highCard", 0}, {"onePair", 1}, {"twoPair", 2},
