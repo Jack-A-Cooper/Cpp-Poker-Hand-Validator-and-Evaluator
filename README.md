@@ -116,8 +116,6 @@ In particular, when a card is defined, it has three members:
 3. magnitude (the integer which *actually* represents the card's _"value"_).
  
 ### Poker Cards Table
-
- _Table below displays all the possible cards by name, symbolic value, and magnitude value._  
  
 | Card Name                 | Value (Symbol Value)      | Magnitude (Integer Value) |
 |:-------------------------:|:-------------------------:|:-------------------------:|
@@ -134,6 +132,8 @@ In particular, when a card is defined, it has three members:
 | Jack                      | 'J'                       | 11                        |
 | Queen                     | 'Q'                       | 12                        |
 | King                      | 'K'                       | 13                        | 
+
+ _Table above displays all the possible cards by name, symbolic value, and magnitude value._  
 
  [^ace]: Aces are unique as they can fill the role as a "low card" with an integer value of 1, or    
          as a "high card" with an integer value of 14. This applies when the ace card helps form a [straight](#poker-ranks-table) hand[^hand] in some manner.    
@@ -179,7 +179,7 @@ _Example:_ AS, 2D, 3C, 4S, 5H
 | Straight Flush     | 9                  | AC, 2C, 3C, 4C, 5C |
 | Royal Flush        | 10                 | TH, JH, QH, KH, AH |
  
-_Table[^poker-ranks-table] below displays all the possible poker ranks[^rank], their "strength"[^hand-strength-quality-score], and an example._  
+_Table[^poker-ranks-table] above displays all the possible poker ranks[^rank], their "strength"[^hand-strength-quality-score], and an example._  
  
 ```
 Inside pokerCore.cpp:
