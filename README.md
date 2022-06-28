@@ -218,7 +218,7 @@ than a regular straight.
 
 ### Poker
 
-Some more read about [poker](https://en.wikipedia.org/wiki/Poker), and aspects not covered here.
+Further overview about the game of [poker](https://en.wikipedia.org/wiki/Poker).
 
 ### Ties
 
