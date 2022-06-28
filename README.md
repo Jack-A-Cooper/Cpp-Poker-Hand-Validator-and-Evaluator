@@ -1,19 +1,10 @@
-**Open Source C++ Poker Hand Validator and Evaluator**  
-Author: Jack A. Cooper <Jack_cooper01@yahoo.com>
+# Open Source C++ Poker Hand Validator and Evaluator  
 
 ========================================================================
 
-Release Notes:  
+## About and Core Features:
 
-- Release Version: (Open Source Public Release)  
-  - Released: 6/17/2022  
-- Feature complete, and no longer being developed    
-  - Program originally developed: February 2022  
-  - Program cleaned-up with updated README file with more detail, sections, and integration notes  
-
-========================================================================
-
-Core Features:
+  Created by: Jack A. Cooper <Jack_cooper01@yahoo.com>
 
 - 5-hand poker validator - core module.
 - 5-hand poker evaluator that can define a unique score for any possible poker hand, and also evaluate ties if need be - core module.
@@ -25,11 +16,10 @@ Core Features:
 - Simple unit testing module.
 - GoogleTest unit testing module.
 - Multiple .txt files for testing using file input.
-- Open source!
 
 ========================================================================
 
-Motivations:
+## Motivations:
 
 Provide a C++ implementation of a 5-hand poker hand validator and evaluator
 based on a bitwise algorithm.
@@ -44,7 +34,7 @@ I wished to design it in such a way that modifications were possible, and follow
 
 ========================================================================
 
-Quick Summary:
+## Quick Summary:
 
 The program correctly validates hands, and then determines
 a "winner". It handles Ace-low and Ace-high straights as well as providing a definitive "value"
@@ -56,9 +46,9 @@ the validator will reject processing of the file if an invalid hand is found (fr
 
 ========================================================================
 
-Compiling/Running Main Program:
+## Compiling/Running Main Program:
 
-To compile program:
+##### To compile program:
 1. Compiled using g++ (https://gcc.gnu.org/) - make sure it is installed.
 a guide provided: https://www.tutorialspoint.com/How-to-Install-Cplusplus-Compiler-on-Windows
 2. Navigate to the same directory as the source code and 
@@ -67,14 +57,14 @@ into a console window (utilize command prompt)
 3. To run, use the following:
 '.\pokerHands.exe <testFileName>.txt'
 example: '.\pokerHands.exe testBasicOriginal.txt'
-4. Program will run displaying the winner
+4. Program will run displaying the winner  
 
-Note: Highly recommend running with 'testUltimate.txt' has 1000 pairs to evaluate a winner!
-use when compiled: '.\pokerHands.exe testUltimate.txt'
+Note: Highly recommend running with 'testUltimate.txt' has 1000 pairs to evaluate a winner!  
+use when compiled: '.\pokerHands.exe testUltimate.txt'  
 
-Compiling/Running Test Program [Google Test C++] (Main Testing Suite):
+## Compiling/Running Test Program [Google Test C++] (Main Testing Suite):
 
-To compile test program:
+##### To compile test program:
 1. Compiled/built using cmake - https://cmake.org/download/
 2. Easy tutorial for installing cmake - https://www.youtube.com/watch?v=8_X5Iq9niDE
 Also a tutorial for how to build Google Tests outside of an IDE for use:
@@ -91,7 +81,7 @@ simply navigate to the build folder using: 'cd build'.
 7. Lastly, use: 'ctest' to run the tests. These should output to the console.
 8. Use 'cd ..' to go back to the main directory.
 
-Compiling/Running the Print Tests (Secondary Testing):
+##### Compiling/Running the Print Tests (Secondary Testing):
 1. Compiled using g++ (https://gcc.gnu.org/) (see compiling/running the program section)
 2. Navigate to the same directory as the source code and 
 test files, type: 'g++ -o printTests.exe printTests.cpp readFile.cpp pokerCompare.cpp util.cpp' to compile code.
@@ -103,7 +93,7 @@ into a console window (utilize command prompt)
 
 ========================================================================
 
-Usages Notes:
+## Usages Notes:
 
 A card is defined as a 'FS' (face-suit). Example: jack of spades: 'JS'.
 
@@ -129,7 +119,7 @@ Note: an Ace-low straight is still considered a straight, but the lowest valued 
 In the program it is given a rank score between that of a three-of-a-kind, but lower
 than a regular straight.
 
-****Ties****
+#### ****Ties****
 
 If a tie occurs, the stronger valued hand will win.
 Example One: both hands are three of a kind, one is a Jack and another
@@ -150,7 +140,7 @@ If both hands are exactly the same or same value, a tie will result.
 
 The used algorithm handles ties by the weighted metrics above.
 
-****Invalid hands and invalid files****
+##### ****Invalid hands and invalid files****
 
 If improper hands are fed into the program, it will print out an error to the console,
 and exit with a failure.
@@ -182,7 +172,7 @@ As scale was considered, a file may have multiple 'rounds' to evaluate
 given a file has more than two hands to compare. The program will automatically
 evaluate the entire file if this is the case.
  
- ****Readfile.cpp and File Input Notes****
+ ##### ****Readfile.cpp and File Input Notes****
  
 Implementation, currently, requires reading a single filename (.txt) from the command-line in order to process.
 If this particular design is undesirable, very quick changes to main.cpp, pokerCompare.cpp,
@@ -198,13 +188,13 @@ Also, the current implementation will only detect valid ".txt" files that exist 
 directory as the executable. Since file input was an add-on feature, it was designed to be
 basic with regards to how to handle this process.
 
-****Missing files****
+##### ****Missing files****
 
 If a file specified in the command line does not exist, an error will be displayed,
 and the program will exit with a failure.
 
 
-****Provided Test Files****
+##### ****Provided Test Files****
 
 Several test files are provided to be run manually (See "Compiling/Running Main Program" above).
 Automated testing is done via test.cpp for each function. It is encouraged to create your own test file
@@ -212,13 +202,13 @@ akin to the ones provided. The 'testUltimate.txt' has 1000 pairs able to be eval
  
 ========================================================================
  
-Integration Notes:
+## Integration Notes:
  
 A section for those who wish to utilize the project as a whole, or, as it was designed for modularity in mind,
 use certain sub-modules of it (such as only the validator/evaluator/comparator) this section will provide
 some considerations, suggestions, and helpful notes for doing so.
 
-****Integrator Remarks****
+##### ****Integrator Remarks****
  
 As the main core of the program revolves around evaluating two 5-hand
 poker pairs, integration of the evaluator can become decreasingly or
@@ -243,7 +233,7 @@ Particular concerns to be aware of, while not all-encompassing, are:
  Depending on the desired outcome and usage of the core module (the evaluator),
  one will need to understand the core module's current process. Please refer to the next section.
  
-****Core Module's Current Process Breakdown****
+##### ****Core Module's Current Process Breakdown****
  
  A pokerCompare object is the validator and evaluator.  
   - 1) All hands wished to be evaluated are passed as a vector of strings  
@@ -306,7 +296,7 @@ Particular concerns to be aware of, while not all-encompassing, are:
  - 7) Loop (End of Core Module Process): Steps #iii-vi are repeated until the vector list containing all hands is depleted. The condition  
       for continuing is determined if the allHands member of a pokerCompare object is empty.  
 
- ****Core Module Redesign Considerations****
+ ##### ****Core Module Redesign Considerations****
  
  This section provides a non-exhaustive list of considerations that should be factored when using the core module.
  Depending on one's intended goals, these are some of the considered behaviors/changes an
@@ -361,7 +351,7 @@ Particular concerns to be aware of, while not all-encompassing, are:
      the string vector is a string representing a card; an example would be "5H" for the card "five of hearts", and this would be in the vector of vectors
      as an elementing like this, "[****["5H"]****, ["AC"], ["KC"], ["3S"], ["2D"]]").
 
-****Final Remarks****  
+##### ****Final Remarks****  
 To conclude this section, an integration will require some changes to get working within a larger project as a module. 
 Simply put, these changes could be extensive or minimal, but utilizing the core of the project (specifically referring
 to the sub-section: "A Definitive Evaluator" above) can easily be followed to get the power of the algorithm working for your project. Likewise, if
@@ -369,7 +359,7 @@ one wishes to extend, modify, or redesign aspects of the overall project, a foun
  
 ========================================================================
 
-Credits and Borrowed Code:
+## Credits and Borrowed Code:
 
 While noted in the program's code itself, I will note the pieces of code
 that is not my own here as well.
@@ -416,9 +406,9 @@ toBinary (util.cpp)
 
 ========================================================================
 
-Poker Hand Evaluator Algorithm:
+## Poker Hand Evaluator Algorithm:
 
-Sources:
+##### Sources:
 
 Where I found out about the of algorithm (secondary source):
 https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math
@@ -429,7 +419,7 @@ Original Source of algorithm (secondary source - where Jonathan found it out):
 http://jsfiddle.net/subskybox/r4mSF/
 - Implemented in JavaScript by Pat Wilson.
 
-Preamble:
+##### Preamble:
 
 The algorithm I implemented was not developed by myself. However, it was ported
 into C++ completely by myself, and the implementation is mine alone, unless otherwise
@@ -437,7 +427,7 @@ specified. The core of the program's design/implementation was developed as inde
 as possible. It should be noted that a few changes were made to the algorithm's flow to work
 with my implementation.
 
-The Algorithm:
+##### The Algorithm:
 
 To summarize how the algorithm works, it relies upon bitsets and bitwise operations.
 Each hand is masked with two bitsets. I called the first 'face exists bitset',
@@ -479,7 +469,7 @@ then the hand's value is exactly the same as the other hand. This is a tie resul
 Please read Jonathan's post for more information. I highly recommend Jonathan's post as it
 contains numerous examples, and it is very well-written.
 
-Special Aspects:
+##### Special Aspects:
 
 This section highlights special ways of how I implemented the above algorithm that is worth noting.
 
@@ -499,7 +489,7 @@ Please refer to the source code in pokerCompare.cpp for the complete implementat
 
 ========================================================================
 
-Source Code Overview:
+## Source Code Overview:
 
 README.md - this file.  
 main.cpp - driver file - creates a pokerCompare object instance and runs the pokerHands application.  
@@ -520,7 +510,7 @@ printTests.exe - main executable for unit tests; ran using './printTests.exe' on
 
 ========================================================================
 
- Software/Tools Used and Requirements for Full Project:  
+## Software/Tools Used and Requirements for Full Project:  
 
 IDE Used:  
 Microsoft Visual Studio Community (https://visualstudio.microsoft.com/vs/community/)  
