@@ -13,7 +13,6 @@
 - GoogleTest unit testing module.
 - Multiple .txt files for testing using file input.
 
-
 ## Motivations:
 
 Provide a C++ implementation of a 5-hand poker hand validator and evaluator
@@ -27,7 +26,6 @@ http://jsfiddle.net/subskybox/r4mSF/.
 
 I wished to design it in such a way that modifications were possible, and followed an OOP design.
 
-
 ## Quick Summary:
 
 The program correctly validates hands, and then determines
@@ -37,7 +35,6 @@ have the same kind of rank. The only way to get a tie result if, disregarding su
 Likewise, I wished to provide a basic packaged module that would allow for reading hands from txt files.
 This program does assume a particular format for how these files should be generated/written to work. Otherwise,
 the validator will reject processing of the file if an invalid hand is found (from invalid formatting, for instance).
-
 
 ## Compiling/Running Main Program:
 
@@ -131,7 +128,7 @@ If both hands are exactly the same or same value, a tie will result.
 
 The used algorithm handles ties by the weighted metrics above.
 
-#### Invalid hands and invalid files
+### Invalid hands and invalid files
 
 If improper hands are fed into the program, it will print out an error to the console,
 and exit with a failure.
@@ -163,7 +160,7 @@ As scale was considered, a file may have multiple 'rounds' to evaluate
 given a file has more than two hands to compare. The program will automatically
 evaluate the entire file if this is the case.
  
- #### Readfile.cpp and File Input Notes
+ ### Readfile.cpp and File Input Notes
  
 Implementation, currently, requires reading a single filename (.txt) from the command-line in order to process.
 If this particular design is undesirable, very quick changes to main.cpp, pokerCompare.cpp,
@@ -174,18 +171,16 @@ I could not account for all possible ways one would wish to integrate this modul
 the most I can provide is the three particular files that would need some quick redesigns in order to integrate
 with a particular way of hand input, result output, and/or usage of the pokerCompare class as a whole.
 
-
 Also, the current implementation will only detect valid ".txt" files that exist within the same
 directory as the executable. Since file input was an add-on feature, it was designed to be
 basic with regards to how to handle this process.
 
-#### Missing files
+### Missing files
 
 If a file specified in the command line does not exist, an error will be displayed,
 and the program will exit with a failure.
 
-
-#### Provided Test Files
+### Provided Test Files
 
 Several test files are provided to be run manually (See "Compiling/Running Main Program" above).
 Automated testing is done via test.cpp for each function. It is encouraged to create your own test file
@@ -197,7 +192,7 @@ A section for those who wish to utilize the project as a whole, or, as it was de
 use certain sub-modules of it (such as only the validator/evaluator/comparator) this section will provide
 some considerations, suggestions, and helpful notes for doing so.
 
-#### Integrator Remarks
+### Integrator Remarks
  
 As the main core of the program revolves around evaluating two 5-hand
 poker pairs, integration of the evaluator can become decreasingly or
@@ -285,7 +280,7 @@ Particular concerns to be aware of, while not all-encompassing, are:
  - 7) Loop (End of Core Module Process): Steps #iii-vi are repeated until the vector list containing all hands is depleted. The condition  
       for continuing is determined if the allHands member of a pokerCompare object is empty.  
 
- ### Core Module Redesign Considerations
+ ## Core Module Redesign Considerations
  
  This section provides a non-exhaustive list of considerations that should be factored when using the core module.
  Depending on one's intended goals, these are some of the considered behaviors/changes an
@@ -346,10 +341,11 @@ Simply put, these changes could be extensive or minimal, but utilizing the core 
 to the sub-section: "A Definitive Evaluator" above) can easily be followed to get the power of the algorithm working for your project. Likewise, if
 one wishes to extend, modify, or redesign aspects of the overall project, a foundation is there for you.
 
-## Credits and Borrowed Code:
+## Code Credits:
 
 While noted in the program's code itself, I will note the pieces of code
-that is not my own here as well.
+that is not my own here as well. I wish to give proper credit for any sections
+within the program that I did not create myself or borrowed.
 
 splitString function (util.cpp):
 - Source: https://slaystudy.com/c-split-string-by-space-into-vector/
