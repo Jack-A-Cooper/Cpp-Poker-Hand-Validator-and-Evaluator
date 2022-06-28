@@ -130,7 +130,7 @@ In particular, when a card is defined, it has three members:
 | Seven                     | '7'                       | 7                         |
 | Eight                     | '8'                       | 8                         | 
 | Nine                      | '9'                       | 9                         | 
-| Ten                       | 'T'                       | 10                        |
+| Ten                       | 'T'[^10-denotion]         | 10                        |
 | Jack                      | 'J'                       | 11                        |
 | Queen                     | 'Q'                       | 12                        |
 | King                      | 'K'                       | 13                        | 
@@ -155,7 +155,7 @@ struct card {
 ```
 
 Aces are scored high in the program on their own. However, they may be used to obtain an 
-an Ace-Low Straight hand[^acelowexplained]; albeit as the lowest scored [straight](#poker-ranks-table) rank[^rank].
+an Ace-Low Straight hand[^acelowexplained]; albeit as the lowest scored [straight](#poker-ranks-table) rank.
  
 Lastly, throughout this file and the program, the terms "value" and "magnitude" are usually used interchangably.
 Do be aware that for the program's implementation they are not the same, but are related. The magnitude is the actual integer value of the card.
@@ -191,7 +191,7 @@ ranks = { {"highCard", 0}, {"onePair", 1}, {"twoPair", 2},
 };
 ```
  
-[^rank]: A hand[^hand] is ranked within its category using the ranks of its cards. Individual cards are ranked, from highest to lowest: A, K, Q, J, 10[^10-denotion], 9, 8, 7, 6, 5, 4, 3 and 2. However, aces have the lowest rank under ace-to-five low, or under high rules as part of a five-high straight or straight flush.
+[^rank]: A hand is ranked within its category using the ranks of its cards. Individual cards are ranked, from highest to lowest: A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3 and 2. However, aces have the lowest rank under ace-to-five low, or under high rules as part of a five-high straight or straight flush.
  
 [^10-denotion]: The program interprets a card value of '10' as 'T'.
 
@@ -205,7 +205,7 @@ ranks = { {"highCard", 0}, {"onePair", 1}, {"twoPair", 2},
  
 [^definitive-score-deep-evaluation]: The determined score, quality, or strength evaluated by the [algorithm's](#the-algorithm) deep evaluation process[^deep-evaluation]. Used if two hands compared have the same rank when comparing.
  
-[^deep-evaluation]: The [algorithm's](#the-algorithm) process to get a hand's score[^definitive-score-deep-evaluation] when dealing with ties. The hand is turned into an integer vector representing only its values, discarding its suits, and sorting this vector result. The vector is sorted by [frequency of appearance](https://dictionary.cambridge.org/us/dictionary/english/frequency), and then by value. The sorted vector then undergoes bitwise shifting operations to obtain a numerical value. This numerical value is the hand's definitive score when compared agaisnt another hand of similar rank. The larger numerical value 'wins' in the comparison.
+[^deep-evaluation]: The [algorithm's](#the-algorithm) process to get a hand's score when dealing with ties. The hand is turned into an integer vector representing only its values, discarding its suits, and sorting this vector result. The vector is sorted by [frequency of appearance](https://dictionary.cambridge.org/us/dictionary/english/frequency), and then by value. The sorted vector then undergoes bitwise shifting operations to obtain a numerical value. This numerical value is the hand's definitive score when compared agaisnt another hand of similar rank. The larger numerical value 'wins' in the comparison.
  
 [^poker-ranks-table]: 1 is regarded as the "weakest" rank score, and 10 is regarded as the "strongest" rank score.    
                       *Suit and Value Denotion*    
@@ -213,8 +213,12 @@ ranks = { {"highCard", 0}, {"onePair", 1}, {"twoPair", 2},
                       Values (Symbol): T: "10 or ten", J: "Jack", Q: "Queen", K: "King", A: "Ace".
 
 [^acelow]: An Ace-low straight is still considered a straight, but the lowest valued one.
-In the program it is given a rank score between that of a [three-of-a-kind](#poker-ranks-table), but lower
-than a regular [straight](#poker-ranks-table).
+In the program it is given a rank score between that of a three-of-a-kind, but lower
+than a regular straight.
+
+### Poker
+
+Some more read about [poker](https://en.wikipedia.org/wiki/Poker), and aspects not covered here.
 
 ### Ties
 
