@@ -1,4 +1,4 @@
-# Open Source C++ Poker Hand Validator and Evaluator 
+# Open Source C++ Poker Hand Validator and Evaluator (PokerCore)
 
 > Created by: Jack A. Cooper <Jack_cooper01@yahoo.com>
 
