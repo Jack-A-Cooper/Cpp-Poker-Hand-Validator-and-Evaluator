@@ -161,8 +161,6 @@ Lastly, throughout this file and the program, the terms "value" and "magnitude" 
 Do be aware that for the program's implementation they are not the same, but are related. The magnitude is the actual integer value of the card.
 and the value is the symbolic character representation of said card.
  
-''
- 
 [^acelowexplained]: When an ace value card is used to create a [straight](#poker-ranks-table) from ace-to-five.    
 _Example:_ AS, 2D, 3C, 4S, 5H
  
