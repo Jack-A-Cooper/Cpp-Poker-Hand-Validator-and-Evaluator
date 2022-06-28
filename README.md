@@ -186,8 +186,8 @@ Inside pokerCore.cpp:
 values = { "A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2" };
 suits = { "S", "D", "C", "H" };
 ranks = { {"highCard", 0}, {"onePair", 1}, {"twoPair", 2},
-       {"threeKind", 3},  {"aceLowStraight", 4}, {"straight", 5}, {"flush", 6},
-       {"fullHouse", 7}, {"fourKind", 8}, {"straightFlush", 9}, {"royalFlush", 10}
+        {"threeKind", 3},  {"aceLowStraight", 4}, {"straight", 5}, {"flush", 6},
+        {"fullHouse", 7}, {"fourKind", 8}, {"straightFlush", 9}, {"royalFlush", 10}
 };
 ```
  
@@ -195,22 +195,22 @@ ranks = { {"highCard", 0}, {"onePair", 1}, {"twoPair", 2},
  
 [^10-denotion]: The program interprets a card value of '10' as 'T'.
 
-[^value]: The numerical or symbological representation of a card. Ordering of values from highest value to lowest value is as follows: A, K, Q, J, 10[^10-denotion], 9, 8, 7, 6, 5, 4, 3 and 2. A "Jack", "Queen", or "King" card is also nicknamed a "face card".
+[^value]: The numerical or symbological representation of a card. Ordering of values from highest value to lowest value is as follows: A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3 and 2. A "Jack", "Queen", or "King" card is also nicknamed a "face card".
  
-[^hand]: The five cards a player is holding in [poker](https://en.wikipedia.org/wiki/Poker). Eace card has a value[^value]. Do note that the card's magnitude actually represents the numerical score of the card. Each card also has a suit[^suits] it belongs to.
+[^hand]: The five cards a player is holding in [poker](https://en.wikipedia.org/wiki/Poker). Eace card has a value. Do note that the card's magnitude actually represents the numerical score of the card. Each card also has a suit it belongs to.
  
- [^suits]: [poker](https://en.wikipedia.org/wiki/Poker) has four possible suits a card may belong to: 'Clubs', 'Diamonds', 'Spades', or 'Hearts'. The suit do not affect a card's value, but _may_ affect the hand's[^hand] rank[^rank].
+ [^suits]: [poker](https://en.wikipedia.org/wiki/Poker) has four possible suits a card may belong to: 'Clubs', 'Diamonds', 'Spades', or 'Hearts'. The suit do not affect a card's value, but _may_ affect the hand'snrank.
  
-[^hand-strength-quality-score]: The quality or score of the particular [poker](https://en.wikipedia.org/wiki/Poker) hand's[^hand] rank[^rank]. Denoted by an integer in the program. Scores are ordered from lowest to highest in the order of 1 to 10. A hand's rank score, quality, or strength is different to the hand's definitive score[^definitive-score-deep-evaluation].
+[^hand-strength-quality-score]: The quality or score of the particular [poker](https://en.wikipedia.org/wiki/Poker) hand's rank. Denoted by an integer in the program. Scores are ordered from lowest to highest in the order of 1 to 10. A hand's rank score, quality, or strength is different to the hand's deep evaluation score[^definitive-score-deep-evaluation].
  
-[^definitive-score-deep-evaluation]: The determined score, quality, or strength evaluated by the [algorithm's](#the-algorithm) deep evaluation process[^deep-evaluation]. Used if two hands[^hand] compared have the same rank[^rank] in the program.
+[^definitive-score-deep-evaluation]: The determined score, quality, or strength evaluated by the [algorithm's](#the-algorithm) deep evaluation process[^deep-evaluation]. Used if two hands compared have the same rank when comparing.
  
-[^deep-evaluation]: The [algorithm's](#the-algorithm) process to get a hand's[^hand] definitive score[^definitive-score-deep-evaluation]. The hand is turned into an integer vector representing only its values[^value], discarding its suits[^suit], and sorting this vector result. The vector is sorted by [frequency of appearance](https://dictionary.cambridge.org/us/dictionary/english/frequency), and then by value[^value]. The sorted vector then undergoes bitwise shifting operations to obtain a numerical value. This numerical value is the hand's definitive score when compared agaisnt another hand of similar rank[^rank]. The larger numerical value 'wins' in the comparison.
+[^deep-evaluation]: The [algorithm's](#the-algorithm) process to get a hand's score[^definitive-score-deep-evaluation] when dealing with ties. The hand is turned into an integer vector representing only its values, discarding its suits, and sorting this vector result. The vector is sorted by [frequency of appearance](https://dictionary.cambridge.org/us/dictionary/english/frequency), and then by value. The sorted vector then undergoes bitwise shifting operations to obtain a numerical value. This numerical value is the hand's definitive score when compared agaisnt another hand of similar rank. The larger numerical value 'wins' in the comparison.
  
 [^poker-ranks-table]: 1 is regarded as the "weakest" rank score, and 10 is regarded as the "strongest" rank score.    
-*Suit and Value Denotion*    
-Suits (Symbol): C: "Clubs", S: "Spades",  H: "Hearts", D: "Diamonds".    
-Values (Symbol): T: "10 or ten", J: "Jack", Q: "Queen", K: "King", A: "Ace".
+                      *Suit and Value Denotion*    
+                      Suits (Symbol): C: "Clubs", S: "Spades",  H: "Hearts", D: "Diamonds".    
+                      Values (Symbol): T: "10 or ten", J: "Jack", Q: "Queen", K: "King", A: "Ace".
 
 [^acelow]: An Ace-low straight is still considered a straight, but the lowest valued one.
 In the program it is given a rank score between that of a [three-of-a-kind](#poker-ranks-table), but lower
