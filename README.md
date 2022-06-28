@@ -52,9 +52,9 @@ example: '.\pokerHands.exe testBasicOriginal.txt'
 Note: Highly recommend running with 'testUltimate.txt' has 1000 pairs to evaluate a winner!  
 use when compiled: '.\pokerHands.exe testUltimate.txt'  
 
-## Compiling/Running Test Program [Google Test C++] (Main Testing Suite):
+### Compiling/Running Test Program [Google Test C++] (Main Testing Suite):
 
-### To compile test program:
+#### To compile test program:
 1. Compiled/built using cmake - https://cmake.org/download/
 2. Easy tutorial for installing cmake - https://www.youtube.com/watch?v=8_X5Iq9niDE
 Also a tutorial for how to build Google Tests outside of an IDE for use:
@@ -71,7 +71,7 @@ simply navigate to the build folder using: 'cd build'.
 7. Lastly, use: 'ctest' to run the tests. These should output to the console.
 8. Use 'cd ..' to go back to the main directory.
 
-### Compiling/Running the Print Tests (Secondary Testing):
+#### Compiling/Running the Print Tests (Secondary Testing):
 1. Compiled using g++ (https://gcc.gnu.org/) (see compiling/running the program section)
 2. Navigate to the same directory as the source code and 
 test files, type: 'g++ -o printTests.exe printTests.cpp readFile.cpp pokerCompare.cpp util.cpp' to compile code.
