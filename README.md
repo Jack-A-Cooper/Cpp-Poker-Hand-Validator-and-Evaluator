@@ -95,19 +95,22 @@ face value. Example: ten of hearts: 'TH'.
 Aces are scored high in the program. However, they may be used to obtain an 
 an Ace-Low Straight hand.
 
-Hand ranks ordered weakest to strongest:
-1. High Card
-2. One Pair
-3. Two Pair
-4. Three of a Kind
-5. Straight
-6. Flush
-7. Full House
-8. Four of a Kind
-9. Straight Flush
-10. Royal Flush
+Hand ranks ordered weakest to strongest (1 to 10):
+ 
+| Rank Name          | Rank Strength      | Hand Example       |
+|:------------------:|:------------------:|:------------------:|
+| High Card          | 1                  | 7C, 2S, TH, 3D, 5S |
+| One Pair           | 2                  | 4C, 9S, 4H, 3D, 2D |
+| Two Pair           | 3                  | 4C, 4H, JS, JC, 7C |
+| Three of a Kind    | 4                  | 4C, 4H, 4S, QH, 8D |
+| Straight[^Ace-low] | 5                  | 2C, 3H, 4S, 5H, 6D |
+| Flush              | 6                  | JS, AS, TS, 5S, 7S |
+| Full House         | 7                  | 3S, 3H, 3D, JC, JS |
+| Four of a Kind     | 8                  | QS, QH, QD, QC, AC |
+| Straight Flush     | 9                  | AC, 2C, 3C, 4C, 5C |
+| Royal Flush        | 10                 | TH, JH, QH, KH, AH |
 
-Note: an Ace-low straight is still considered a straight, but the lowest valued one.
+[^Ace-low]: An Ace-low straight is still considered a straight, but the lowest valued one.
 In the program it is given a rank score between that of a three-of-a-kind, but lower
 than a regular straight.
 
