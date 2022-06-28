@@ -57,7 +57,7 @@ and the executable created imply navigate to the build/bin/debug folder using:
 > cd build/bin/debug
 7. Lastly, drag any .txt test files into this same directory and run using: 
 > ./pokerEval [FILENAME].txt
-8. The GoogleTest suite will then run.
+8. The core program will then run along with creating a .txt file called "Output.txt" which records the results. It will be overwritten in successive runs!
 
 #### ~g++ Method~ (UNDER REDESIGN)
 
