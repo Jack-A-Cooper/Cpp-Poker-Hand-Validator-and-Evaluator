@@ -1,6 +1,8 @@
 # Open Source C++ Poker Hand Validator and Evaluator 
+
 > Created by: Jack A. Cooper <Jack_cooper01@yahoo.com>
-## Core Features:
+
+## Core Features
 
 - 5-hand poker validator - core module.
 - 5-hand poker evaluator that can define a unique score for any possible poker hand, and also evaluate ties if need be - core module.
@@ -9,50 +11,76 @@
 - Works out of box with .txt file input, but can be quickly modified for other input methods.
 - Extensive documentation in-code and here for the project, implementation suggestions, algorithm implemented, and other important information.
 - Simple read file module that handles files from the command line, and also provides data output to the core module for processing.
+- Simple write file module that is still undergoing development, but is working with the current build version.
 - Simple unit testing module.
 - GoogleTest unit testing module.
-- Multiple .txt files for testing using file input.
+- Multiple .txt files for testing using file input. These are found under the testFiles directory. One will need to drag files into the build's ../bin/debug/ directory to use currently.
 
-## Motivations:
+### Software Requirements
 
-Provide a C++ implementation of a 5-hand poker hand validator and evaluator based on a bitwise algorithm.
-A major inspiration for this project was reading Jonathan Hsiao's [blog post](https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math "Jonathan Hsiao' post") about a bitwise algorithm to evaluate 5-hand poker hands I found very interesting.
-The [original algorithm was implemented](https://jsfiddle.net/subskybox/r4mSF "Pat Wilson's JavaScript Implementation") by Pat Wilson in JavaScript (2012).
+- Some form of command line program.
+- Cmake: https://cmake.org/download/.
+- Compiled using C++17 standard.
+- ~Some form of C++ compiler (used minGW-w64): https://www.mingw-w64.org/~.
 
-I wished to design it in such a way that modifications were possible, and followed an OOP design.
+## Quick Summary
 
-## Quick Summary:
-
-The program correctly validates hands, and then determines
-a "winner". It handles Ace-low and Ace-high straights as well as providing a definitive "value"
+The program correctly validates hands, and then determines a "winner". It handles Ace-low and Ace-high straights as well as providing a definitive "value"
 or "strength" in a numerical format. This numerical format allows for resolving tie-breaks if the both hands
 have the same kind of rank. The only way to get a tie result if, disregarding suit, are exactly the same.
 Likewise, I wished to provide a basic packaged module that would allow for reading hands from txt files.
 This program does assume a particular format for how these files should be generated/written to work. Otherwise,
 the validator will reject processing of the file if an invalid hand is found (from invalid formatting, for instance).
 
-## Compiling/Running Main Program:
+## Redesign Notice
 
-### To compile program:
+New directory structure is requiring a complete rewrite of some parts of the program. Currently, only an [explanation](#cmake-method) of compiling is ready using Cmake.
+
+During my spare-time I am rewriting the overall program to be more portable, and add features/modules I wanted to implement in the original release (Feb.2022 1.0 Version)
+
+## Compile and Run
+
+### Compiling Methods Suggested
+
+#### Cmake Method (*RECOMMENDED*)
+
+1. Compiled/built using [Cmake](https://cmake.org/download).
+2. Easy [tutorial](https://www.youtube.com/watch?v=8_X5Iq9niDE) for installing Cmake.
+Also [here](https://google.github.io/googletest/quickstart-cmake.html) is a tutorial for how to build Google Tests outside of an IDE for use if interested.
+3. Navigate to the same directory as the source code and test files.
+4. To compile sourcecode using Cmake use: 
+> cmake -S . -B build
+5. To build, use: 
+> cmake --build build
+6. Now that the source code has been compiled and linked,
+and the executable created imply navigate to the build/bin/debug folder using:
+> cd build/bin/debug
+7. Lastly, drag any .txt test files into this same directory and run using: 
+> ./pokerEval [FILENAME].txt
+8. The GoogleTest suite will then run.
+
+#### ~g++ Method~ (UNDER REDESIGN)
+
 1. Compiled using [g++](https://gcc.gnu.org) - make sure it is installed.
 A guide is [here](https://www.tutorialspoint.com/How-to-Install-Cplusplus-Compiler-on-Windows).
 2. Navigate to the same directory as the source code and 
 test files, to compile type: 
-> g++ -o pokerHands main.cpp readFile.cpp pokerCompare.cpp util.cpp
-3. To run, use the following:
-> .\pokerHands.exe <testFileName>.txt
+> g++ -o pokerEval main.cpp readFile.cpp pokerCore.cpp util.cpp
+3. To run, use the following (ensure .txt file(s) are in the same directory as the executable!):
+> ./pokerEval [FILENAME].txt
  
 An example using the filename 'testBasicOriginal.txt':
  
-> .\pokerHands.exe testBasicOriginal.txt
+> ./pokerEval testBasicOriginal.txt
+
 4. Program will run displaying the winner(s).  
 
 Note: Highly recommend running with 'testUltimate.txt' has 1000 pairs to evaluate a winner! Use when compiled to run this test: 
 > .\pokerHands.exe testUltimate.txt 
 
-### Compiling/Running Test Program [Google Test C++] (Main Testing Suite):
+### ~Compiling/Running Test Program [Google Test C++] (Main Testing Suite)~ (UNDER REDESIGN)
 
-#### To compile test program:
+#### ~To compile test program~ (UNDER REDESIGN)
 1. Compiled/built using [Cmake](https://cmake.org/download).
 2. Easy [tutorial](https://www.youtube.com/watch?v=8_X5Iq9niDE) for installing Cmake.
 Also [here](https://google.github.io/googletest/quickstart-cmake.html) is a tutorial for how to build Google Tests outside of an IDE for use if interested.
@@ -68,30 +96,77 @@ simply navigate to the build folder using:
 > ctest
 8. The GoogleTest suite will then run.
 
-#### Compiling/Running the Print Tests (Secondary Testing):
-1. Compiled using [g++](https://gcc.gnu.org/). Follow steps from the section [here](#to-compile-program) up to the step with regards to compiling. Use the following steps instead however.
+#### ~Compiling/Running the Print Tests (Secondary Testing):~ (UNDER REDESIGN)
+1. Compiled using [g++](https://gcc.gnu.org/). Follow steps from the section [here](#g-method-under-redesign) up to the step with regards to compiling. Use the following steps instead however.
 2. Navigate to the same directory as the source code and 
 test files, to compile type:
-> g++ -o printTests.exe printTests.cpp readFile.cpp pokerCompare.cpp util.cpp  
+> g++ -o printTests.exe printTests.cpp readFile.cpp pokerCore.cpp util.cpp  
 3. To run, use the following:
 > .\printTests.exe  
 4. Program will run the printing tests.
 5. Observe the 'EXPECTING' and 'GOT' results. Matching output will mean a success for that test.
 
-## Usages Notes:
+## Program Usage
 
-A card is defined as a 'FS' (face-suit). Example: jack of spades: 'JS'.
-
-If you wish to use a '10' value card, it must be written as 'T' for the
-face value. Example: ten of hearts: 'TH'.
-
-Aces are scored high in the program. However, they may be used to obtain an 
-an Ace-Low Straight hand[^acelowexplained].
+A card is defined as a 'VS' (value-suit). _Example:_ jack of spades: 'JS'.
  
-[^acelowexplained]: When an ace face card is used to create a [straight](#poker-ranks-table).    
+In particular, when a card is defined, it has three members:
+1. value (the character which represents the card's _"value"_).
+2. suit (the character which represents the card's suit).
+3. magnitude (the integer which *actually* represents the card's _"value"_).
+ 
+### Poker Cards Table
+
+ _Table below displays all the possible cards by name, symbolic value, and magnitude value._  
+ 
+| Card Name                 | Value (Symbol Value)      | Magnitude (Integer Value) |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+| Ace                       | 'A'                       | 1         OR[^ace]     14 |
+| Two                       | '2'                       | 2                         |
+| Three                     | '3'                       | 3                         |
+| Four                      | '4'                       | 4                         |
+| Five                      | '5'                       | 5                         |
+| Six                       | '6'                       | 6                         |
+| Seven                     | '7'                       | 7                         |
+| Eight                     | '8'                       | 8                         | 
+| Nine                      | '9'                       | 9                         | 
+| Ten                       | 'T'                       | 10                        |
+| Jack                      | 'J'                       | 11                        |
+| Queen                     | 'Q'                       | 12                        |
+| King                      | 'K'                       | 13                        | 
+
+ [^ace]: Aces are unique as they can fill the role as a "low card" with an integer value of 1, or    
+         as a "high card" with an integer value of 14. This applies when the ace card helps form a [straight](#poker-ranks-table) hand[^hand] in some manner.    
+         An ace-to-five hand creates an ace-low straight, and a ten-to-ace creates an ace-high straight.    
+         
+ 
+If you wish to use a '10' value card, it must be written as 'T' for the
+card's value. _Example:_ ten of hearts: 'TH', instead of '~~10H~~'.
+ 
+The following is how cards are interpretted in the program:
+ 
+```
+util.cpp
+struct card {
+    char value;
+    char suit;
+    int magnitude;
+};
+```
+
+Aces are scored high in the program on their own. However, they may be used to obtain an 
+an Ace-Low Straight hand[^acelowexplained]; albeit as the lowest scored [straight](#poker-ranks-table) rank[^rank].
+ 
+Lastly, throughout this file and the program, the terms "value" and "magnitude" are usually used interchangably.
+Do be aware that for the program's implementation they are not the same, but are related. The magnitude is the actual integer value of the card.
+and the value is the symbolic character representation of said card.
+ 
+''
+ 
+[^acelowexplained]: When an ace value card is used to create a [straight](#poker-ranks-table) from ace-to-five.    
 _Example:_ AS, 2D, 3C, 4S, 5H
  
- ### Poker Ranks Table[^poker-ranks-table]
+ ### Poker Ranks Table
  
 | Rank Name          | Rank Strength      | Hand Example       |
 |:------------------:|:------------------:|:------------------:|
@@ -106,10 +181,38 @@ _Example:_ AS, 2D, 3C, 4S, 5H
 | Straight Flush     | 9                  | AC, 2C, 3C, 4C, 5C |
 | Royal Flush        | 10                 | TH, JH, QH, KH, AH |
  
+_Table[^poker-ranks-table] below displays all the possible poker ranks[^rank], their "strength"[^hand-strength-quality-score], and an example._  
+ 
+```
+pokerCore.cpp
+values = { "A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2" };
+suits = { "S", "D", "C", "H" };
+ranks = { {"highCard", 0}, {"onePair", 1}, {"twoPair", 2},
+       {"threeKind", 3},  {"aceLowStraight", 4}, {"straight", 5}, {"flush", 6},
+       {"fullHouse", 7}, {"fourKind", 8}, {"straightFlush", 9}, {"royalFlush", 10}
+};
+```
+ 
+[^rank]: A hand[^hand] is ranked within its category using the ranks of its cards. Individual cards are ranked, from highest to lowest: A, K, Q, J, 10[^10-denotion], 9, 8, 7, 6, 5, 4, 3 and 2. However, aces have the lowest rank under ace-to-five low, or under high rules as part of a five-high straight or straight flush.
+ 
+[^10-denotion]: The program interprets a card value of '10' as 'T'.
+
+[^value]: The numerical or symbological representation of a card. Ordering of values from highest value to lowest value is as follows: A, K, Q, J, 10[^10-denotion], 9, 8, 7, 6, 5, 4, 3 and 2. A "Jack", "Queen", or "King" card is also nicknamed a "face card".
+ 
+[^hand]: The five cards a player is holding in [poker](https://en.wikipedia.org/wiki/Poker). Eace card has a value[^value]. Do note that the card's magnitude actually represents the numerical score of the card. Each card also has a suit[^suits] it belongs to.
+ 
+ [^suits]: [poker](https://en.wikipedia.org/wiki/Poker) has four possible suits a card may belong to: 'Clubs', 'Diamonds', 'Spades', or 'Hearts'. The suit do not affect a card's value, but _may_ affect the hand's[^hand] rank[^rank].
+ 
+[^hand-strength-quality-score]: The quality or score of the particular [poker](https://en.wikipedia.org/wiki/Poker) hand's[^hand] rank[^rank]. Denoted by an integer in the program. Scores are ordered from lowest to highest in the order of 1 to 10. A hand's rank score, quality, or strength is different to the hand's definitive score[^definitive-score-deep-evaluation].
+ 
+[^definitive-score-deep-evaluation]: The determined score, quality, or strength evaluated by the [algorithm's](#the-algorithm) deep evaluation process[^deep-evaluation]. Used if two hands[^hand] compared have the same rank[^rank] in the program.
+ 
+[^deep-evaluation]: The [algorithm's](#the-algorithm) process to get a hand's[^hand] definitive score[^definitive-score-deep-evaluation]. The hand is turned into an integer vector representing only its values[^value], discarding its suits[^suit], and sorting this vector result. The vector is sorted by [frequency of appearance]([https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/frequency-occurrence#:~:text=The%20number%20of%20times%20or,of%20linguistic%20items%20and%20features.](https://dictionary.cambridge.org/us/dictionary/english/frequency), and then by value[^value]. The sorted vector then undergoes bitwise shifting operations to obtain a numerical value. This numerical value is the hand's definitive score when compared agaisnt another hand of similar rank[^rank]. The larger numerical value 'wins' in the comparison.
+ 
 [^poker-ranks-table]: 1 is regarded as the "weakest" rank score, and 10 is regarded as the "strongest" rank score.    
-*Suit and Face Denotion*    
-Suits: C: "Clubs", S: "Spades",  H: "Hearts", D: "Diamonds".    
-Faces: T: "10 or ten", J: "Jack", Q: "Queen", K: "King", A: "Ace".
+*Suit and Value Denotion*    
+Suits (Symbol): C: "Clubs", S: "Spades",  H: "Hearts", D: "Diamonds".    
+Values (Symbol): T: "10 or ten", J: "Jack", Q: "Queen", K: "King", A: "Ace".
 
 [^acelow]: An Ace-low straight is still considered a straight, but the lowest valued one.
 In the program it is given a rank score between that of a [three-of-a-kind](#poker-ranks-table), but lower
@@ -145,7 +248,7 @@ As a side note, if one wishes to handle invalid hands or change this behavior,
 one will need to redesign a "project-specific" amount of changes throughout the current program.
  
 In other words, if one wishes to not have the program exit when the hand validator detects
-an invalid hand, a few changes to pokerCompare.h and pokerCompare.cpp will be required.
+an invalid hand, a few changes to pokerCore.h and pokerCore.cpp will be required.
 Such as modifying the function "validateHand" to not exit the program.
  
 More complex or particular redesigns, such as handling invalid hands, will require
@@ -158,11 +261,8 @@ Furthermore, files used must follow the following pattern:
 2. Each hand has exactly 5 cards (each separated by a single space).
 3. Each hand has valid cards
 4. Each line is populated with something (no empty lines separating hands)
-5. There exists an even amount of hands in the file (since you cannot
-compare something to nothing)
-6. Each hand contains a valid number of face cards (cannot have five of the same face
-for valid poker hands). Five-of-a-Kind does not exist in legal poker, 
-likewise with wildcards.
+5. There exists an even amount of hands in the file (since you cannot compare something to nothing)
+6. Each hand contains a valid number of value cards (cannot have five of the same value for valid poker hands). Five-of-a-Kind does not exist in legal poker, likewise with wildcards.
 
 As scale was considered, a file may have multiple 'rounds' to evaluate
 given a file has more than two hands to compare. The program will automatically
@@ -171,13 +271,13 @@ evaluate the entire file if this is the case.
  ### Readfile.cpp and File Input Notes
  
 Implementation, currently, requires reading a single filename (.txt) from the command-line in order to process.
-If this particular design is undesirable, very quick changes to main.cpp, pokerCompare.cpp,
-and pokerCompare.h will be required. Notably, for main.cpp changing what is passed into the main function
-will require changes according to how you wish to redesign reading in a pair of hands. For pokerCompare.cpp and
-pokerCompare.h, changes to several functions (e.g., "currentRound") will require redesigns for your desired needs.
+If this particular design is undesirable, very quick changes to main.cpp, pokerCore.cpp,
+and pokerCore.h will be required. Notably, for main.cpp changing what is passed into the main function
+will require changes according to how you wish to redesign reading in a pair of hands. For pokerCore.cpp and
+pokerCore.h, changes to several functions (e.g., "currentRound") will require redesigns for your desired needs.
 I could not account for all possible ways one would wish to integrate this module, so
 the most I can provide is the three particular files that would need some quick redesigns in order to integrate
-with a particular way of hand input, result output, and/or usage of the pokerCompare class as a whole.
+with a particular way of hand input, result output, and/or usage of the pokerCore class as a whole.
 
 Also, the current implementation will only detect valid ".txt" files that exist within the same
 directory as the executable. Since file input was an add-on feature, it was designed to be
@@ -210,10 +310,10 @@ This section serves as a note regarding the importance of modularity, and
 some helpful considerations for the one wishing to integrate the evaluator
 into their project for their own use.
  
-It goes without saying, the files pokerCompare.h, pokerCompare.cpp, util.h, and 
+It goes without saying, the files pokerCore.h, pokerCore.cpp, util.h, and 
 util.cpp makes up the "core modules" (the validator/evaluator/comparator). As a consequence, they are the files an integrator
 should familiarize themselves the most with when implementing the useful aspects of this project into their own projects. Do note that
-the implementation of the pokerCompare (the validator/evaluator/comparator) is a class. As such, modifications can be made to fulfill
+the implementation of the pokerCore (the validator/evaluator/comparator) is a class. As such, modifications can be made to fulfill
 any requirements of a larger project granted an underlying understanding for its implementation is understood. In other words, once one is familiar
 with the design, one should be able to create a multitude of modules using the base design for various uses.
 
@@ -227,41 +327,41 @@ Particular concerns to be aware of, while not all-encompassing, are:
  
 ### Core Module's Current Process Breakdown
  
- #### A pokerCompare object is the validator and evaluator.  
-  - 1) All hands wished to be evaluated are passed as a vector of strings  
+ #### A pokerCore object is the validator and evaluator.  
+  1) All hands wished to be evaluated are passed as a vector of strings  
        to the object. Each string element represents a poker hand.  
  
-  - 2) The next two elements at the front of the vector are removed, and sent by reference into  
+  2) The next two elements at the front of the vector are removed, and sent by reference into  
        the next stage: validation.  
  
-  - 3) Validation: Each hand (string) is vetted for correctness (please refer to the  
+  3) Validation: Each hand (string) is vetted for correctness (please refer to the  
        "Usage Notes" section above for more). If a hand is found to be invalid,  
        hand is rejected, and the program exits with a failure. Else, each hand  
        is passed by reference to the next stage: Conversion (a string vector into a vector of string vectors).  
  
-  - 4) Conversion: Each hand (string) is parsed into a vector of string vectors (each vector element within is a string  
+  4) Conversion: Each hand (string) is parsed into a vector of string vectors (each vector element within is a string  
        that represents a card). After this process, the vector of string vectors (will now be referred to as the hand vector)  
        moves on to the third stage: Evaluation.  
  
-  - 5) Evaluation: Firstly, each hand undergoes a rank evaluation first. This process takes the hand vector and determines its  
+  5) Evaluation: Firstly, each hand undergoes a rank evaluation first. This process takes the hand vector and determines its  
        rank by the algorithm. Once the rank is evaluated, a first stage rank evaluation is undergone with both hand vectors.  
        Do note each rank evaluation uses an integer for comparisons (e.g., a royal-flush is a higher value than a two-pair).  
        There are three outcomes that occur. Do note, that for simplicity, comparison is intertwined within this explanation for the evaluation process. 
  
-       - v.1) Outcome #1: hand vector #1 has a higher rank.  
+       v.1) Outcome #1: hand vector #1 has a higher rank.  
               The rank of hand #1 is of greater rank value, and hand #1 is used as the winner of the comparison/evaluation (denoted by  
               an integer 1 being returned). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
  
-       - v.2) Outcome #2: hand vector #2 has a higher rank.  
+       v.2) Outcome #2: hand vector #2 has a higher rank.  
               The rank of hand #2 is of greater rank value, and hand #2 is used as the winner of the comparison/evaluation (denoted by  
               an integer 2 being returned). The Evaluation/comparison process stops and sends along the winner onto the next main stage: Result Return.  
  
-       - v.3) Outcome #3: hand vector #1 and hand vector #2 have the same rank (same integer value denoting rank).  
+       v.3) Outcome #3: hand vector #1 and hand vector #2 have the same rank (same integer value denoting rank).  
               This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is required to either break the tie,  
               or see if both hand vectors are the same exact hand (disregarding order and suits). This outcome moves onto the deep evaluation stage. This process is
               called when a tie is returned to the comparator (denoted by an integer 3 being returned).  
                     
-                   v.DE) Deep Evaluation: Both hand vectors undergo a separate bitwise masking process (refer to the section: "The Algorithm" below for detail).  
+                   v.DE) Deep Evaluation: Both hand vectors undergo a separate bitwise masking process (refer to the [section](#the-algorithm) for more detail).  
                          This particular outcome fully realizes the algorithm's power. A deeper evaluation/comparison is undergone to either break the tie,  
                          or see if both hands are the same exact hand (disregarding order and suits). Note that the hand vector (vector of string vectors)  
                          is converted into a vector of cards for this process. Any further mention of a hand vector will be of this type. This outcome moves  
@@ -282,66 +382,66 @@ Particular concerns to be aware of, while not all-encompassing, are:
                                  of the comparison/evaluation (denoted by an integer 3 being returned). The Evaluation/comparison process stops and sends along 
                                  the tie result onto the next main stage: Result Return. 
 
- - 6) Result Return (End of validator/evaluator): The result of the evaluation stage is determined. In the current implementation,  
+ 6) Result Return (End of validator/evaluator/comparator): The result of the evaluation stage is determined. In the current implementation,  
       the result is not actually returned, but rather it is used to print the winner to the console.  
  
- - 7) Loop (End of Core Module Process): Steps #iii-vi are repeated until the vector list containing all hands is depleted. The condition  
-      for continuing is determined if the allHands member of a pokerCompare object is empty.  
+ 7) Loop (End of Core Module Process): Steps #iii-vi are repeated until the vector list containing all hands is depleted. The condition  
+      for continuing is determined if the allHands member of a pokerCore's object is empty.  
 
- ## Core Module Redesign Considerations
+ ## Core Module Considerations (Planned Features)
  
  This section provides a non-exhaustive list of considerations that should be factored when using the core module.
  Depending on one's intended goals, these are some of the considered behaviors/changes an
  integrator may want. Of course, the redesign is fully up to the integrator's own discretion.
 
- - Updating the Evaluator's Hands to Evaluate:  
+ - Updating the Evaluator's Hands to Evaluate
      The evaluator will run through the populated pairs in its allHands member 
      (a vector of strings where each string is a hand that will be evaluated).
-     This method may be accessed by the pokerCompare's "setHands" function.
+     This method may be accessed by the pokerCores's "setHands" function.
      The vector of strings passed in will overwrite the previous vector.
-     Please do know that a pokerCompare object's allHands member may be instantiated or dynamically set
+     Please do know that a pokerCore object's allHands member may be instantiated or dynamically set
      using the constructor or manipulator functions.
 
- - Use Without File Input:  
+ - Use Without File Input
      If not one wishes to not read from a file, the "setAllHands" function 
      should not reverse the vector upon return. The default implementation
      assumes file input, and applies this to correctly sequence the order of evaluation.
-     As a pokerCompare object only needs a vector of string to work, the manner in which
+     As a pokerCore's object only needs a vector of string to work, the manner in which
      this vector generated or passed into it does not matter. This is left up to the integrator's
      design, and intended usage.
 
- - Only Determining the Winner of a Comparison:  
+ - Only Determining the Winner of a Comparison
      The default behavior does involve using the resulting winner (or tie) upon a finished
-     evaluation round/cycle, but currently does not return it. The function "compareAll" in pokerCompare.h/cpp captures
+     evaluation round/cycle, but currently does not return it. The function "compareAll" in pokerCore.h/cpp captures
      the the resulting winner of an evaluation/comparison process as an integer called "result" 
      (an int with three outcomes: "1" first hand wins,
      "2" second hand wins, or "3" a resultant tie between both hands). Changing the function
      behavior to just returning the result at the end, and removing the loop would be a quick
      method to integrate the evaluator. Likewise, if printing of the result is not desired it may be omitted.
 
- - Single Pair Evaluation:  
+ - Single Pair Evaluation
      If one wishes to only evaluate one pair, a few changes would be required.
-     a quick'n'dirty approach (not recommended) could be that the pokerCompare object is only passed a
+     a quick'n'dirty approach (not recommended) could be that the pokerCore object is only passed a
      string vector which contains a pair of hands. Likewise, the object is only 
      instantiated with a pair or updated with a pair. Otherwise, it will go
      go through all hands until depletion with how "compareAll" is currently implemented in
-     pokerCompare.h/cpp.
+     pokerCore.h/cpp.
      An alternative and recommended approach would be to duplicate the implementation of "compareAll" into a new function
      (e.g., "compare" or "singleCompare"), and omit the while loop with preservation of the inside logic.
      Since the all hands vector will be modified by reference upon a call to "compareAll" or one's single compare function,
      the removal of the last round/cycle of hands is handled by its logic. Numerous advantages are observed from this
-     approach such as requiring only one pokerCompare object or easily observing an upcoming evaluation's pair.
+     approach such as requiring only one pokerCore object or easily observing an upcoming evaluation's pair.
  
- - A Definitive Evaluator:  
+ - A Definitive Evaluator
      The comparison aspect of the module is an added feature. If one just wished to be able to determine a hand's definitive strength
      (or "quality" with regards to its composition for ranks), one would just require forcing deep evaluation with every hand passed in,
-     adding a function to simply pop the next hand in the pokerCompare object's allHands member and convert it into a vector of cards, and
+     adding a function to simply pop the next hand in the pokerCore object's allHands member and convert it into a vector of cards, and
      then calling the function "getTieBreakScore" (might want to be renamed or cloned with a different name to something like "getHandScore").
      This function undergoes the deep evaluation only used when both hand's rank is equal and a tie break is required. It returns an integer which
      is the calculated score of the hand passed into it. The function serves as a stand-alone hand evaluator that can return a particular hand's 
      definitive strength given in a card format (vector of string vectors where each element of the outer vector is a card, and each element within
      the string vector is a string representing a card; an example would be "5H" for the card "five of hearts", and this would be in the vector of vectors
-     as an elementing like this, "[****["5H"]****, ["AC"], ["KC"], ["3S"], ["2D"]]").
+     as an elementing like this, "[****["5H"]****, ["AC"], ["KC"], ["3S"], ["2D"]]"). This is the primary goal of the project.
 
 ### Closing Remarks  
 To conclude this section, an integration will require some changes to get working within a larger project as a module. 
@@ -382,13 +482,10 @@ trim function (util.cpp):
 - by user: 'Evan Teran'
 - function to trim all leading/trailing spaces
 
-sortByOccurenceThenByValues (util.cpp):
+sortByOccurenceThenByMagnitude (util.cpp):
 - Source: https://codereview.stackexchange.com/questions/173382/sorting-elements-according-to-frequency-of-occurence-in-c
 - by user: 'coderodde'
-- function to sort an int vector by order of occurrences.
-Used after already sorting by face value in tie breaking scenarios. 
-Requires an int vector since by the time a tie needs to be broken only
-the face values are required.
+- function to sort an int vector by order of occurrences. Used after already sorting by value (magnitude) in tie breaking scenarios.  Requires an int vector since by the time a tie needs to be broken only the values (magnitudes) are required. Was slightly modified by me to work with C++17.
 
 toBinary (util.cpp)
 - Source: https://www.delftstack.com/howto/cpp/how-to-convert-decimal-number-to-binary-in-cpp/
@@ -399,19 +496,16 @@ toBinary (util.cpp)
 
 ### Sources:
 
-Where I found out about the of algorithm (secondary source):
-https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math
-- Excellent explanation of the algorithm by Jonathan Hsiao.
-I followed how he described it for use in porting it into my project.
+Where I found out about the of the [algorithm](https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math).
+- Excellent explanation of the algorithm by Jonathan Hsiao. _Secondary source_.
 
-Original Source of algorithm (secondary source - where Jonathan found it out):
-http://jsfiddle.net/subskybox/r4mSF/
-- Implemented in JavaScript by Pat Wilson.
+Original Source of [algorithm](https://jsfiddle.net/subskybox/r4mSF/).
+- Implemented in JavaScript by Pat Wilson. _Primary Source_.
 
 ### Preamble:
 
-The algorithm I implemented was not developed by myself. However, it was ported
-into C++ completely by myself, and the implementation is mine alone, unless otherwise
+The algorithm I implemented was not designed myself. However, it was ported
+into C++ completely by me, and the implementation is mine alone, unless otherwise
 specified. The core of the program's design/implementation was developed as independently
 as possible. It should be noted that a few changes were made to the algorithm's flow to work
 with my implementation.
@@ -419,21 +513,21 @@ with my implementation.
 ### The Algorithm:
 
 To summarize how the algorithm works, it relies upon bitsets and bitwise operations.
-Each hand is masked with two bitsets. I called the first 'face exists bitset',
-and the second 'face occurrences bitset'. The first fifteen-sized bitset determines what 
-faces occur in the hand (A->2 'high ace to low order'). If a face appears the 
+Each hand is masked with two bitsets. I called the first 'value (Symbol) exists bitset',
+and the second 'value occurrences bitset'. The first fifteen-sized bitset determines what 
+values occur in the hand (A->2 'high ace to low order'). If a value appears the 
 bit is updated to '1', else it is left alone '0'. Once the first bitset is finished, 
-the second sixty-sized bitset then determines the count of each facecard respectively. 
+the second sixty-sized bitset then determines the count of each value respectively. 
 Once again this is ordered from Ace to Two (i.e, the first four left bits are keeping
 track of the number of ace cards in the hand while the lower four bits are keeping
 track of the number of two cards in the hand).
 
 Once the masking is complete, a rank can be found by simply taking mod fifteen of the
-second bitmask ('face occurrences bitset'). Do note, this only works for a four-of-a-kind,
+second bitmask ('value occurrences bitset'). Do note, this only works for a four-of-a-kind,
 full-house, three-of-a-kind, two-pairs, one-pair, and high-card hand ranks. 
 The other four legal hand ranks require special checking.
 
-For straights, we use the first bitset ('face exists bitset'), and the fact that
+For straights, we use the first bitset ('value exists bitset'), and the fact that
 the binary number '11111' equals '31'. We take our first bitset, use bitwise AND with the
 negative of the same bitset to obtain the least significant bit ('LSB'). Then divide the 
 first bitset with the LSB which will normalize it. Finally, we check if the quotient of this
@@ -448,7 +542,7 @@ you have a royal flush, else it is just a flush.
 
 The final aspect of the algorithm is handling ties. As the previous cases simply determine what
 the hand is ranked (one of ten), a method is needed to break ties if the same hand results from
-a comparison. Ties are broken by sorting the cards by order of occurrence and then by face values.
+a comparison. Ties are broken by sorting the cards by order of occurrence and then by values (using a card's magnitude).
 Bit shifting is used to then create a comparable score. We shift the first number to the left by 16 bits,
 the second by 12 bits, the third by 8 bits, the forth by 4 bits, and the fifth by 0.
 We then combine all five shifted numbers with bitwise OR. Finally we then compare the results of
@@ -472,31 +566,52 @@ hands incorrectly.
 - Ties are handled after determining what each hand is, and then following the algorithm's tie breaking method.
 
 - The hands are sorted differently for the ties as they must be sorted first by occurence (number of times they appear),
-and then by face value. This will be handled in a helper function.
+and then by value (magnitude). This will be handled in a helper function.
 
-Please refer to the source code in pokerCompare.cpp for the complete implementation I did.
+Please refer to the source code in pokerCore.cpp for the complete implementation I did.
+
+## Project Motivations:
+
+Provide a C++ class-based module implementation of a 5-hand poker hand evaluator based on a bitwise algorithm. This evolved to become a more sophisticated program with other modules now. The idea would be to eventually have separate modules for pokerCore that would handle validation, evaluation, and comparison separately.
+A major inspiration for this project was reading Jonathan Hsiao's [blog post](https://jonathanhsiao.com/blog/evaluating-poker-hands-with-bit-math "Jonathan Hsiao' post") about a bitwise algorithm to evaluate 5-hand poker hands I found very interesting.
+The [original algorithm was implemented](https://jsfiddle.net/subskybox/r4mSF "Pat Wilson's JavaScript Implementation") by Pat Wilson in JavaScript (2012).
 
 ## Source Code Overview:
 
-- README.md - this file.  
-- main.cpp - driver file - creates a pokerCompare object instance and runs the pokerHands application.  
-- readFile.h - header file for readFile.cpp.  
-- readFile.cpp - handles reading file Input.  
-- pokerCompare.h - header file for pokerCompare.cpp.  
-- pokerCompare.cpp - class implementation of a poker hand evaluator and validator. Bundled with some extra features.    
-- util.h - header file for util.cpp.  
-- util.cpp - helper functions and global variables for pokerCompare.cpp/main.cpp
-- pokerHandsTests.cpp - main testing suite for program. Tests all functions (aside from ones that print). Uses the Google Test C++ Framework.  
-- printTests.cpp - printing tests not covered in main testing framework .txt - provided test files for manual testing (may be modified).  
-- CMakeLists.txt - cmake makefile (created by me so Google Test may be used outside of the IDE for sake of ease).  
-- pokerHands.exe - main executable for poker hands; run using './pokerHands.exe <textFile>.txt' once compiled.  
-- printTests.exe - main executable for unit tests; ran using './printTests.exe' once compiled.  
+### Cpp-Poker-Hand-Validator-and-Evaluator
+- README.md - this file.
+- CHANGELOG.md - file for recording project changes from version to version.
+- CMakeLists.txt - cmake makefile.
+- .gitignore - stop git from including files specified to repository.
+- LICENSE - file for license declaration (open-source MIT license).
 
-## Software/Tools Used and Requirements for Full Project:  
+### src
 
-### Programs Required:  
-- Windows Command prompt (console)  
-- Some form of C++ compiler (used minGW-w64): https://www.mingw-w64.org/  
-- Cmake: https://cmake.org/download/  
-- Google Test C++: https://github.com/google/googletest  
-- Git for repository needs: https://github.com/  
+#### headers
+- util.h - header file for util.cpp.
+- pokerCore.h - header file for pokerCore.cpp.
+- readFile.h - header file for readFile.cpp.
+- writeFile.h - header file for readFile.cpp.
+
+#### modules
+- main.cpp - driver file - creates a pokerCore object instance and runs the pokerHands application. (Core Module).
+- pokerCore.cpp - class implementation of a poker hand evaluator and validator. Bundled with some extra features. (Core Module).
+- util.cpp - helper functions and global variables for pokerCore.cppp.  (Core Module).
+- readFile.cpp - handles reading file Input.
+- writeFile.cpp - handles reading file output.
+
+### tests
+
+#### googleTests
+- googleTests.cpp - main testing suite for program. Tests all functions (aside from ones that print). Uses the Google Test C++ Framework.  
+
+#### testModules
+- simpleCoreTest.cpp - printing tests not covered in main testing framework .txt - provided test files for manual testing.  
+
+### testFiles
+
+#### AdvancedTestFiles
+- Several .txt files for more advanced or intensive testing purposes.
+
+#### BasicTestFiles
+- Several .txt files for more basic or easy testing purposes.
