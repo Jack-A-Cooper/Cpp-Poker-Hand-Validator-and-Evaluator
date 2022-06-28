@@ -3,8 +3,6 @@
 ################################################################################
 
 /.vs
-pokerHands.exe
-printTests.exe
 /build
 /out
-/pokerHandsTests
+/.git
