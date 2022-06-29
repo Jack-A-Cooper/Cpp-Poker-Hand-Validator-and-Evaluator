@@ -1,15 +1,16 @@
-# Alert
+# Initialize build with information
 
 message("\n===== POKERHAND EVALUATOR AND VALIDATOR ====\n")
 
 message("CURRENT BUILD DIRECTORY: ${CMAKE_CURRENT_SOURCE_DIR} \n")
+
+#==========================================================================================================================================================
 
 # =========== Global Configs ===========
 
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 set(CMAKE_CXX_FLAGS_RELEASE "/MT")
 set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
-# set (CMAKE_CXX_FLAGS "-g3 -Wall -O0") 
 
 # Use C++11 Standard
 
@@ -23,63 +24,82 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+#==========================================================================================================================================================
+
 # =========== Project Configs ===========
 
-# |****| Project: DRIVER PROGRAM |****|
+# PROJECT NAME: DRIVER PROGRAM ------------------------------------------------------------------------------------------------------------------------------------
 
-message("COMPILING AND LINKING SOURCE FOR DRIVER PROGRAM [CORE]...\n")
+message("BUILDING DRIVER PROGRAM [CORE]...\n")
 
 project(pokerEval LANGUAGES CXX)
 
 # Project Configs
 
-include_directories(src 
-                    src/headers
-					src/modules
-					src/modules/main
-					src/modules/pokerCore
-					src/modules/readFile
-					src/modules/writeFile
-					testFiles/advancedTestFiles
-					testFiles/basicTestFiles
-)
+# Include required directories to search
+
+include_directories(src)
+
+# Set required source files for project build
+
 set(SRC_FILES ${PROJECT_SOURCE_DIR}/src/modules/main/main.cpp
-              ${PROJECT_SOURCE_DIR}/src/modules/pokerCore/pokerCore.cpp
-			  ${PROJECT_SOURCE_DIR}/src/modules/pokerCore/util.cpp
-			  ${PROJECT_SOURCE_DIR}/src/modules/readFile/readFile.cpp
-			  ${PROJECT_SOURCE_DIR}/src/modules/writeFile/writeFile.cpp
+                           ${PROJECT_SOURCE_DIR}/src/modules/pokerCore/pokerCore.cpp
+						   ${PROJECT_SOURCE_DIR}/src/modules/pokerCore/util.cpp
+						   ${PROJECT_SOURCE_DIR}/src/modules/readFile/readFile.cpp
+						   ${PROJECT_SOURCE_DIR}/src/modules/writeFile/writeFile.cpp
 )
 
-# Add Test Files
+# Add source to build
 
-file(GLOB BASICTESTFILES ${PROJECT_SOURCE_DIR}/testFiles/advancedTestFiles/*.txt)
-file(GLOB ADVANCEDTESTFILES ${PROJECT_SOURCE_DIR}/testFiles/basicTestFiles/*.txt)
-
-# Add libraries to build
-
-set(sourceDir "${CMAKE_CURRENT_SOURCE_DIR}/src")
-message("\nPATH COMPILE SOURCE: ${sourceDir}")
+set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+message("\nPATH COMPILE SOURCE: ${SOURCE_DIR}")
 set(executableToBuild main.cpp)
 message("EXECUTABLE: ${executableToBuild}\n")
 add_subdirectory(src)
-set(testFilesDir "${CMAKE_CURRENT_SOURCE_DIR}/testFiles")
-message("\nTEST FILES DIRECTORY: ${testFilesDir}\n")
-add_subdirectory(testFiles)
 
 # Add executable for build
 
-add_executable(pokerEval ${SRC_FILES} ${BASICTESTFILES} ${ADVANCEDTESTFILES})
+add_executable(pokerEval ${SRC_FILES})
 
-# Link libraries
+message("BUILDING DRIVER PROGRAM [CORE] FINISHED!\n")
 
-target_link_libraries(pokerEval
-  testFiles
-)
+# PROJECT NAME: ADD FILES TO BUILD ---------------------------------------------------------------------------------------------------------------------------------
 
-message("COMPILING AND LINKING FOR DRIVER PROGRAM [CORE] FINISHED!")
+message("ADDING FILES TO BUILD...\n")
 
-message("\n=====COMPILING AND LINKING FOR ALL PROGRAMS COMPLETE====\n")
+project(fileAddition)
 
-message("EXECUTABLES WILL BE BUILT IN " ${CMAKE_BINARY_DIR}/bin "\n")
+# Project Configs
 
-message("TO BUILD ALL USE: 'cmake --build build'.\n")
+include_directories(testFiles)
+
+# Add source to build
+
+set(SOURCE_BASIC_TESTS_PATH  "${CMAKE_CURRENT_SOURCE_DIR}/testFiles/basicTestFiles")
+set(SOURCE_ADV_TESTS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/testFiles/basicTestFiles")
+message("\nPATH ADDITION SOURCE: ${SOURCE_BASIC_TESTS_PATH} AND ${SOURCE_ADV_TESTS_PATH}")
+add_subdirectory(testFiles)
+
+message("ADDING FILES TO BUILD FINISHED!\n")
+
+# PROJECT NAME: GOOGLE TESTS BUILD ------------------------------------------------------------------------------------------------------------------------------
+
+message("BUILDING GOOGLETEST PROGRAM...\n")
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests/googleTests)
+
+message("BUILDING GOOGLETEST PROGRAM FINISHED!\n")
+
+# PROJECT NAME: CORE TESTS BUILD -----------------------------------------------------------------------------------------------------------------------------------
+
+message("BUILDING CORE TESTS PROGRAM...\n")
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests/testModules)
+
+message("BUILDING CORE TESTS PROGRAM FINISHED!\n")
+
+message("\n=====BUILDING FOR ALL PROGRAMS COMPLETE====\n")
+
+message("EXECUTABLES WILL BE BUILT IN " ${CMAKE_BINARY_DIR}/bin " ONCE COMPILED!\n")
+
+message("TO COMPILE BUILD ALL USE: 'cmake --build build'.\n")

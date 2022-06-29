@@ -5,80 +5,70 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/test/bin)
 
 # =========== Project Config ===========
 
-# |****| Project: googleTest Module |****|
+message("BUILDING GOOGLETEST MODULE...\n")
 
-message("\nBUILDING GOOGLETEST MODULE...\n")
+project(googleTests LANGUAGES CXX)
 
-project(${GTEST} NONE)
+# Fetch googletest for use
 
 include(FetchContent)
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
-  DOWNLOAD_EXTRACT_TIMESTAMP(true)
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
+
 # For Windows: Prevent overriding the parent project's compiler/linker settings
+
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
 
-# Fetch GoogleTest Content
-FetchContent_MakeAvailable(googleTest)
-
-# Extra configs
-
-set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
-set(BUILD_GTEST ON CACHE BOOL "" FORCE)
-
-# Directories required for build
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/headers)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/tests/googleTests)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}}/testFiles)
-
-# Provide libraries to current build
-
-add_subdirectory(headers)
-add_subdirectory(testModules)
-add_subdirectory(testFiles)
-
-# Set
-
-set(gTestLib
-  googleTests.cpp
-)
-
-# Add library
-
-add_library(gTestLib ${gTestLib})
-
-# Enable Testing
+# Enable testing for googletest
 
 enable_testing()
 
+
+# Add source to build
+
+set(TEST_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tests/googleTests")
+message("\nPATH COMPILE SOURCE: ${TEST_SOURCE_DIR}")
+
+# Include required directories to search
+
+include_directories(src)
+include_directories(tests)
+
+# Set required source files for project build
+
+set(SRC_FILES googleTests.cpp
+                           ${CMAKE_SOURCE_DIR}/src/headers/pokerCore.h
+						   ${CMAKE_SOURCE_DIR}/src/headers/util.h
+						   ${CMAKE_SOURCE_DIR}/src/headers/readFile.h
+                           ${CMAKE_SOURCE_DIR}/src/modules/pokerCore/pokerCore.cpp
+						   ${CMAKE_SOURCE_DIR}/src/modules/pokerCore/util.cpp
+						   ${CMAKE_SOURCE_DIR}/src/modules/readFile/readFile.cpp
+)
+
+# Add test files to bin for use
+
+file(GLOB BASIC_TEST_FILES  "${CMAKE_SOURCE_DIR}/testFiles/basicTestFiles/*.txt")
+file(GLOB ADVANCED_TEST_FILES  "${CMAKE_SOURCE_DIR}/testFiles/advancedTestFiles/*.txt")
+file(COPY ${BASIC_TEST_FILES} ${ADVANCED_TEST_FILES}  DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 # Add executable for build
 
-add_executable(${GTEST}
-	util.h
-	pokerCore.h
-	readFile.h
-	util.cpp
-	pokerCore.cpp
-	readFile.cpp
-	googleTests.cpp
-	testFiles
-)
+add_executable(googleTests ${SRC_FILES})
 
-# Link libraries
+# Link libraries for build
 
-target_link_libraries(${GTEST}
-  headers
-  readFile
-  pokerCore
-  testFiles
-  gTestLib
-  gtest_main
-)
+target_link_libraries(googleTests gtest_main)
+
+# Include GoogleTest
 
 include(GoogleTest)
-gtest_discover_tests(gTestLib)
 
-message("\GOOGLETEST MODULE BUILDING FINISHED...\n")
+# Discover tests in build
+
+gtest_discover_tests(googleTests)
+
+message("\nGOOGLETEST MODULE BUILDING FINISHED...\n")
