@@ -57,6 +57,12 @@ set(executableToBuild main.cpp)
 message("EXECUTABLE: ${executableToBuild}\n")
 add_subdirectory(src)
 
+# Add test files to bin for use
+
+file(GLOB BASIC_TEST_FILES  "${CMAKE_SOURCE_DIR}/testFiles/basicTestFiles/*.txt")
+file(GLOB ADVANCED_TEST_FILES  "${CMAKE_SOURCE_DIR}/testFiles/advancedTestFiles/*.txt")
+file(COPY ${BASIC_TEST_FILES} ${ADVANCED_TEST_FILES}  DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 # Add executable for build
 
 add_executable(pokerEval ${SRC_FILES})
