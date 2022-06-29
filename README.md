@@ -22,7 +22,6 @@
 - Some form of command line program.
 - Cmake: https://cmake.org/download/.
 - Compiled using C++17 standard.
-- ~Some form of C++ compiler (used minGW-w64): https://www.mingw-w64.org/~.
 
 ## Quick Summary
 
@@ -39,73 +38,39 @@ New directory structure is requiring a complete rewrite of some parts of the pro
 
 During my spare-time I am rewriting the overall program to be more portable, and add features/modules I wanted to implement in the original release (Feb.2022 1.0 Version)
 
-## Compile and Run
+## Building, Compiling, and Running
 
-### Compiling Methods Suggested
+### Cmake Method (*RECOMMENDED*)
 
-#### Cmake Method (*RECOMMENDED*)
-
+#### Project Building and Compiling
 1. Compiled/built using [Cmake](https://cmake.org/download).
 2. Easy [tutorial](https://www.youtube.com/watch?v=8_X5Iq9niDE) for installing Cmake.
 Also [here](https://google.github.io/googletest/quickstart-cmake.html) is a tutorial for how to build Google Tests outside of an IDE for use if interested.
 3. Navigate to the same directory as the source code and test files.
-4. To compile sourcecode using Cmake use: 
+4. To build project using Cmake use: 
 > cmake -S . -B build
-5. To build, use: 
+5. To compile, use: 
 > cmake --build build
-6. Now that the source code has been compiled and linked,
+6. Move onto the any of the following sections to run the program.
+
+#### Main Program
+1. Now that the source code has been compiled and linked,
 and the executable created imply navigate to the build/bin/debug directory using:
 > cd build/bin/debug
-7. Lastly, drag any .txt test files into this same directory and run using: 
+2. Currently, test files (.txt files) are not copied to this directory; copy over any desired files to run the program with to this directory before running. Use the following command to run the program:
 > ./pokerEval [FILENAME].txt
-8. The core program will then run along with creating a .txt file called "Output.txt" which records the results. It will be overwritten in successive runs!
+3. The core program will then run along with creating a .txt file called "Output.txt" which records the results. It will be overwritten in successive runs!
 
-#### ~g++ Method~ (UNDER REDESIGN)
+_Example:_
+> ./pokerEval testUltimate.txt
 
-1. Compiled using [g++](https://gcc.gnu.org) - make sure it is installed.
-A guide is [here](https://www.tutorialspoint.com/How-to-Install-Cplusplus-Compiler-on-Windows).
-2. Navigate to the same directory as the source code and 
-test files, to compile type: 
-> g++ -o pokerEval main.cpp readFile.cpp pokerCore.cpp util.cpp
-3. To run, use the following (ensure .txt file(s) are in the same directory as the executable!):
-> ./pokerEval [FILENAME].txt
- 
-An example using the filename 'testBasicOriginal.txt':
- 
-> ./pokerEval testBasicOriginal.txt
-
-4. Program will run displaying the winner(s).  
-
-Note: Highly recommend running with 'testUltimate.txt' has 1000 pairs to evaluate a winner! Use when compiled to run this test: 
-> .\pokerHands.exe testUltimate.txt 
-
-### ~Compiling/Running Test Program [Google Test C++] (Main Testing Suite)~ (UNDER REDESIGN)
-
-#### ~To compile test program~ (UNDER REDESIGN)
-1. Compiled/built using [Cmake](https://cmake.org/download).
-2. Easy [tutorial](https://www.youtube.com/watch?v=8_X5Iq9niDE) for installing Cmake.
-Also [here](https://google.github.io/googletest/quickstart-cmake.html) is a tutorial for how to build Google Tests outside of an IDE for use if interested.
-3. Navigate to the same directory as the source code and test files.
-4. To compile project using Cmake use: 
-> cmake -S . -B build
-5. To build, use: 
-> cmake --build build
-6. Now that the tests are built and dependencies (Google Test) is set up,
-simply navigate to the build directory using:
-> cd build
-7. Lastly, to run tests use: 
+#### GoogleTests Program
+1. Now that the source code has been compiled and linked,
+and the executable created imply navigate to the build/tests/googleTests directory using:
+> cd build/tests/googleTests
+2. Currently, test files (.txt files) are copied into the same directory as the executable for ease of use. Any test files supplied in ./testFiles/basicTestFiles or ./testFiles/advancedTestFiles directories and are of the file extension '.txt' will be copied in as well for use. Use the following command to run the program:
 > ctest
-8. The GoogleTest suite will then run.
-
-#### ~Compiling/Running the Print Tests (Secondary Testing):~ (UNDER REDESIGN)
-1. Compiled using [g++](https://gcc.gnu.org/). Follow steps from the section [here](#g-method-under-redesign) up to the step with regards to compiling. Use the following steps instead however.
-2. Navigate to the same directory as the source code and 
-test files, to compile type:
-> g++ -o printTests.exe printTests.cpp readFile.cpp pokerCore.cpp util.cpp  
-3. To run, use the following:
-> .\printTests.exe  
-4. Program will run the printing tests.
-5. Observe the 'EXPECTING' and 'GOT' results. Matching output will mean a success for that test.
+3. The GoogleTest program will run and display results of the test to the console.
 
 ## Program Usage
 
